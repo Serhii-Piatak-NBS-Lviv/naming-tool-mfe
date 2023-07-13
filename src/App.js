@@ -7,7 +7,7 @@ import { fontsLoader, themes } from './themes';
 import useThemifiedComponent from "./app/hooks/useThemifiedComponent";
 
 const App = ({data}) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   let fl = data.hasOwnProperty('theme') ? fontsLoader(data.theme) : null;
     if (fl) injectGlobal`${fl}`;
@@ -21,7 +21,7 @@ const App = ({data}) => {
         });
       };
 
-      if (data.locale) t.changeLanguage(data.locale);
+      if (data.locale) i18n.changeLanguage(data.locale);
       
     }, []);
 
