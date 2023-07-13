@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/react-microservice-boilerplate/static/css/main.css",
+    "main.js": "/react-microservice-boilerplate/static/js/main.js",
+    "index.html": "/react-microservice-boilerplate/index.html",
+    "main.css.map": "/react-microservice-boilerplate/static/css/main.css.map",
+    "main.js.map": "/react-microservice-boilerplate/static/js/main.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.css",
+    "static/js/main.js"
+  ]
+}
