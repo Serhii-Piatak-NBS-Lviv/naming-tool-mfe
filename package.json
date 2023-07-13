@@ -2,7 +2,7 @@
   "name": "simple_react_counter",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://SerhiyPyatak.github.io/simple-react-counter",
+  "homepage": "https://Serhii-Piatak-NBS-Lviv.github.io/react-microservice-boilerplate",
   "dependencies": {
     "@emotion/css": "^11.11.2",
     "@emotion/react": "^11.11.1",
