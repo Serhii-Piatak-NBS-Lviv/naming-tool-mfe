@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { injectGlobal } from '@emotion/css';
 import WebFont from 'webfontloader';
+import { useTranslation } from "react-i18next";
 
 import { fontsLoader, themes } from './themes';
 import useThemifiedComponent from "./app/hooks/useThemifiedComponent";
 
 const App = ({data}) => {
+  const { t } = useTranslation();
+
   let fl = data.hasOwnProperty('theme') ? fontsLoader(data.theme) : null;
     if (fl) injectGlobal`${fl}`;
 
@@ -16,9 +19,12 @@ const App = ({data}) => {
             families: themes[data.theme]["google-fonts"]
           }
         });
-      }
+      };
+
+      if (data.locale) t.changeLanguage(data.locale);
       
     }, []);
+
 
   // ToDo ------- Replace it by your code
 
@@ -52,10 +58,10 @@ const App = ({data}) => {
       <h2 className={cssCounterTitle}>{ data.counter_title ? data.counter_title : 'Counter App' }</h2>
       <div className={cssCounterValue}> {counter} </div>
       <div className={cssControlBox}>
-        <button className={cssBtnIncrease} onClick={handleClick1}>Increment</button>
-        <button className={cssBtnDecrease} onClick={handleClick2}>Decrement</button>
+        <button className={cssBtnIncrease} onClick={handleClick1}>{t('increment')}</button>
+        <button className={cssBtnDecrease} onClick={handleClick2}>{t('decrement')}</button>
       </div>
-      <p className={cssStaticString}>This React micro-frontend application is available for themification</p>
+      <p className={cssStaticString}>{t('static-string')}</p>
     </div>
     // ToDo ------------------------------------------------
   )

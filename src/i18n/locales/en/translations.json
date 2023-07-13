@@ -1,0 +1,5 @@
+{
+    "increment": "Increment",
+    "decrement": "Decrement",
+    "static-string": "This React micro-frontend application is available for themification and localization"
+}
