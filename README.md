@@ -44,7 +44,7 @@ Speaking in the simple terms, service worker in this case provides the ability t
 ### React chunking disabled
 When the container app tries to load the MFE, everything should be in one JS file. To achieve this we must disable the [chunking](https://blog.logrocket.com/react-dynamic-imports-route-centric-code-splitting-guide/). To do this, we will use the `react-app-rewired` package. Ater this package installed by npm or yarn following two things were done.
 
-..* *In the root level of MFE application `config-overrides.js` file was added with the following content:*
+- *In the root level of MFE application `config-overrides.js` file was added with the following content:*
 ```
 module.exports = {
   webpack: (config, env) => {
@@ -64,7 +64,7 @@ module.exports = {
 };
 ```
 
-..* *To use this override above `package.json` was properly instructed:*
+- *To use this override above `package.json` was properly instructed:*
 ```diff
 "scripts": {
 -  "start": "react-scripts start",   
@@ -168,7 +168,7 @@ const myReactUIComponent = (props) => {
 1. Fork this boilerplate to your own GitHub repository
 2. Clone the forked boilerplate from your own repo to your local environment
 3. Open the `index.js` file and make following changes:
-..* find the lines of code where render- and unmout- endpoint functions are declared. Replace `{AppName}` parts of function names by your own app name:
+* find the lines of code where render- and unmout- endpoint functions are declared. Replace `{AppName}` parts of function names by your own app name:
 ```diff
 /*index.js*/
 
@@ -183,7 +183,7 @@ const myReactUIComponent = (props) => {
 ...
 ```
 
-..* find the line of code where React app root div presence checking and Replace `{AppName}` part of id by your own app name (it should be the same like in function names):
+* find the line of code where React app root div presence checking and Replace `{AppName}` part of id by your own app name (it should be the same like in function names):
 ```diff
 /*index.js*/
 
@@ -193,11 +193,11 @@ const myReactUIComponent = (props) => {
 ...
 ```
 
-..*  save changes you've made in `index.js` file.
+*  save changes you've made in `index.js` file.
 >**Remember (it's better to write down in app documentation) the AppName you've assigned to own project: it will need to be specified in container application later.**
 
 4. Open the `package.json` file and make following changes:
-..* change the project name:
+* change the project name:
 ```diff
 /*package.json*/
 
@@ -207,7 +207,7 @@ const myReactUIComponent = (props) => {
 ...
 ```
 
-..* change the URL of Git- page where your microfrontend will be deployed in following format:
+* change the URL of Git- page where your microfrontend will be deployed in following format:
 ```diff
 /*package.json*/
 
@@ -216,7 +216,7 @@ const myReactUIComponent = (props) => {
 + "homepage": "https://{username}.github.io/{repo-name}",
 ...
 ```
-..*  save changes you've made in `package.json` file.
+*  save changes you've made in `package.json` file.
 
 5. Prepare fonts:
 * put your custom fonts you want to store in project inside the `src/app/fonts` folder;
