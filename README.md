@@ -1,13 +1,16 @@
 # React microfrontend boilerplate
 
+It's a boilerplate that serves as a basis for React microfronted applications. It contains a demo project with simple counter. Push "Increase" button - counter increasing a value. Push decrease button - counter decreasing a value. Documentation contains all information needed to understand basics and how to create your own microfrontends.
+
+
 ## Sitebuilder's Card
 
-|  Field  |  Acceptable value  |
+|  **Field**  |  **Acceptable value**  |
 |:-------:|:-------:|
 | React Microfrontend name | Counter |
 | React app URL | https://serhii-piatak-nbs-lviv.github.io/react-microservice-boilerplate/ |
 | Layout theme |  [default, dark] |
-|  React application-specific fields ||
+|  **React application-specific fields** ||
 | Key | Value |
 | counter_title | * |
 
@@ -17,7 +20,7 @@ If the field accepts only a single value, it is specified directly (for example,
 
 If the field accepts a set of predefined values ​​- they are entered in the form of an array (for example, "Layout theme" field accepts `default` or `dark`).
 
-If the field accepts whichever value - put the "asterick" wildcard `*` into the Sitebuilder's card (for example, `counter_title` field accepts anything).
+If the field accepts whichever value - put the "asterisk" wildcard `*` into the Sitebuilder's card (for example, `counter_title` field accepts anything).
 
 
 ## What exactly makes this application to be a microfrontend (MFE)?
@@ -29,13 +32,14 @@ to operate as a microfrontend.
 This React Microfrontend Application is inherently a [Progressive Web Application (PWA)](https://blog.logrocket.com/pwa-create-react-app-service-workers/). It means that application contains a service [worker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API) inside specific file: `serviceWorker.js`. 
 
 Speaking in the simple terms, service worker in this case provides the ability to reach out the `main.js`-file of deployed React microfrontend application without actual visiting the URL where it is hosted. In turn, `main.js` provides two endpoint functions to render as well as unmount the microfrontend. Following convention for endpoint function names used:
+
 -*Render function name: `render{AppName}`*
 -*Unmount function name: `unmount{AppName}`*
-```
-For example: this boilerplate contains a simple counter React app. It's AppName is "Counter". So, function names will be:
-- renderCounter
-- unmountCounter
-```
+
+>For example: this boilerplate contains a simple counter React app. It's AppName is "Counter". So, function names  will be:
+> - renderCounter
+> - unmountCounter
+
 
 ### React chunking disabled
 When the container app tries to load the MFE, everything should be in one JS file. To achieve this we must disable the [chunking](https://blog.logrocket.com/react-dynamic-imports-route-centric-code-splitting-guide/). To do this, we will use the `react-app-rewired` package. Ater this package installed by npm or yarn following two things were done.
@@ -166,6 +170,8 @@ const myReactUIComponent = (props) => {
 3. Open the `index.js` file and make following changes:
 ..* find the lines of code where render- and unmout- endpoint functions are declared. Replace `{AppName}` parts of function names by your own app name:
 ```diff
+/*index.js*/
+
 ...
 - window.renderCounter = (containerId, data) => {
 + window.renderMyOwnAppName = (containerId, data) => {
@@ -179,6 +185,8 @@ const myReactUIComponent = (props) => {
 
 ..* find the line of code where React app root div presence checking and Replace `{AppName}` part of id by your own app name (it should be the same like in function names):
 ```diff
+/*index.js*/
+
 ...
 - if (!document.getElementById('Counter-container')) {
 + if (!document.getElementById('MyOwnAppName-container')) {
@@ -186,11 +194,13 @@ const myReactUIComponent = (props) => {
 ```
 
 ..*  save changes you've made in `index.js` file.
-**Remember (it's better to write down in app documentation) the AppName you've assigned to own project: it will need to be specified in container application later.**
+>**Remember (it's better to write down in app documentation) the AppName you've assigned to own project: it will need to be specified in container application later.**
 
 4. Open the `package.json` file and make following changes:
 ..* change the project name:
 ```diff
+/*package.json*/
+
 ...
 - "name": "simple_react_counter",
 + "name": "my_project_name",
@@ -199,6 +209,8 @@ const myReactUIComponent = (props) => {
 
 ..* change the URL of Git- page where your microfrontend will be deployed in following format:
 ```diff
+/*package.json*/
+
 ...
 - "homepage": "https://Serhii-Piatak-NBS-Lviv.github.io/react-microservice-boilerplate",
 + "homepage": "https://{username}.github.io/{repo-name}",
@@ -220,7 +232,8 @@ const myReactUIComponent = (props) => {
 
 8. You can use `npm start` to run dev server as for usual React application to test how it works.
 
-9. Fulfill the Sitebuilder's Card as shown above. **Always keep actual information in Sitebuilder's Card**
+9. Fulfill the Sitebuilder's Card as shown above. 
+>**Always keep actual information in Sitebuilder's Card**
 
 10. Push your code to your project repository.
 
@@ -228,7 +241,7 @@ const myReactUIComponent = (props) => {
 ## In which way microfrontend obtains data from 'outside'?
 
 All infrormation which needs to be passed from container app to microfrontend arrives via `data` prop. Two fields are mandatory in `data`- prop:
-|  prop   |  description                                                         |
+|  **prop**   |  **description**                                                         |
 |---------|----------------------------------------------------------------------|
 | theme   | contains the theme name which needs to be applied when MFE rendering |
 | locale  | points to the laguage which needs to be applied when MFE rendering   |
@@ -238,4 +251,4 @@ If needed, you can reference any amount of your own custom fields from `data`-pr
 Specifics - it's the arbitrary data fields you want to obtain from container application. As mentioned, it could be any amount of such fields. For example, in this counter application we're using just one cpecific. It is a field `counter_title` that contains the title text that should be displyed by MFE.
 
 In the code you should reference specifics by `data.<specific_key>`. Feel free to pre-define any amount of specifics you need for your own micro frontend application. All is need it's to define keys and acceptable values for specifics in Sitebuilder's Card. Sitebuilders or content editors then will include these specifics fields to the MFE's settings on container side. 
-**Be sure to enter information about specifics you define into Sitebuilder's Card!**
+>**Be sure to enter information about specifics you define into Sitebuilder's Card!**
