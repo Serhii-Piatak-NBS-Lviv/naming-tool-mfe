@@ -10,8 +10,11 @@ It's a boilerplate that serves as a basis for React microfronted applications. I
 | React Microfrontend name | Counter |
 | React app URL | https://serhii-piatak-nbs-lviv.github.io/react-microservice-boilerplate/ |
 | Layout theme |  [default, dark] |
-|  **React application-specific fields** ||
+
+
+**React application-specific fields**:
 | Key | Value |
+|:-------:|:-------:|
 | counter_title | * |
 
 Sitebuilder's Card - it's a short summary containing details for site builders or content editors with settings for properly integrate micro frontend into container application. This information is presented in the form of a table with a list of fields and acceptable values ​​for them. 
