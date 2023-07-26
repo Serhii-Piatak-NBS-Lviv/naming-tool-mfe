@@ -50,7 +50,7 @@ const App = ({data}) => {
     // Counter state is decremented
     setCounter(counter - 1)
   }
-  // ToDo ---------------------------------
+  // ToDo end---------------------------------
   
   return (
     // ToDo: ---- Replace it by your code -----------------
@@ -63,7 +63,7 @@ const App = ({data}) => {
       </div>
       <p className={cssStaticString}>{t('static-string')}</p>
     </div>
-    // ToDo ------------------------------------------------
+    // ToDo end ------------------------------------------------
   )
 }
 
