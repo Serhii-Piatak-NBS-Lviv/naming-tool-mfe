@@ -5,16 +5,7 @@ export const viewSlice = createSlice({
     initialState: {
         "hero_image": "../../app/apisimul/view/hero-puppy.png",
         "names_list": [],
-        "selected_name": {
-            "id": "",
-            "title": "",
-            "taxonomy_terms": {
-                "capital_letter": "",
-                "categories": [],
-                "gender": "",
-            },
-            "description": "",
-        }
+        "selected_name": ''
     },
     reducers: {
         addPetName: (state, action) => {
@@ -31,9 +22,17 @@ export const viewSlice = createSlice({
                 "gender": field_nbs_nmngtool_gender[0].value,
             });
         },
+
+        setNamesList: (state, action) => {
+            state.names_list = [...action.payload];
+        },
+
+        selectPetName: (state, action) => {
+            state.selected_name = action.payload;
+        }
     },
 });
 
-export const { addPetName } = viewSlice.actions;
+export const { addPetName, setNamesList, selectPetName } = viewSlice.actions;
 
 export default viewSlice.reducer;

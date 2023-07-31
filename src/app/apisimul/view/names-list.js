@@ -180,7 +180,7 @@ const namesList = {
          "Title": "Jin",
          "Definition": "Do you have a gold or yellow coloured dog, and are looking for an alternative and obscure name for them? We have just the name for you! Jin, which is traditoanlly used in Chinese culture for surnames, means ‘gold’. It is one of the most common surnames in Chinese culture, and is sometimes transcribed as Chin.  \n",
          "Gender": "Both",
-         "Chinese": "Y"
+         "categories": ["category-022"]
         },
         {
          "id": "petname-27",

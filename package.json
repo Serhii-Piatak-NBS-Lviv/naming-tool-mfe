@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://Serhii-Piatak-NBS-Lviv.github.io/naming-tool-mfe",
   "dependencies": {
+    "@chakra-ui/icons": "^2.1.0",
     "@chakra-ui/react": "^2.8.0",
     "@emotion/css": "^11.11.2",
     "@emotion/react": "^11.11.1",

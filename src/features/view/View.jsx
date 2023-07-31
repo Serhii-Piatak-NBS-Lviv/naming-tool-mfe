@@ -1,13 +1,8 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import useThemify from '../../app/hooks/useThemify';
-import { cx } from '@emotion/css';
-
-import LandingCard from './LandingCard';
-import AlphabetSlider from './AlphabetSlider';
-import NameSwiper from './NameSwiper';
-import { ResultsCard } from './ResultsCard';
+import { SimpleGrid } from '@chakra-ui/react';
+import ShiftingPopover from './ShiftingPopover';
 
 
 /**
@@ -17,27 +12,22 @@ import { ResultsCard } from './ResultsCard';
 
 export const View = () => {
     const { t } = useTranslation();
-    const [defaultTheme, overrideTheme, isThemeOverriden] = useThemify('view');
-    const [dftThmTopTitle, ovrdThmTopTitle, isThmTopTitleOvrd] = useThemify('view-top-title');
+    const simpleGridRef = useRef();
+    const namesList = useSelector(state => state.view.names_list);
 
     return(
-        <div className={cx(
-            { [defaultTheme]: true },
-            { [overrideTheme]: isThemeOverriden }
-        )} id='view'>
-            <h2 className={cx(
-            { [dftThmTopTitle]: true },
-            { [ovrdThmTopTitle]: isThmTopTitleOvrd }
-            )} id="view-top-title">
-                {t('view section title')}
-            </h2>
-            <AlphabetSlider alphabet={t('alphabet')} />
-            {/* <LandingCard /> */}
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <NameSwiper />
-                <ResultsCard />
-            </div>
-        </div>
+        <SimpleGrid ref={simpleGridRef} position={'relative'} minChildWidth='255px' spacing='16px' w={['100%', '90%']} mx="auto">
+            { namesList.map((petname) => {
+            return (
+              <ShiftingPopover
+              id={petname.id} 
+              title={petname.Title} 
+              description={petname.Definition}
+              simpleGridRef={simpleGridRef}
+              key={petname.id} />              
+            )}
+          ) }
+        </SimpleGrid>
     )
 };
 
