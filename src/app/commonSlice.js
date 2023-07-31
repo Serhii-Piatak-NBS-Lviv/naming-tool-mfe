@@ -6,13 +6,21 @@ export const commonSlice = createSlice({
     name: 'common',
     initialState: {
         "locale": "en",
-        "theme": "ttt-default",
+        "theme": "default",
         "categoriesOrigin": 'https://uat-dig0031655-petcare-purinattt-italy.pantheonsite.io/namingtool-petname-categories?_format=json',
         "namesOrigin": 'https://uat-dig0031655-petcare-purinattt-italy.pantheonsite.io/namingtool-petnames-all?_format=json',
     },
-    reducers: {},
+    reducers: {
+        setTheme: (state, action) => {
+            state.theme = action.payload;
+        },
+
+        setLocale: (state, action) => {
+            state.locale = action.payload;
+        }
+    },
 });
 
-export const {} = commonSlice.actions;
+export const { setTheme, setLocale } = commonSlice.actions;
 
 export default commonSlice.reducer;

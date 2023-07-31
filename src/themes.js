@@ -9,6 +9,20 @@ export const themes = {
         
         "app-container": {
             "backgroundColor": 'rgb(249, 248, 245)',
+            "paddingLeft": '5%',
+            "paddingRight": '5%',
+            "paddingTop": '40px',
+            "paddingBottom": '80px',
+        },
+
+        "view-name-button": {
+            "backgroundColor": '#FFF !important',
+            "boxShadow": '0px 2px 12px 0px rgba(58,53,51,0.1), 0px 0px 2px 0px rgba(58,53,51,0.2)',
+            "borderRadius": '8px !important',
+            "height": '56px !important',
+            "padding": '16px 24px',
+            "fontSize": '20px !important',
+            "lineHeight": '24px !important',
         },
 
         "fonts-list": [],
