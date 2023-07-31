@@ -6,54 +6,10 @@ import FONTS_REGISTRY from './fonts';
 
 export const themes = {
     "default": {
-        // ======= Replace this by your own default theming structure ========
-        "counter-container": {
-            "display": 'flex',
-            "flexDirection": 'column',
-            "alignItems": 'center',
-            "justifyContent": 'center',
-            "fontSize": '300%',
-            "padding": '5% 0',
-            "width": '100%',
-            "textAlign": 'center',
+        
+        "app-container": {
+            "backgroundColor": 'rgb(249, 248, 245)',
         },
-
-        "counter-title": {
-            "fontFamily": 'Roboto',
-        },
-
-        "control-box": {
-            "dispay": 'flex',
-            "flexDirection": 'column',
-        },
-
-        "counter-value": {
-            "fontSize": '120%',
-            "padding": '1% 0',
-            "margin": '3% 0',
-        },
-
-        "increase-button": {
-            "fontSize": '60%',
-            "marginRight": '5px',
-            "backgroundColor": 'green',
-            "borderRadius": '8%',
-            "color": 'white',
-        },
-
-        "decrease-button": {
-            "fontSize": '60%',
-            "marginLeft": '5px',
-            "backgroundColor": 'red',
-            "borderRadius": '8%',
-            "color": 'white',
-        },
-
-        "static-string": {
-            "fontSize": '50%',
-            "color": '#4e4e4e',
-        },
-        // ==============================
 
         "fonts-list": [],
 
@@ -63,42 +19,15 @@ export const themes = {
     },
 
     // =========== Add your themes declaration here ====================
-    "dark": {
-        "counter-container": {
-            "backgroundColor": '#333',
-        },
+    // "myCustomTheme": {
+        
 
-        "counter-title": {
-            "fontFamily": 'Chilanka',
-            "color": '#ffa500',
-        },
-
-        "counter-value": {
-            "color": '#7fffd4',
-            "order": 2,
-        },
-
-        "increase-button": {
-            "borderRadius": '0 22px',
-            "fontFamily": 'IBM Plex Mono',
-        },
-
-        "decrease-button": {
-            "borderRadius": '22px 0',
-            "fontFamily": 'IBM Plex Mono',
-        },
-
-        "static-string": {
-            "order": 3,
-            "color": '#3bbf28',
-        },
-
-        "fonts-list": ['deutsch_gothicnormal'],
+        // "fonts-list": ['deutsch_gothicnormal'],
 
         // * following is for  Web Font Loader */
         //for using Google's Font API,
-        "google-fonts": ['Chilanka', 'IBM Plex Mono'],
-    }
+        // "google-fonts": ['Chilanka', 'IBM Plex Mono'],
+    // }
     // ==================================================
 };
 

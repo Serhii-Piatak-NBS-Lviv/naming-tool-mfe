@@ -7,9 +7,9 @@ It's a boilerplate that serves as a basis for React microfronted applications. I
 
 |  **Field**  |  **Acceptable value**  |
 |:-------:|:-------:|
-| React Microfrontend name | Counter |
+| React Microfrontend name | NamingTool |
 | React app URL | https://serhii-piatak-nbs-lviv.github.io/react-microservice-boilerplate/ |
-| Layout theme |  [default, dark] |
+| Layout theme |  default |
 
 
 **React application-specific fields**:
