@@ -21,15 +21,57 @@ export const themes = {
             "borderRadius": '8px !important',
             "height": '56px !important',
             "padding": '16px 24px',
+            "fontFamily": 'Roboto Slab',
             "fontSize": '20px !important',
+            "fontWeight": '400 !important',
             "lineHeight": '24px !important',
+        },
+
+        "view-cardwrapper": {
+            "position": 'relative',
+            "border": 'solid 1px red !important',
+            "boxShadow": '0px 4px 16px 0px rgba(0,0,0,0.1) !important',
+            "borderRadius": '8px !important',
+            "padding": '48px',
+        },
+
+        "view-nametitle": {
+            "fontFamily": 'Roboto Slab',
+            "color": 'rgb(58, 53, 51)',
+            "fontWeight": '400 !important',
+        },
+
+        "view-namesubtitle": {
+            "fontFamily": 'Roboto !important',
+            "fontWeight": '300 !important',
+            "fontSize": '16px !important',
+            "lineHeight": '24px !important',
+            "color": 'rgb(201, 197, 185)',
+        },
+
+        "view-namesubtitle__strong": {
+            "fontWeight": '600 !important',
+            "color": 'rgb(107, 104, 104)',
+        },
+
+        "view-namedescription": {
+            "borderTop": '1px solid rgb(201, 197, 185)',
+            "borderBottom": '1px solid rgb(201, 197, 185)',
+        },
+
+        "view-namedescription__text": {
+            "fontFamily": 'Roboto !important',
+            "fontSize": '20px !important',
+            "lineHeight": '32px !important',
+            "fontWeight": '300 !important',
+            "color": 'rgb(107, 104, 104)',
         },
 
         "fonts-list": [],
 
         // * following is for  Web Font Loader */
         //for using Google's Font API,
-        "google-fonts": [],
+        "google-fonts": ['Roboto Slab', 'Roboto'],
     },
 
     // =========== Add your themes declaration here ====================

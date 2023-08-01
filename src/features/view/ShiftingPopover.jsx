@@ -3,7 +3,7 @@ import { CloseIcon } from '@chakra-ui/icons'
 import { css } from '@emotion/css';
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, GridItem, Card, CardHeader, CardBody, CardFooter, Heading, Text, Divider} from '@chakra-ui/react';
+import { Button, GridItem, Card, CardHeader, CardBody, CardFooter, Heading, Text } from '@chakra-ui/react';
 import { useToast } from '@chakra-ui/react';
 import { selectPetName } from './viewSlice';
 import useURLParam from '../../app/hooks/useURLParam';
@@ -14,11 +14,6 @@ import useThemifiedComponent from '../../app/hooks/useThemifiedComponent';
 * @author
 * @function ShiftingPopover
 **/
-
-const cardWrapper = css`
-    position: relative;
-    border: solid 1px red !important;
-`;
 
 const arrow = css`
     position: absolute;
@@ -31,13 +26,20 @@ const arrow = css`
     transform: rotate(45deg);
 `;
 
-const SplashDescription = ({id, title, description, simpleGridRef, gridItemRef}) => {
+const SplashDescription = ({id, title, description, theme, simpleGridRef, gridItemRef}) => {
     const toast = useToast();
     const cardRef = useRef();  
     const dispatch = useDispatch();
     
     const [cardPosition, setCardPosition] = useState({toLeft: null, arrowPosition: null});
     const [width, setWidth] = useState(null);
+
+    const [cssCardWrapper] = useThemifiedComponent('view-cardwrapper', theme);
+    const [cssPetNameTitle] = useThemifiedComponent('view-nametitle', theme);
+    const [cssPetNameSubitle] = useThemifiedComponent('view-namesubtitle', theme);
+    const [cssPetNameSubitleStrong] = useThemifiedComponent('view-namesubtitle__strong', theme);
+    const [cssPetNameCard] = useThemifiedComponent('view-namedescription', theme);
+    const [cssPetNameText] = useThemifiedComponent('view-namedescription__text', theme);
 
     useEffect(() => {
         function setCardPlacement() {
@@ -73,7 +75,7 @@ const SplashDescription = ({id, title, description, simpleGridRef, gridItemRef})
 
   return(
     <Card
-        className={cardWrapper}
+        className={cssCardWrapper}
         as={motion.div}
         initial={{ opacity: 0, height: 0 }}
         animate={{ opacity: 1, height: 'auto' }}
@@ -81,7 +83,7 @@ const SplashDescription = ({id, title, description, simpleGridRef, gridItemRef})
         transition={{ duration: 0.5 }}        
         ref={cardRef}
         w={width}
-        mt='10px'
+        mt='22px'
         right={ cardPosition.toLeft ? `${cardPosition.toLeft}px` : ''}
     >
         <span 
@@ -92,12 +94,14 @@ const SplashDescription = ({id, title, description, simpleGridRef, gridItemRef})
             <CloseIcon/>
         </Button>
         <CardHeader>
-            <Heading size='md'>{title}</Heading>
+            <Heading size='3xl' className={cssPetNameTitle}>{title}</Heading>
+            <Heading className={cssPetNameSubitle} my='16px'>
+                <strong className={cssPetNameSubitleStrong}>Categories: </strong>Female, Famous, Funny
+            </Heading>
         </CardHeader>
-        <CardBody>
-            <Text>{description}</Text>
+        <CardBody maxW='70%' py='24px' className={cssPetNameCard}>
+            <Text className={cssPetNameText}>{description}</Text>
         </CardBody>
-        <Divider />
         <CardFooter>
             <Button onClick={handleShare}> Share link</Button>
         </CardFooter>
@@ -142,6 +146,7 @@ const ShiftingPopover = ({id, title, description, simpleGridRef}) => {
             id={id} 
             title={title} 
             description={description}
+            theme={theme}
             simpleGridRef={simpleGridRef}
             gridItemRef={gridItemRef}/> }
     </GridItem>
