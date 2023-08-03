@@ -41,5 +41,5 @@ export const AlphabetSelector = ({handleLetter}) => {
         }
       </ul>
     </div>
-   )
-  }
+  )
+}

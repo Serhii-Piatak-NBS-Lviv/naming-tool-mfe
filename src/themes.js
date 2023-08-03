@@ -20,33 +20,6 @@ export const themes = {
             "maxWidth": '1109px'
         },
 
-        "filters-heading-underline": {
-            'height': '1px',
-            'display': 'block',
-            'margin': '24px auto',
-            'borderBottom': '1.25px dashed #C9C5B9',
-            'maxWidth': '960px',
-
-            "@media (max-width: 768px)": {
-                'margin': '20px auto',
-            } 
-        },
-
-        "filters-subtitle": {
-            "color": '#3A3533',
-            "fontFamily": 'Roboto',
-            "textAlign": 'center',
-            "fontSize": '16px',
-            "fontStyle": 'normal',
-            "fontWeight": '300',
-            "lineHeight": '24px',
-            "marginBottom": '72px',
-
-            "@media (max-width: 768px)": {
-                "marginBottom": '40px',
-            }
-        },
-
         "form-filters-title": {
             "color": '#3A3533',
             "fontFamily": 'Roboto Slab',
