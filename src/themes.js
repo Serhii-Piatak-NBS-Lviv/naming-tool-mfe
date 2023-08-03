@@ -421,7 +421,7 @@ export const themes = {
             "width": '20px',
             "top": '-11px',
             "borderLeft": 'solid 1px red',
-            "border-top": 'solid 1px red',
+            "borderTop": 'solid 1px red',
             "background": '#fff',
             "transform": 'rotate(45deg)',
 
