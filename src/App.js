@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import { injectGlobal } from '@emotion/css';
 import WebFont from 'webfontloader';
 import { useTranslation } from "react-i18next";
-import { VStack } from "@chakra-ui/react";
+
+import { VStack, Box, Flex, Button } from "@chakra-ui/react";
+
 import { useDispatch } from "react-redux";
 
 import { fontsLoader, themes } from './themes';
@@ -45,13 +47,16 @@ const App = ({data}) => {
     }, []);
 
     const [cssAppContainer] = useThemifiedComponent('app-container', data.theme);
-    
-
+    const [cssLoadmoreButton] = useThemifiedComponent('view-loadmore-button', data.theme);
+    const [cssLoadmoreFlexbox] = useThemifiedComponent('view-loadmore-flex', data.theme);
   
   return (
     <VStack className = {cssAppContainer} minH = '200px'>
       <Filter />
       <View />
+      <Flex className={cssLoadmoreFlexbox}>
+        <Button className={cssLoadmoreButton}>Load more</Button>
+      </Flex>
     </VStack>
   )
 }
