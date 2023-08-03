@@ -99,6 +99,19 @@ export const themes = {
             "color": '#E81C24 !important',
         },
 
+        "view-loadmore-button": {
+            "background": '#E81C24 !important',
+            "color": '#FFF !important',
+            "fontFamily": 'Roboto Slab !important',
+            "fontWeight": '400 !important',
+            "fontSize": '16px !important',
+            "lineHeight": '24px !important',
+        },
+
+        "view-loadmore-flex": {
+            "marginTop": '32px',
+        },
+
         "chakra-adaptive-arrays": {
             "view-namedescription": {
                 "maxWidth": ['100%', '100%', '70%'],

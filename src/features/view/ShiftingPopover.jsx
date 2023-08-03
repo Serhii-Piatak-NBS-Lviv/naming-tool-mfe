@@ -3,7 +3,20 @@ import { CloseIcon } from '@chakra-ui/icons'
 import { css } from '@emotion/css';
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, GridItem, Card, CardHeader, CardBody, CardFooter, Heading, Text, Icon, createIcon, HStack, Tooltip } from '@chakra-ui/react';
+import { 
+    Button, 
+    GridItem, 
+    Card, 
+    CardHeader, 
+    CardBody, 
+    CardFooter, 
+    Heading, 
+    Text, 
+    Icon, 
+    createIcon, 
+    HStack, 
+    Tooltip 
+} from '@chakra-ui/react';
 import { useToast } from '@chakra-ui/react';
 import { AiFillTwitterCircle } from "react-icons/ai";
 
