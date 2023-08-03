@@ -15,6 +15,375 @@ export const themes = {
             "paddingBottom": '80px',
         },
 
+        "filters": {
+            "width": '100%',
+            "maxWidth": '1109px'
+        },
+
+        "filters-heading-underline": {
+            'height': '1px',
+            'display': 'block',
+            'margin': '24px auto',
+            'borderBottom': '1.25px dashed #C9C5B9',
+            'maxWidth': '960px',
+
+            "@media (max-width: 768px)": {
+                'margin': '20px auto',
+            } 
+        },
+
+        "filters-subtitle": {
+            "color": '#3A3533',
+            "fontFamily": 'Roboto',
+            "textAlign": 'center',
+            "fontSize": '16px',
+            "fontStyle": 'normal',
+            "fontWeight": '300',
+            "lineHeight": '24px',
+            "marginBottom": '72px',
+
+            "@media (max-width: 768px)": {
+                "marginBottom": '40px',
+            }
+        },
+
+        "form-filters-title": {
+            "color": '#3A3533',
+            "fontFamily": 'Roboto Slab',
+            "fontSize": '20px',
+            "fontStyle": 'normal',
+            "fontWeight": '400',
+            "lineHeight": '32px',
+            "marginBottom": '8px',
+            
+            "@media (max-width: 768px)": {
+                "fontSize": '16px',
+                "lineHeight": '24px',
+                "marginBottom": '16px',
+            }
+        }, 
+
+        "form-filters-wrapper": {
+            "marginBottom": '20px',
+            "display":'grid',
+            "gridTemplateColumns": '65.5% 34.5%',
+            "gridTemplateRows": 'auto auto',
+            "gridTemplateAreas": "'swiper gender' 'alphabet alphabet'",
+
+            "@media (max-width: 768px)": {
+                "gridTemplateColumns": '100%',
+                "gridTemplateRows": 'auto auto auto',
+                "gridTemplateAreas": "'swiper' 'alphabet' 'gender'",
+                "marginBottom": '0',
+            }
+        },
+
+        "filters-swiper-wrapper": {
+            "maxWidth": '100%',
+            "minWidth": '0',
+            "height": 'auto',
+            "padding": '2px 0',
+            "marginRight": '30px',
+            "position": 'relative',
+            "gridArea": 'swiper',
+
+            "@media (max-width: 768px)": {
+                "marginRight": '0',
+                "padding": '0'
+            },            
+
+            "&:after": {
+                "position": 'absolute',
+                "top": '0',
+                "left": '0',
+                "content": '""',
+                "width": '32px',
+                "height": '100%',
+                "background": 'linear-gradient(90deg, rgb(249, 248, 245) 46.19%, rgba(249, 248, 245, 0.00) 98.11%)',
+                "zIndex": '9',
+
+                "@media (max-width: 768px)": {
+                    "width": '20px',
+                },
+            },
+
+            "&:before": {
+                "position": 'absolute',
+                "top": '0',
+                "right": '0',
+                "content": '""',
+                "width": '32px',
+                "height": '100%',
+                "background": 'linear-gradient(270deg, rgb(249, 248, 245) 46.88%, rgba(249, 248, 245, 0.00) 100%)',
+                "zIndex": '9',
+
+                "@media (max-width: 768px)": {
+                    "width": '20px',
+                },
+            }
+        },
+
+        "filter-category": {
+            "padding": '13px 10px',
+            "width": '124px',
+            "minWidth": '75px',
+            // "height": '100px',
+            "transition": '.3s',
+            "cursor": 'grab',
+            "display": 'flex',
+            "flexDirection": 'column',
+            "justifyContent": 'space-between',
+            "alignItems": 'center', 
+            "borderRadius": '4px',  
+            "border": '0.5px solid  rgb(249, 248, 245)',  
+            "overflow": 'hidden',
+            
+            "@media (max-width: 768px)": {
+                "width": '75px',
+                "padding": '8px 10px',
+                // "height": '64px',
+            }
+        }, 
+
+        "isActive": {            
+        "border": '0.5px solid  #E81C24',
+        "background":   '#FFF',
+        "boxShadow": '0px 2px 12px 0px rgba(58, 53, 51, 0.10), 0px 0px 2px 0px rgba(58, 53, 51, 0.20)',
+        },
+
+        "filter-category-title": {
+            "color": '#3A3533',
+            "fontFamily": 'Roboto',
+            "fontSize": '16px',
+            "fontStyle": 'normal',
+            "fontWeight": '400',
+            "lineHeight": '18px',
+            "userSelect": 'none',
+            "textAlign": 'center',
+
+            "@media (max-width: 768px)": {
+                "fontSize": '14px',
+                "lineHeight": '16px',
+            }
+        },
+
+        "filter-category-image": {
+            "width": '48px',
+            "height": '48px',
+            "marginBottom": '8px',
+            "userSelect": 'none',
+
+            "@media (max-width: 768px)": {
+                "width": '24px',
+                "height": '24px',                
+            }
+        },
+
+        "filter-gender-section": {
+            "gridArea": 'gender',
+            "width": 'fit-content',
+            "marginLeft": 'auto',
+            'height': '100%',
+            'display': 'flex',
+            'flexDirection': 'column',
+            'justifyContent': 'center',
+
+            "@media (max-width: 768px)": {
+                "margin": '16px auto 24px',
+                "display": 'block',
+            }
+        },        
+
+        "filter-gender-section-title": {
+            "color": '#3A3533',
+            "fontFamily": 'Roboto',
+            "fontSize": '16px',
+            "fontStyle": 'normal',
+            "fontWeight": '300',
+            "lineHeight": '24px', 
+            "marginBottom": '12px',
+
+            "@media (max-width: 768px)": {
+                "display": 'none',
+            } 
+        },
+
+        'filter-gender-label': {
+            "color": '#3A3533',
+            "fontFamily": 'Roboto',
+            "fontSize": '16px',
+            "fontStyle": 'normal',
+            "fontWeight": '400',
+            "lineHeight": '24px', 
+            "margin": '0 18px 0 0',
+            "paddingLeft": '33px',
+            "cursor": 'pointer',
+            "display": 'block',
+            "position": 'relative',
+            "transition": '.3s',
+
+            '&:last-child': {
+                "margin": '0'
+            },
+
+            "@media (max-width: 768px)": {
+                "fontSize": '14px',
+                "lineHeight": '20px',
+                "paddingLeft": '24px',
+            },
+
+            "&:after": {
+                "position": 'absolute',
+                "top": '0',
+                "left": '0',
+                "content": '""',
+                "width": '24px',
+                "height": '24px',
+                "cursor": 'pointer',
+                "border": 'solid 1.5px #C9C5B9',
+                "borderRadius": '50%',
+
+                
+
+                "@media (max-width: 768px)": {
+                    "width": '18px',
+                    "height": '18px',
+                }
+            },
+        },
+
+        "filter-gender-input-active": {
+
+            "&:after": {
+                "border": 'solid 1.5px #E81C24',
+            },
+
+            "&:before": {
+                "position": 'absolute',
+                "top": '6px',
+                "left": '6px',
+                "content": '""',
+                "width": '12px',
+                "height": '12px',
+                "background": '#E81C24',
+                "borderRadius": '50%',
+
+                
+
+                "@media (max-width: 768px)": {
+                    "top": '5px',
+                    "left": '5px',
+                    "width": '8px',
+                    "height": '8px',
+                }
+            },
+        },
+
+        "filter-alphabetical-container": {
+            "marginTop": '16px',
+            "position": 'relative',
+            "gridArea": 'alphabet',
+            "height": 'fit-content',
+
+            "@media (max-width: 768px)": {
+                "marginTop": '8px',
+            },
+
+            "&:after": {
+                "position": 'absolute',
+                "top": '0',
+                "left": '0',
+                "content": '""',
+                "width": '34px',
+                "height": '100%',
+                "background": 'linear-gradient(270deg, rgba(255, 255, 255, 0.00) 0%, #fff 71.26%);',
+                "borderRadius": '34px 0 0 34px',
+                "opacity": '.5',
+
+                "@media (max-width: 768px)": {
+                    "width": '22px',
+                },
+            },
+
+            "&:before": {
+                "position": 'absolute',
+                "top": '0',
+                "right": '0',
+                "content": '""',
+                "width": '34px',
+                "height": '100%',                
+                "background": 'linear-gradient(90deg, rgba(255, 255, 255, 0.00) 0%, #fff 71.26%);',
+                "borderRadius": '0 34px 34px 0',
+                "opacity": '.5',
+                "zIndex": '9',
+
+                "@media (max-width: 768px)": {
+                    "width": '22px',
+                },
+            }
+        },
+
+        "filter-alphabetical-list": {            
+            "listStyle": 'none',
+            "maxWidth": '100%',
+            "display": '-webkit-box',
+            "overflow": 'scroll',
+            "background": '#FFFFFF',
+            "boxShadow": '0px 0px 2px rgba(58, 53, 51, 0.2), 0px 2px 12px rgba(58, 53, 51, 0.1)',
+            "borderRadius": '100px',
+            "margin": '0 auto',
+            "padding": '16px',   
+            "scrollbarWidth": 'none',
+
+            "&::-webkit-scrollbar": {
+                'display': 'none',
+            },
+            
+            "@media (max-width: 768px)": {
+                "padding": '8px 16px',
+            }
+        },
+
+        "filter-alphabetical-letter": {          
+            "margin": '0 2px',
+            "width": '37px',
+            "height": '37px',
+            "textAlign": 'center',
+            "fontFamily": 'Roboto Slab',
+            "fontStyle": 'normal',
+            "fontWeight": '300',
+            "fontSize": '25px',
+            "lineHeight": '35px',
+            "color": '#3A3533',            
+            "backgroundColor": 'inherit',
+            "cursor": 'pointer',
+            "borderRadius": '100%',
+            "transition": '.3s', 
+
+            "@media (max-width: 768px)": {
+                "fontSize": '20px',
+                "lineHeight": '24px',
+                "margin": '0 3.5px',
+                "width": '26px',
+                "height": '26px',
+            }
+        },
+
+        "filter-alphabetical-letter-active": {
+            "background": '#E81C24',
+            "color": '#FFFFFF',
+            "boxShadow": '0px 2px 12px 0px rgba(58, 53, 51, 0.10), 0px 0px 2px 0px rgba(58, 53, 51, 0.20)',
+        },
+
+
+
+
+
+
+
+
+
+
         "view-name-button": {
             "backgroundColor": '#FFF !important',
             "boxShadow": '0px 2px 12px 0px rgba(58,53,51,0.1), 0px 0px 2px 0px rgba(58,53,51,0.2)',

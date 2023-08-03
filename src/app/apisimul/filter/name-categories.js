@@ -81,7 +81,7 @@ const restAPI = {
         {
             "id": "category-014",
             "icon_desktop_tablet": "optimistic-48x48.png",
-            "icon_mobile": "optimistic24x24.png",
+            "icon_mobile": "optimistic-24x24.png",
             "title": "Optimistic",
         },
         {
@@ -128,8 +128,8 @@ const restAPI = {
         },
         {
             "id": "category-022",
-            "icon_desktop_tablet": "chinese-science-48x48.png",
-            "icon_mobile": "chinese-science-24x24.png",
+            "icon_desktop_tablet": "chinese-48x48.png",
+            "icon_mobile": "chinese-24x24.png",
             "title": "Chinese",
         },
         {
