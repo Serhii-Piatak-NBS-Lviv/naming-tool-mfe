@@ -16,7 +16,7 @@ export const View = () => {
     const namesList = useSelector(state => state.view.names_list);
 
     return(
-        <SimpleGrid ref={simpleGridRef} position={'relative'} minChildWidth='255px' spacing='16px' w={['100%', '90%']} mx="auto">
+        <SimpleGrid ref={simpleGridRef} position={'relative'} minChildWidth='255px' spacing='16px' w={'100%'} mx="auto" maxW={1109}>
             { namesList.map((petname) => {
             return (
               <ShiftingPopover

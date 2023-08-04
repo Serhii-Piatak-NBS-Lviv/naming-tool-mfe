@@ -2,12 +2,15 @@ import React, { useState, useEffect } from "react";
 import { injectGlobal } from '@emotion/css';
 import WebFont from 'webfontloader';
 import { useTranslation } from "react-i18next";
+
 import { VStack, Box, Flex, Button } from "@chakra-ui/react";
+
 import { useDispatch } from "react-redux";
 
 import { fontsLoader, themes } from './themes';
 import useThemifiedComponent from "./app/hooks/useThemifiedComponent";
 import { setNamesList } from "./features/view/viewSlice";
+import Filter from "./features/filter/Filter";
 import View from "./features/view/View";
 import { setTheme, setLocale } from "./app/commonSlice";
 
@@ -49,11 +52,7 @@ const App = ({data}) => {
   
   return (
     <VStack className = {cssAppContainer} minH = '200px'>
-      {/* ToDo: replace this component by Filter  */}
-      <Box bg='tomato' w='100%' p={4} color='white'>
-        This is the place where filters will be rendered
-      </Box>
-      {/* end of ToDo */}
+      <Filter />
       <View />
       <Flex className={cssLoadmoreFlexbox}>
         <Button className={cssLoadmoreButton}>Load more</Button>

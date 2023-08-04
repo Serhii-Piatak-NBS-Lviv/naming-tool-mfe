@@ -1,4 +1,13 @@
 {
+    "filter subtitle - we compiled a list": "With over 1,000 unique and adorable dog names, you’re sure to find the perfect fit for your new puppy.",
+    "filter slider title": "Find the perfect name",
+    "filter live search title": "Are you looking for a specific name?",
+    "filter live search placeholder": "Search for a specific name",
+    "filter gender selector title": "Gender",
+    "filter gender female": "Female",
+    "filter gender male": "Male",
+    "filter gender both": "Any",
+    "alphabet": "A-B-C-D-E-F-G-H-I-J-K-L-M-N-O-P-Q-R-S-T-U-V-W-X-Y-Z",
     "increment": "Increment",
     "decrement": "Decrement",
     "static-string": "This React micro-frontend application is available for themification and localization"
