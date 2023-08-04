@@ -2,6 +2,10 @@
   "files": {
     "main.css": "/naming-tool-mfe/static/css/main.css",
     "main.js": "/naming-tool-mfe/static/js/main.js",
+    "static/media/Content - Results.png": "/naming-tool-mfe/static/media/Content - Results.220f363da4ccc8f175f1.png",
+    "static/media/app-look.png": "/naming-tool-mfe/static/media/app-look.5ae0999bcb3d28c440dc.png",
+    "static/media/Content - Search.png": "/naming-tool-mfe/static/media/Content - Search.98d9d31406d88e9b9900.png",
+    "static/media/missing-category-basic.png": "/naming-tool-mfe/static/media/missing-category-basic.2c9799a2689bfc5764d1.png",
     "index.html": "/naming-tool-mfe/index.html",
     "main.css.map": "/naming-tool-mfe/static/css/main.css.map",
     "main.js.map": "/naming-tool-mfe/static/js/main.js.map"
