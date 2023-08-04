@@ -275,6 +275,7 @@ const cssSwiperNesting = css`
 
     & .swiper .swiper-button-next, & .swiper .swiper-button-prev {
         top: 50%;
+        transform: translateY(-50%);
         width: auto;
         transition: .3s;        
     };
