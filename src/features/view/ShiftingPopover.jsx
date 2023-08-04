@@ -76,7 +76,8 @@ const FacebookIcon = createIcon({
 const ShareLink = ({ petnameId, children }) => {
     const toast = useToast();
     const browserURL = new URL(window.location.href);
-    const itmLink = `${browserURL.protocol}//${browserURL.host}?petname=${petnameId}`;
+    const itmLink = `${browserURL.href}?petname=${petnameId}`;
+    // const itmLink = `${browserURL.protocol}//${browserURL.host}?petname=${petnameId}`;
     return (
         <CopyToClipboard text={itmLink} onCopy={
             () => toast({
