@@ -349,14 +349,6 @@ export const themes = {
         },
 
 
-
-
-
-
-
-
-
-
         "view-name-button": {
             "backgroundColor": '#FFF !important',
             "boxShadow": '0px 2px 12px 0px rgba(58,53,51,0.1), 0px 0px 2px 0px rgba(58,53,51,0.2)',
@@ -382,7 +374,7 @@ export const themes = {
             "marginTop": '22px',
             "padding": '48px',
 
-            "@media(max-width: 648px)": {
+            "@media(max-width: 584px)": {
                 "marginTop": '-56px',
             }
         },
@@ -425,7 +417,7 @@ export const themes = {
             "background": '#fff',
             "transform": 'rotate(45deg)',
 
-            "@media(max-width: 648px)": {
+            "@media(max-width: 584px)": {
                 "display": 'none',
             },
         },
