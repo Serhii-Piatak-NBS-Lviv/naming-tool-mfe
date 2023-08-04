@@ -19,6 +19,7 @@ import {
 } from '@chakra-ui/react';
 import { useToast } from '@chakra-ui/react';
 import { AiFillTwitterCircle } from "react-icons/ai";
+import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 import { selectPetName } from './viewSlice';
 import { getThemifiedResponsive } from '../../themes';
@@ -33,6 +34,7 @@ import useThemifiedComponent from '../../app/hooks/useThemifiedComponent';
 
 const spanWrapp = css`
     display: flex;
+    padding-top: 2px;
 `;
 
 const LinkIcon = createIcon({
@@ -71,8 +73,29 @@ const FacebookIcon = createIcon({
     ),
 });
 
-const SplashDescription = ({id, title, description, theme, simpleGridRef, gridItemRef}) => {
+const ShareLink = ({ petnameId, children }) => {
     const toast = useToast();
+    const browserURL = new URL(window.location.href);
+    const itmLink = `${browserURL.protocol}//${browserURL.host}?petname=${petnameId}`;
+    return (
+        <CopyToClipboard text={itmLink} onCopy={
+            () => toast({
+                title: 'Share link copied to clipboard.',
+                description: itmLink,
+                variant: 'left-accent',
+                status: 'success',
+                duration: 2000,
+                isClosable: true,
+              })
+        }>
+            <span>
+                { children }
+            </span>
+        </CopyToClipboard>
+    )
+};
+
+const SplashDescription = ({id, title, description, theme, simpleGridRef, gridItemRef}) => {
     const cardRef = useRef();  
     const dispatch = useDispatch();
     
@@ -100,20 +123,6 @@ const SplashDescription = ({id, title, description, theme, simpleGridRef, gridIt
         window.addEventListener("resize", () => setCardPlacement());
         setCardPlacement();
       }, [gridItemRef, simpleGridRef]);
-    
-    const handleShare = () => {
-        const browserURL = new URL(window.location.href);
-        const itmLink = `${browserURL.protocol}//${browserURL.host}?petname=${id}`;
-        navigator.clipboard.writeText(itmLink);
-        toast({
-            title: 'Share link copied to clipboard.',
-            description: itmLink,
-            variant: 'left-accent',
-            status: 'success',
-            duration: 2000,
-            isClosable: true,
-          });
-    }; 
 
     const closePopup = () => {
         const urlWithoutQuery = window.location.href.split('?')[0];
@@ -151,10 +160,33 @@ const SplashDescription = ({id, title, description, theme, simpleGridRef, gridIt
             <Text className={cssPetNameText} fontSize={getThemifiedResponsive(theme, 'view-namedescription__text', 'fontSize')} lineHeight={getThemifiedResponsive(theme, 'view-namedescription__text', 'lineHeight')} >{description}</Text>
         </CardBody>
         <CardFooter as={HStack} p={getThemifiedResponsive(theme, 'view-cardfooter', 'padding')}>
-            <Tooltip hasArrow label='Copy link'><Icon as={LinkIcon} className={cssShareIcon} onClick={handleShare} fontSize={getThemifiedResponsive(theme, 'view-shareicon', 'fontSize')} /></Tooltip>
-            <Tooltip hasArrow label='Twitter'><span className={spanWrapp}><Icon as={AiFillTwitterCircle} className={cssShareIcon} onClick={handleShare} fontSize={getThemifiedResponsive(theme, 'view-shareicon', 'fontSize')} /></span></Tooltip>
-            <Tooltip hasArrow label='WhatsApp'><Icon as={WhatsappIcon} className={cssShareIcon} onClick={handleShare} fontSize={getThemifiedResponsive(theme, 'view-shareicon', 'fontSize')} /></Tooltip>
-            <Tooltip hasArrow label='Facebook'><Icon as={FacebookIcon} className={cssShareIcon} onClick={handleShare} fontSize={getThemifiedResponsive(theme, 'view-shareicon', 'fontSize')} /></Tooltip>
+            
+            <ShareLink petnameId={id}>
+                <Tooltip hasArrow label='Copy link'>
+                    <Icon as={LinkIcon} className={cssShareIcon} fontSize={getThemifiedResponsive(theme, 'view-shareicon', 'fontSize')} />
+                </Tooltip>
+            </ShareLink>
+
+            <ShareLink petnameId={id}>
+               <Tooltip hasArrow label='Twitter'>
+                <span className={spanWrapp}>
+                    <Icon as={AiFillTwitterCircle} className={cssShareIcon} fontSize={getThemifiedResponsive(theme, 'view-shareicon', 'fontSize')} />
+                </span>
+                </Tooltip> 
+            </ShareLink>
+
+            <ShareLink petnameId={id}>
+                <Tooltip hasArrow label='WhatsApp'>
+                    <Icon as={WhatsappIcon} className={cssShareIcon} fontSize={getThemifiedResponsive(theme, 'view-shareicon', 'fontSize')} />
+                </Tooltip>  
+            </ShareLink>
+            
+            <ShareLink petnameId={id}>
+                <Tooltip hasArrow label='Facebook'>
+                    <Icon as={FacebookIcon} className={cssShareIcon} fontSize={getThemifiedResponsive(theme, 'view-shareicon', 'fontSize')} />
+                </Tooltip>
+            </ShareLink>
+            
         </CardFooter>
     </Card>
    )
