@@ -41,10 +41,20 @@ const cssSwiperNesting = css`
         opacity: 0;
     }
 
-    & .swiper .swiper-button-next:after, & .swiper .swiper-button-prev:after {
-        color: #3A3533;
-        font-weight: 600;
-        font-size: 20px;        
+    & .swiper .swiper-button-prev:after {
+        content: '';
+        display: inline-block;
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M17 19L6.5 12L17 5" stroke="%233A3533" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+        height: 24px;
+        width: 24px;
+    }
+
+    & .swiper .swiper-button-next:after {
+        content: '';
+        display: inline-block;
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M8 19L18.5 12L8 5" stroke="%233A3533" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+        height: 24px;
+        width: 24px;
     }
 `;
 
@@ -62,11 +72,11 @@ export const SwiperFilters = ({restAPI, handleFilter}) => {
 
                 breakpoints={{
                     0: {
-                        slidesPerView: 3.5,
-                    },
-                    424: {
                         slidesPerView: 4,
                     },
+                    // 424: {
+                    //     slidesPerView: 4,
+                    // },
                     525: {
                         slidesPerView: 5,
                     },
