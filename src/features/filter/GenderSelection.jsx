@@ -16,6 +16,10 @@ const GenderSelection = ({ title, radios, handleRadio }) => {
       : '';
   }
 
+  if (!selectedGender || radios.indexOf(selectedGender) === -1) {
+    handleRadio(radios[radios.length - 1]);
+  }
+
   return (
     <div className={cssWrapper}>
       <p className={cssMainTitle}>{title}</p>

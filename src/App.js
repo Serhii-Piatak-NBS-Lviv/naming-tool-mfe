@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { injectGlobal } from '@emotion/css';
 import WebFont from 'webfontloader';
 import { useTranslation } from "react-i18next";
+import { motion, useAnimate } from "framer-motion";
 
 import { VStack, Box, Flex, Button } from "@chakra-ui/react";
 
@@ -25,6 +26,11 @@ const App = ({data}) => {
   let fl = data.hasOwnProperty('theme') ? fontsLoader(data.theme) : null;
     if (fl) injectGlobal`${fl}`;
 
+    const [scope, animate] = useAnimate();  
+    const startAnimation = () => {
+      animate(scope.current, { opacity: 1 }, { duration: 1.2 }, { ease: "linear" })
+    }
+
     useEffect(() => {
       if (themes[data.theme]["google-fonts"].length) {
         WebFont.load({
@@ -32,6 +38,8 @@ const App = ({data}) => {
             families: themes[data.theme]["google-fonts"]
           }
         });
+
+        startAnimation();
       };
 
       if (data.locale) i18n.changeLanguage(data.locale);
@@ -51,7 +59,7 @@ const App = ({data}) => {
     const [cssLoadmoreFlexbox] = useThemifiedComponent('view-loadmore-flex', data.theme);
   
   return (
-    <VStack className = {cssAppContainer} minH = '200px'>
+    <VStack as={motion.div} className={cssAppContainer} ref={scope} initial={{opacity: 0}}>
       <Filter />
       <View />
       <Flex className={cssLoadmoreFlexbox}>
