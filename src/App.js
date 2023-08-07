@@ -28,7 +28,7 @@ const App = ({data}) => {
 
     const [scope, animate] = useAnimate();  
     const startAnimation = () => {
-      animate(scope.current, { opacity: 1 }, { duration: 2 }, { ease: "linear" })
+      animate(scope.current, { opacity: 1 }, { duration: 1.2 }, { ease: "linear" })
     }
 
     useEffect(() => {
@@ -59,13 +59,13 @@ const App = ({data}) => {
     const [cssLoadmoreFlexbox] = useThemifiedComponent('view-loadmore-flex', data.theme);
   
   return (
-    <motion.div className = {cssAppContainer} ref={scope} initial={{opacity: 0}}>
+    <VStack as={motion.div} className={cssAppContainer} ref={scope} initial={{opacity: 0}}>
       <Filter />
       <View />
       <Flex className={cssLoadmoreFlexbox}>
         <Button className={cssLoadmoreButton}>Load more</Button>
       </Flex>
-    </motion.div>
+    </VStack>
   )
 }
 
