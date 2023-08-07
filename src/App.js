@@ -11,6 +11,7 @@ import { useDispatch } from "react-redux";
 import { fontsLoader, themes } from './themes';
 import useThemifiedComponent from "./app/hooks/useThemifiedComponent";
 import { setNamesList } from "./features/view/viewSlice";
+import restAPI from './app/apisimul/filter/name-categories';
 import Filter from "./features/filter/Filter";
 import View from "./features/view/View";
 import { setTheme, setLocale } from "./app/commonSlice";
@@ -20,6 +21,65 @@ import namesList from "./app/apisimul/view/names-list";
 // **
 
 const App = ({data}) => {
+
+  const findGender = (g) => {
+    if(g === "M") {
+      return "Male"
+    } else if(g === "F") {
+      return 'Female'
+    } else {
+      return g;
+    }
+  }
+
+  const newArray = namesList.list.map(elem => {
+    const categories = [
+        elem["Most Popular"] === "Y" ? 'category-001' : null,
+        elem["Drinks"] === "Y" ? 'category-002' : null,
+        elem["Unusual"] === "Y" ? 'category-003' : null,
+        elem["Cartoon"] === "Y" ? 'category-004' : null,
+        elem["Musical"] === "Y" ? 'category-005' : null,
+        elem["Space & Science"] === "Y" ? 'category-006' : null,
+        elem["Greek"] === "Y" ? 'category-007' : null,
+        elem["Disney"] === "Y" ? 'category-008' : null,
+        elem["Regal"] === "Y" ? 'category-009' : null,
+        elem["Natural"] === "Y" ? 'category-010' : null,
+        elem["Literary"] === "Y" ? 'category-011' : null,
+        elem["Magical and Mythical"] === "Y" ? 'category-012' : null,
+        elem["Foodie"] === "Y" ? 'category-013' : null,
+        elem["Optimistic"] === "Y" ? 'category-014' : null,
+        elem["Spain"] === "Y" ? 'category-015' : null,
+        elem["Scottish"] === "Y" ? 'category-016' : null,
+        elem["Small"] === "Y" ? 'category-017' : null,
+        elem["Large"] === "Y" ? 'category-018' : null,
+        elem["Short"] === "Y" ? 'category-019' : null,
+        elem["Celebrities"] === "Y" ? 'category-020' : null,
+        elem["Germany"] === "Y" ? 'category-021' : null,
+        elem["Chinese"] === "Y" ? 'category-022' : null,
+        elem["French"] === "Y" ? 'category-023' : null,
+        elem["Italy"] === "Y" ? 'category-024' : null,
+    ].filter(category => category !== null);
+
+    const obj = {
+        "id": elem.id,
+        "Title": elem.Title,
+        "Definition": elem.Definition,
+        "Gender": findGender(elem.Gender),
+        "categories": categories,
+    };
+
+    return obj;
+});
+
+  console.log(newArray);
+
+
+
+
+
+
+  
+
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
 
