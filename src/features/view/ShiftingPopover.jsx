@@ -27,6 +27,10 @@ import { getThemifiedResponsive } from '../../themes';
 import useURLParam from '../../app/hooks/useURLParam';
 import useThemifiedComponent from '../../app/hooks/useThemifiedComponent';
 
+//** Attention! This is paceholder! Please remove it when backend API will be ready! */
+import restAPI from '../../app/apisimul/filter/name-categories';
+// **
+
 /**
 * @author
 * @function ShiftingPopover
@@ -96,7 +100,7 @@ const ShareLink = ({ petnameId, children }) => {
     )
 };
 
-const SplashDescription = ({id, title, description, theme, simpleGridRef, gridItemRef}) => {
+const SplashDescription = ({id, title, description, theme, gender, categories, simpleGridRef, gridItemRef}) => {
     const cardRef = useRef();  
     const dispatch = useDispatch();
     
@@ -129,7 +133,17 @@ const SplashDescription = ({id, title, description, theme, simpleGridRef, gridIt
         const urlWithoutQuery = window.location.href.split('?')[0];
         window.history.replaceState({}, document.title, urlWithoutQuery);
         dispatch(selectPetName(''));
-    }
+    };
+
+    const enumCategories = (idsArray) => {
+        const ctgList = idsArray.reduce((acc, itm) => {
+            let ctgTitle = restAPI.list.find(category => category.id === itm).title;
+            if (ctgTitle) acc += `, ${ctgTitle}`;
+            return acc;
+        }, []);
+
+        return ctgList;
+    };
 
   return(
     <Card
@@ -154,7 +168,7 @@ const SplashDescription = ({id, title, description, theme, simpleGridRef, gridIt
         <CardHeader p={getThemifiedResponsive(theme, 'view-cardheading', 'padding')}>
             <Heading fontSize={getThemifiedResponsive(theme, 'view-nametitle', 'fontSize')} lineHeight={getThemifiedResponsive(theme, 'view-nametitle', 'lineHeight')} className={cssPetNameTitle}>{title}</Heading>
             <Heading className={cssPetNameSubitle} fontSize={getThemifiedResponsive(theme, 'view-namesubtitle', 'fontSize')} lineHeight={getThemifiedResponsive(theme, 'view-namesubtitle', 'lineHeight')} my='16px'>
-                <strong className={cssPetNameSubitleStrong}>Categories: </strong>Female, Famous, Funny
+                <strong className={cssPetNameSubitleStrong}>Categories: </strong>{gender}{enumCategories(categories)}
             </Heading>
         </CardHeader>
         <CardBody maxW={getThemifiedResponsive(theme, 'view-namedescription', 'maxWidth')} p={getThemifiedResponsive(theme, 'view-cardbody', 'padding')} className={cssPetNameCard}>
@@ -193,7 +207,7 @@ const SplashDescription = ({id, title, description, theme, simpleGridRef, gridIt
    )
 }
 
-const ShiftingPopover = ({id, title, description, simpleGridRef}) => {
+const ShiftingPopover = ({id, title, description, gender, categories, simpleGridRef}) => {
     const dispatch = useDispatch();
     
     const gridItemRef = useRef();
@@ -231,6 +245,8 @@ const ShiftingPopover = ({id, title, description, simpleGridRef}) => {
             title={title} 
             description={description}
             theme={theme}
+            gender={gender}
+            categories={categories}
             simpleGridRef={simpleGridRef}
             gridItemRef={gridItemRef}/> }
     </GridItem>

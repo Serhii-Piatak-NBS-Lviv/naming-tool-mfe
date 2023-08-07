@@ -23,6 +23,8 @@ export const View = () => {
               id={petname.id} 
               title={petname.Title} 
               description={petname.Definition}
+              gender={petname.Gender}
+              categories={petname.categories}
               simpleGridRef={simpleGridRef}
               key={petname.id} />              
             )}
