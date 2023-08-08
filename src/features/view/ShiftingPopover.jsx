@@ -127,6 +127,7 @@ const SplashDescription = ({id, title, description, theme, gender, categories, s
         };
         window.addEventListener("resize", () => setCardPlacement());
         setCardPlacement();
+        gridItemRef.current?.scrollIntoView({behavior: "smooth"});
       }, [gridItemRef, simpleGridRef]);
 
     const closePopup = () => {
@@ -223,7 +224,7 @@ const ShiftingPopover = ({id, title, description, gender, categories, simpleGrid
 
     
     const reveal = () => {
-        const browserURL = new URL(window.location.href);
+        const browserURL = new URL(window.location.href);        
         if (browserURL.searchParams.get('petname')) {
             window.history.replaceState(null, document.title, "/");
         };
