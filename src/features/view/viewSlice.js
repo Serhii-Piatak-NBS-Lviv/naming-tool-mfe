@@ -5,7 +5,9 @@ export const viewSlice = createSlice({
     initialState: {
         "hero_image": "../../app/apisimul/view/hero-puppy.png",
         "names_list": [],
-        "selected_name": ''
+        "petnames_portion_desktablet": 32,
+        "petnames_portion_mobile": 16,
+        "petnames_portion": 32,
     },
     reducers: {
         addPetName: (state, action) => {
