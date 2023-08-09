@@ -127,7 +127,9 @@ const SplashDescription = ({id, title, description, theme, gender, categories, s
         };
         window.addEventListener("resize", () => setCardPlacement());
         setCardPlacement();
-        gridItemRef.current?.scrollIntoView({behavior: "smooth"});
+        setTimeout(() => {
+            gridItemRef.current?.scrollIntoView({ behavior: "smooth" });
+        }, 500);
       }, [gridItemRef, simpleGridRef]);
 
     const closePopup = () => {
@@ -154,6 +156,7 @@ const SplashDescription = ({id, title, description, theme, gender, categories, s
         animate={{
             opacity: !!cardRef.current ? 1 : 0,
             height: !!cardRef.current ? 'auto' : 0,
+            transition: { opacity: { delay: .3 } },
         }}     
         ref={cardRef}
         w={width}
