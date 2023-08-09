@@ -17,6 +17,7 @@ import { setTheme, setLocale } from "./app/commonSlice";
 
 //** Attention! This is paceholder! Please remove it when backend API will be ready! */
 import namesList from "./app/apisimul/view/names-list";
+import { NoResult } from "./features/view/NoResult";
 // **
 
 const App = ({data}) => {
@@ -65,6 +66,7 @@ const App = ({data}) => {
       <Flex className={cssLoadmoreFlexbox}>
         <Button className={cssLoadmoreButton}>Load more</Button>
       </Flex>
+      <NoResult />
     </VStack>
   )
 }

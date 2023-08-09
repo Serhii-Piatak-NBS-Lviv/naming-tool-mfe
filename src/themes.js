@@ -446,6 +446,42 @@ export const themes = {
             "marginTop": '32px',
         },
 
+        "no-result-wrapper": {
+            "padding": '144px 0',
+
+            "@media (max-width: 768px)": {
+                "padding": '64px 0',
+            }
+        },
+
+        "no-result-title": {
+            "color": '#3A3533',
+            'textAlign': 'center',
+            "fontFamily": 'Roboto Slab',
+            "fontSize": '25px',
+            "fontStyle": 'normal',
+            "fontWeight": '400',
+            "lineHeight": '35px',
+            "marginBottom": '8px',
+
+            "@media (max-width: 768px)": {
+                "fontSize": '20px',
+                "lineHeight": '26px',
+            }
+        },
+
+        "no-result-description": {
+            "color": '#3A3533',
+            'textAlign': 'center',
+            "fontFamily": 'Roboto Slab',
+            "fontSize": '16px',
+            "fontStyle": 'normal',
+            "fontWeight": '400',
+            "lineHeight": '24px',
+        },
+
+        
+
         "chakra-adaptive-arrays": {
             "view-namedescription": {
                 "maxWidth": ['100%', '100%', '70%'],
