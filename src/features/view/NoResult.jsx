@@ -20,7 +20,7 @@ export const NoResult = () => {
                 {t('Empty search result title')}
             </h3>
             <p className={cssNoResultDescription}>
-                {t('Empty search result title')}
+                {t('Empty search result description')}
             </p>
         </div>
     )
