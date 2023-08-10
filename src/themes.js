@@ -1,8 +1,14 @@
 import FONTS_REGISTRY from './fonts';
+import { keyframes } from '@emotion/css';
 
 /**
  *   
  */
+
+const fadeOut = keyframes({
+    "0%": {opacity: 1},
+    "100%": {opacity: 0},
+});
 
 export const themes = {
     "default": {          
@@ -456,23 +462,13 @@ export const themes = {
             "lineHeight": '24px',
             "textAlign": 'center',
 
-            "@-webkitKeyframes fadeOut": {
-                "0%": {"opacity": 1},
-                "100%": {"opacity": 0},
-             },
-             
-            "@keyframes fadeOut": {
-                "0%:": {"opacity": 1},
-                "100%": {"opacity": 0},
-            },
-
             '&.hidden': {
                 "-webkitAnimationDuration": '3s',
                 "animationDuration": '3s',
                 "-webkitAnimationFillMode": 'both',
                 "animationFillMode": 'both',
                 "-webkitAnimationName": 'fadeOut',
-                "animationName": 'fadeOut',
+                "animationName": fadeOut,
             },
         },
 
