@@ -1,8 +1,14 @@
 import FONTS_REGISTRY from './fonts';
+import { keyframes } from '@emotion/css';
 
 /**
  *   
  */
+
+const fadeOut = keyframes({
+    "0%": {opacity: 1},
+    "100%": {opacity: 0},
+});
 
 export const themes = {
     "default": {          
@@ -444,6 +450,60 @@ export const themes = {
 
         "view-loadmore-flex": {
             "marginTop": '32px',
+        },
+
+        "no-result-wrapper": {
+            "padding": '144px 0',
+
+            "@media (max-width: 768px)": {
+                "padding": '64px 0',
+            }
+        },
+
+        "no-result-title": {
+            "color": '#3A3533',
+            'textAlign': 'center',
+            "fontFamily": 'Roboto Slab',
+            "fontSize": '25px',
+            "fontStyle": 'normal',
+            "fontWeight": '400',
+            "lineHeight": '35px',
+            "marginBottom": '8px',
+
+            "@media (max-width: 768px)": {
+                "fontSize": '20px',
+                "lineHeight": '26px',
+            }
+        },
+
+        "no-result-description": {
+            "color": '#3A3533',
+            'textAlign': 'center',
+            "fontFamily": 'Roboto Slab',
+            "fontSize": '16px',
+            "fontStyle": 'normal',
+            "fontWeight": '400',
+            "lineHeight": '24px',
+        },
+
+        "view-loadmore-thatsall": {
+            "background": 'rgb(58, 53, 51)',
+            "color": '#FFF',
+            "padding": '10px 16px',
+            "fontFamily": 'Roboto Slab',
+            "fontSize": '16px',
+            "fontWeight": '400',
+            "lineHeight": '24px',
+            "textAlign": 'center',
+
+            '&.hidden': {
+                "-webkitAnimationDuration": '3s',
+                "animationDuration": '3s',
+                "-webkitAnimationFillMode": 'both',
+                "animationFillMode": 'both',
+                "-webkitAnimationName": 'fadeOut',
+                "animationName": fadeOut,
+            },
         },
 
         "chakra-adaptive-arrays": {
