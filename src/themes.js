@@ -1,8 +1,14 @@
 import FONTS_REGISTRY from './fonts';
+import { keyframes } from '@emotion/css';
 
 /**
  *   
  */
+
+const fadeOut = keyframes({
+    "0%": {opacity: 1},
+    "100%": {opacity: 0},
+});
 
 export const themes = {
     "default": {          
@@ -480,7 +486,25 @@ export const themes = {
             "lineHeight": '24px',
         },
 
-        
+        "view-loadmore-thatsall": {
+            "background": 'rgb(58, 53, 51)',
+            "color": '#FFF',
+            "padding": '10px 16px',
+            "fontFamily": 'Roboto Slab',
+            "fontSize": '16px',
+            "fontWeight": '400',
+            "lineHeight": '24px',
+            "textAlign": 'center',
+
+            '&.hidden': {
+                "-webkitAnimationDuration": '3s',
+                "animationDuration": '3s',
+                "-webkitAnimationFillMode": 'both',
+                "animationFillMode": 'both',
+                "-webkitAnimationName": 'fadeOut',
+                "animationName": fadeOut,
+            },
+        },
 
         "chakra-adaptive-arrays": {
             "view-namedescription": {

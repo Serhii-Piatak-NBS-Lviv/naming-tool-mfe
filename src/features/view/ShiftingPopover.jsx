@@ -151,62 +151,59 @@ const SplashDescription = ({id, title, description, theme, gender, categories, s
         className={cssCardWrapper}
         as={motion.div}
         initial={{ opacity: 0, height: 0 }}
-        animate={{
-            opacity: !!cardRef.current ? 1 : 0,
-            height: !!cardRef.current ? 'auto' : 0,
-        }}     
+        animate={{ opacity: 1, height: 'auto' }}
+        exit={{ opacity: 0, height: 0 }}
+        transition={{ duration: 0.5 }}        
         ref={cardRef}
         w={width}
         p={getThemifiedResponsive(theme, 'view-cardwrapper', 'padding')}
-        right={ cardPosition.toLeft ? `${cardPosition.toLeft}px` : ''}        
+        right={ cardPosition.toLeft ? `${cardPosition.toLeft}px` : ''}
     >
         <span 
             className={cssCardArrow}
             style={{left: `${cardPosition.arrowPosition ? cardPosition.arrowPosition : 0}px`}}
         />
-        <div style={{overflow: 'hidden'}}>
-            <Button position='absolute' right={getThemifiedResponsive(theme, 'view-namedescription__close', 'right')} top={getThemifiedResponsive(theme, 'view-namedescription__close', 'top')} w='24px' h='24px' className={cssCloseButton} onClick={() => closePopup()}>
-                <Tooltip hasArrow label='Close'><CloseIcon/></Tooltip>
-            </Button>
-            <CardHeader p={getThemifiedResponsive(theme, 'view-cardheading', 'padding')}>
-                <Heading fontSize={getThemifiedResponsive(theme, 'view-nametitle', 'fontSize')} lineHeight={getThemifiedResponsive(theme, 'view-nametitle', 'lineHeight')} className={cssPetNameTitle}>{title}</Heading>
-                <Heading className={cssPetNameSubitle} fontSize={getThemifiedResponsive(theme, 'view-namesubtitle', 'fontSize')} lineHeight={getThemifiedResponsive(theme, 'view-namesubtitle', 'lineHeight')} my='16px'>
-                    <strong className={cssPetNameSubitleStrong}>Categories: </strong>{gender}{enumCategories(categories)}
-                </Heading>
-            </CardHeader>
-            <CardBody maxW={getThemifiedResponsive(theme, 'view-namedescription', 'maxWidth')} p={getThemifiedResponsive(theme, 'view-cardbody', 'padding')} className={cssPetNameCard}>
-                <Text className={cssPetNameText} fontSize={getThemifiedResponsive(theme, 'view-namedescription__text', 'fontSize')} lineHeight={getThemifiedResponsive(theme, 'view-namedescription__text', 'lineHeight')} >{description}</Text>
-            </CardBody>
-            <CardFooter as={HStack} p={getThemifiedResponsive(theme, 'view-cardfooter', 'padding')}>
-                
-                <ShareLink petnameId={id}>
-                    <Tooltip hasArrow label='Copy link'>
-                        <Icon as={LinkIcon} className={cssShareIcon} fontSize={getThemifiedResponsive(theme, 'view-shareicon', 'fontSize')} />
-                    </Tooltip>
-                </ShareLink>
+        <Button position='absolute' right={getThemifiedResponsive(theme, 'view-namedescription__close', 'right')} top={getThemifiedResponsive(theme, 'view-namedescription__close', 'top')} w='24px' h='24px' className={cssCloseButton} onClick={() => closePopup()}>
+            <Tooltip hasArrow label='Close'><CloseIcon/></Tooltip>
+        </Button>
+        <CardHeader p={getThemifiedResponsive(theme, 'view-cardheading', 'padding')}>
+            <Heading fontSize={getThemifiedResponsive(theme, 'view-nametitle', 'fontSize')} lineHeight={getThemifiedResponsive(theme, 'view-nametitle', 'lineHeight')} className={cssPetNameTitle}>{title}</Heading>
+            <Heading className={cssPetNameSubitle} fontSize={getThemifiedResponsive(theme, 'view-namesubtitle', 'fontSize')} lineHeight={getThemifiedResponsive(theme, 'view-namesubtitle', 'lineHeight')} my='16px'>
+                <strong className={cssPetNameSubitleStrong}>Categories: </strong>{gender}{enumCategories(categories)}
+            </Heading>
+        </CardHeader>
+        <CardBody maxW={getThemifiedResponsive(theme, 'view-namedescription', 'maxWidth')} p={getThemifiedResponsive(theme, 'view-cardbody', 'padding')} className={cssPetNameCard}>
+            <Text className={cssPetNameText} fontSize={getThemifiedResponsive(theme, 'view-namedescription__text', 'fontSize')} lineHeight={getThemifiedResponsive(theme, 'view-namedescription__text', 'lineHeight')} >{description}</Text>
+        </CardBody>
+        <CardFooter as={HStack} p={getThemifiedResponsive(theme, 'view-cardfooter', 'padding')}>
+            
+            <ShareLink petnameId={id}>
+                <Tooltip hasArrow label='Copy link'>
+                    <Icon as={LinkIcon} className={cssShareIcon} fontSize={getThemifiedResponsive(theme, 'view-shareicon', 'fontSize')} />
+                </Tooltip>
+            </ShareLink>
 
-                <ShareLink petnameId={id}>
-                <Tooltip hasArrow label='Twitter'>
-                    <span className={spanWrapp}>
-                        <Icon as={AiFillTwitterCircle} className={cssShareIcon} fontSize={getThemifiedResponsive(theme, 'view-shareicon', 'fontSize')} />
-                    </span>
-                    </Tooltip> 
-                </ShareLink>
+            <ShareLink petnameId={id}>
+               <Tooltip hasArrow label='Twitter'>
+                <span className={spanWrapp}>
+                    <Icon as={AiFillTwitterCircle} className={cssShareIcon} fontSize={getThemifiedResponsive(theme, 'view-shareicon', 'fontSize')} />
+                </span>
+                </Tooltip> 
+            </ShareLink>
 
-                <ShareLink petnameId={id}>
-                    <Tooltip hasArrow label='WhatsApp'>
-                        <Icon as={WhatsappIcon} className={cssShareIcon} fontSize={getThemifiedResponsive(theme, 'view-shareicon', 'fontSize')} />
-                    </Tooltip>  
-                </ShareLink>
-                
-                <ShareLink petnameId={id}>
-                    <Tooltip hasArrow label='Facebook'>
-                        <Icon as={FacebookIcon} className={cssShareIcon} fontSize={getThemifiedResponsive(theme, 'view-shareicon', 'fontSize')} />
-                    </Tooltip>
-                </ShareLink>
-                
-            </CardFooter>
-        </div>        
+            <ShareLink petnameId={id}>
+                <Tooltip hasArrow label='WhatsApp'>
+                    <Icon as={WhatsappIcon} className={cssShareIcon} fontSize={getThemifiedResponsive(theme, 'view-shareicon', 'fontSize')} />
+                </Tooltip>  
+            </ShareLink>
+            
+            <ShareLink petnameId={id}>
+                <Tooltip hasArrow label='Facebook'>
+                    <Icon as={FacebookIcon} className={cssShareIcon} fontSize={getThemifiedResponsive(theme, 'view-shareicon', 'fontSize')} />
+                </Tooltip>
+            </ShareLink>
+            
+        </CardFooter>
     </Card>
    )
 }
@@ -225,6 +222,8 @@ const ShiftingPopover = ({id, title, description, gender, categories, simpleGrid
     const theme = useSelector((state) => state.common.theme);
     const [cssPetNameButton] = useThemifiedComponent('view-name-button', theme);
 
+    const namesList = useSelector((state) => state.view.names_list);
+    const prevPortion = useSelector((state) => state.view.names_list_prevsize);
     
     const reveal = () => {
         const browserURL = new URL(window.location.href);        
@@ -233,6 +232,13 @@ const ShiftingPopover = ({id, title, description, gender, categories, simpleGrid
         };
         isOpen ? dispatch(selectPetName('')) : dispatch(selectPetName(id));
     };
+
+    // This useEffect performes scrolling when
+    // next portion of pet names shows up
+    useEffect(() => {
+        const idxElem = namesList.findIndex(name => name.id === id);
+        if (idxElem !== 0 && idxElem === prevPortion) gridItemRef.current?.scrollIntoView({behavior: "smooth"});
+    }, [])
 
   return(
     <GridItem px='2%'>
