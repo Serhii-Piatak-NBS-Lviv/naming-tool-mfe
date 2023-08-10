@@ -456,23 +456,23 @@ export const themes = {
             "lineHeight": '24px',
             "textAlign": 'center',
 
-            '&.hidden': {
-                "@-webkitKeyframes fadeOut": {
-                    "0%": {"opacity": 1},
-                    "100%": {"opacity": 0},
-                 },
-                 
-                "@keyframes fadeOut": {
+            "@-webkitKeyframes fadeOut": {
+                "0%": {"opacity": 1},
+                "100%": {"opacity": 0},
+             },
+             
+            "@keyframes fadeOut": {
                 "0%:": {"opacity": 1},
                 "100%": {"opacity": 0},
-                },
+            },
 
-            "-webkitAnimationDuration": '3s',
-            "animationDuration": '3s',
-            "-webkitAnimationFillMode": 'both',
-            "animationFillMode": 'both',
-            "-webkitAnimationName": 'fadeOut',
-            "animationName": 'fadeOut',
+            '&.hidden': {
+                "-webkitAnimationDuration": '3s',
+                "animationDuration": '3s',
+                "-webkitAnimationFillMode": 'both',
+                "animationFillMode": 'both',
+                "-webkitAnimationName": 'fadeOut',
+                "animationName": 'fadeOut',
             },
         },
 
