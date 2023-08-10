@@ -4,9 +4,9 @@ export const viewSlice = createSlice({
     name: 'view',
     initialState: {
         "hero_image": "../../app/apisimul/view/hero-puppy.png",
+        "names_list_prevsize": 0,
+        "names_list_size": 0,
         "names_list": [],
-        "petnames_portion_desktablet": 32,
-        "petnames_portion_mobile": 16,
         "petnames_portion": 32,
     },
     reducers: {
@@ -26,15 +26,21 @@ export const viewSlice = createSlice({
         },
 
         setNamesList: (state, action) => {
+            state.names_list_prevsize = state.names_list.length;
             state.names_list = [...action.payload];
+            state.names_list_size = state.names_list.length;
         },
 
         selectPetName: (state, action) => {
             state.selected_name = action.payload;
+        },
+
+        setPetnamesPortion: (state, action) => {
+            state.petnames_portion = action.payload;
         }
     },
 });
 
-export const { addPetName, setNamesList, selectPetName } = viewSlice.actions;
+export const { addPetName, setNamesList, selectPetName, setPetnamesPortion } = viewSlice.actions;
 
 export default viewSlice.reducer;
