@@ -66,6 +66,7 @@ const App = ({data}) => {
 
       //** Attention! This is paceholder! Please remove it when backend API will be ready! */
       dispatch(setNamesList(namesList.list.slice(0, petNamesLoadMore)));
+      // dispatch(setNamesList([]));
       // dispatch(setNamesList(namesList.list.slice(0, 1000)));
       // **
     }, [data, dispatch, i18n, petNamesLoadMore]);
@@ -77,17 +78,23 @@ const App = ({data}) => {
   return (
     <VStack as={motion.div} className={cssAppContainer} ref={scope} initial={{opacity: 0}}>
       <Filter />
-      <View />
-      <Flex className={cssLoadmoreFlexbox}>
-        {
-          //** Attention! namesList is placeholder! Please remove it when backend API will be ready! */
-          (viewSize === namesList.list.length) ? 
-          <ThatItMessage duration = '2000' />
-          :
-          <Button className={cssLoadmoreButton} onClick={loadMorePetNames}>Load more</Button>
-        }
-      </Flex>
-      <NoResult />
+      {
+        (viewSize === 0) ? 
+        <NoResult />
+        :
+        <>
+          <View />
+          <Flex className={cssLoadmoreFlexbox}>
+            {
+              //** Attention! namesList is placeholder! Please remove it when backend API will be ready! */
+              (viewSize === namesList.list.length) ? 
+              <ThatItMessage duration = '2000' />
+              :
+              <Button className={cssLoadmoreButton} onClick={loadMorePetNames}>Load more</Button>
+            }
+          </Flex>
+        </>
+      }
     </VStack>
   )
 }
