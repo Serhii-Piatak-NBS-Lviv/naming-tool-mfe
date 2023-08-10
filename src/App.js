@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { injectGlobal } from '@emotion/css';
 import WebFont from 'webfontloader';
 import { useTranslation } from "react-i18next";
@@ -12,6 +12,7 @@ import useThemifiedComponent from "./app/hooks/useThemifiedComponent";
 import { setNamesList } from "./features/view/viewSlice";
 import Filter from "./features/filter/Filter";
 import View from "./features/view/View";
+import ThatItMessage from "./features/view/ThatItMessage";
 import { setTheme, setLocale } from "./app/commonSlice";
 import { setPetnamesPortion } from "./features/view/viewSlice";
 
@@ -26,6 +27,7 @@ const App = ({data}) => {
   const petNamesLoadMore = useSelector(state => state.view.petnames_portion);
   const curPortion = useSelector(state => state.view.names_list);
   const addPortionSize = useSelector(state => state.view.petnames_portion);
+  const viewSize = useSelector(state => state.view.names_list_size);
 
   let fl = data.hasOwnProperty('theme') ? fontsLoader(data.theme) : null;
     if (fl) injectGlobal`${fl}`;
@@ -63,19 +65,26 @@ const App = ({data}) => {
 
       //** Attention! This is paceholder! Please remove it when backend API will be ready! */
       dispatch(setNamesList(namesList.list.slice(0, petNamesLoadMore)));
+      // dispatch(setNamesList(namesList.list.slice(0, 1000)));
       // **
     }, [data, dispatch, i18n, petNamesLoadMore]);
 
     const [cssAppContainer] = useThemifiedComponent('app-container', data.theme);
     const [cssLoadmoreButton] = useThemifiedComponent('view-loadmore-button', data.theme);
     const [cssLoadmoreFlexbox] = useThemifiedComponent('view-loadmore-flex', data.theme);
-  
+
   return (
     <VStack as={motion.div} className={cssAppContainer} ref={scope} initial={{opacity: 0}}>
       <Filter />
       <View />
       <Flex className={cssLoadmoreFlexbox}>
-        <Button className={cssLoadmoreButton} onClick={loadMorePetNames}>Load more</Button>
+        {
+          //** Attention! namesList is placeholder! Please remove it when backend API will be ready! */
+          (viewSize === namesList.list.length) ? 
+          <ThatItMessage duration = '2000' />
+          :
+          <Button className={cssLoadmoreButton} onClick={loadMorePetNames}>Load more</Button>
+        }
       </Flex>
     </VStack>
   )

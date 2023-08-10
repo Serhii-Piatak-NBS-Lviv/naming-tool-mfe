@@ -4,6 +4,8 @@ export const viewSlice = createSlice({
     name: 'view',
     initialState: {
         "hero_image": "../../app/apisimul/view/hero-puppy.png",
+        "names_list_prevsize": 0,
+        "names_list_size": 0,
         "names_list": [],
         "petnames_portion": 32,
     },
@@ -24,7 +26,9 @@ export const viewSlice = createSlice({
         },
 
         setNamesList: (state, action) => {
+            state.names_list_prevsize = state.names_list.length;
             state.names_list = [...action.payload];
+            state.names_list_size = state.names_list.length;
         },
 
         selectPetName: (state, action) => {

@@ -446,6 +446,36 @@ export const themes = {
             "marginTop": '32px',
         },
 
+        "view-loadmore-thatsall": {
+            "background": 'rgb(58, 53, 51)',
+            "color": '#FFF',
+            "padding": '10px 16px',
+            "fontFamily": 'Roboto Slab',
+            "fontSize": '16px',
+            "fontWeight": '400',
+            "lineHeight": '24px',
+            "textAlign": 'center',
+
+            '&.hidden': {
+                "@-webkitKeyframes fadeOut": {
+                    "0%": {"opacity": 1},
+                    "100%": {"opacity": 0},
+                 },
+                 
+                "@keyframes fadeOut": {
+                "0%:": {"opacity": 1},
+                "100%": {"opacity": 0},
+                },
+
+            "-webkitAnimationDuration": '3s',
+            "animationDuration": '3s',
+            "-webkitAnimationFillMode": 'both',
+            "animationFillMode": 'both',
+            "-webkitAnimationName": 'fadeOut',
+            "animationName": 'fadeOut',
+            },
+        },
+
         "chakra-adaptive-arrays": {
             "view-namedescription": {
                 "maxWidth": ['100%', '100%', '70%'],
