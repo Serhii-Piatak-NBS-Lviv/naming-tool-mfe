@@ -10,5 +10,7 @@
     "alphabet": "A-B-C-D-E-F-G-H-I-J-K-L-M-N-O-P-Q-R-S-T-U-V-W-X-Y-Z",
     "increment": "Increment",
     "decrement": "Decrement",
-    "static-string": "This React micro-frontend application is available for themification and localization"
+    "static-string": "This React micro-frontend application is available for themification and localization",
+    "Empty search result title": "Sorry, we found no results.",
+    "Empty search result description": "Clear your filters and try again."
 }

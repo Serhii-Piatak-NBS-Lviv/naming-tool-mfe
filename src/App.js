@@ -18,6 +18,7 @@ import { setPetnamesPortion } from "./features/view/viewSlice";
 
 //** Attention! This is paceholder! Please remove it when backend API will be ready! */
 import namesList from "./app/apisimul/view/names-list";
+import { NoResult } from "./features/view/NoResult";
 // **
 
 const App = ({data}) => {
@@ -86,6 +87,7 @@ const App = ({data}) => {
           <Button className={cssLoadmoreButton} onClick={loadMorePetNames}>Load more</Button>
         }
       </Flex>
+      <NoResult />
     </VStack>
   )
 }
