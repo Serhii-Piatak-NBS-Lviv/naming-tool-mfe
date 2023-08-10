@@ -222,6 +222,8 @@ const ShiftingPopover = ({id, title, description, gender, categories, simpleGrid
     const theme = useSelector((state) => state.common.theme);
     const [cssPetNameButton] = useThemifiedComponent('view-name-button', theme);
 
+    const namesList = useSelector((state) => state.view.names_list);
+    const prevPortion = useSelector((state) => state.view.names_list_prevsize);
     
     const reveal = () => {
         const browserURL = new URL(window.location.href);        
@@ -230,6 +232,13 @@ const ShiftingPopover = ({id, title, description, gender, categories, simpleGrid
         };
         isOpen ? dispatch(selectPetName('')) : dispatch(selectPetName(id));
     };
+
+    // This useEffect performes scrolling when
+    // next portion of pet names shows up
+    useEffect(() => {
+        const idxElem = namesList.findIndex(name => name.id === id);
+        if (idxElem !== 0 && idxElem === prevPortion) gridItemRef.current?.scrollIntoView({behavior: "smooth"});
+    }, [])
 
   return(
     <GridItem px='2%'>
