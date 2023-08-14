@@ -139,6 +139,7 @@ export const themes = {
             "lineHeight": '18px',
             "userSelect": 'none',
             "textAlign": 'center',
+            "cursor": 'pointer',
 
             "@media (max-width: 768px)": {
                 "fontSize": '14px',
@@ -151,6 +152,7 @@ export const themes = {
             "height": '48px',
             "marginBottom": '8px',
             "userSelect": 'none',
+            "cursor": 'pointer',
 
             "@media (max-width: 768px)": {
                 "width": '24px',
