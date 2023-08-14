@@ -8,6 +8,7 @@ export const viewSlice = createSlice({
         "names_list_size": 0,
         "names_list": [],
         "petnames_portion": 32,
+        "names_list_full": [],
     },
     reducers: {
         addPetName: (state, action) => {
@@ -37,10 +38,14 @@ export const viewSlice = createSlice({
 
         setPetnamesPortion: (state, action) => {
             state.petnames_portion = action.payload;
-        }
+        },
+
+        loadAllPetnames: (state, action) => {
+            state.names_list_full = [...action.payload]
+        },
     },
 });
 
-export const { addPetName, setNamesList, selectPetName, setPetnamesPortion } = viewSlice.actions;
+export const { addPetName, setNamesList, selectPetName, setPetnamesPortion, loadAllPetnames } = viewSlice.actions;
 
 export default viewSlice.reducer;
