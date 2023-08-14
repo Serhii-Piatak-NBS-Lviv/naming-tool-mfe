@@ -9,12 +9,11 @@ import { isMobile } from "react-device-detect";
 
 import { fontsLoader, themes } from './themes';
 import useThemifiedComponent from "./app/hooks/useThemifiedComponent";
-import { setNamesList } from "./features/view/viewSlice";
+import { setNamesList, setPetnamesPortion, loadAllPetnames } from "./features/view/viewSlice";
 import Filter from "./features/filter/Filter";
 import View from "./features/view/View";
 import ThatItMessage from "./features/view/ThatItMessage";
 import { setTheme, setLocale } from "./app/commonSlice";
-import { setPetnamesPortion } from "./features/view/viewSlice";
 
 //** Attention! This is paceholder! Please remove it when backend API will be ready! */
 import namesList from "./app/apisimul/view/names-list";
@@ -29,6 +28,7 @@ const App = ({data}) => {
   const curPortion = useSelector(state => state.view.names_list);
   const addPortionSize = useSelector(state => state.view.petnames_portion);
   const viewSize = useSelector(state => state.view.names_list_size);
+  const namesFullList = useSelector(state => state.view.names_list_full);
 
   let fl = data.hasOwnProperty('theme') ? fontsLoader(data.theme) : null;
     if (fl) injectGlobal`${fl}`;
@@ -36,11 +36,36 @@ const App = ({data}) => {
     const [scope, animate] = useAnimate();  
     const startAnimation = () => {
       animate(scope.current, { opacity: 1 }, { duration: 1.2 }, { ease: "linear" })
-    };
+    };   
 
     const loadMorePetNames = () => {
-      //** Attention! This is paceholder! Please replace it when backend API will be ready! */
-      dispatch(setNamesList(namesList.list.slice(0, curPortion.length + addPortionSize)));
+      //** Attention! This is paceholder! Please replace namesList when backend API will be ready! */
+      dispatch(setNamesList(namesFullList.slice(0, curPortion.length + addPortionSize)));
+    };
+
+    const loadNameLists = () => {
+      const browserURL = new URL(window.location.href);
+
+      if (browserURL.searchParams.get('petname')) {
+        // If page was opened via share link then re-organize
+        // array of pet names in a way where requested pet name is
+        // on first place
+        const elemIndex = namesList.list.findIndex(petname => petname.id === browserURL.searchParams.get('petname'));
+        const newFirstElem = namesList.list[elemIndex];
+        let newFullList = [
+          newFirstElem,
+          ...namesList.list.slice(0, elemIndex)
+        ];
+
+        if (elemIndex <= namesList.list.length - 1) {
+          newFullList = [...newFullList, ...namesList.list.slice(elemIndex + 1)];
+        };
+        dispatch(loadAllPetnames(newFullList));
+        dispatch(setNamesList(newFullList.slice(0, petNamesLoadMore)));
+      } else {
+        dispatch(loadAllPetnames(namesList.list));
+        dispatch(setNamesList(namesList.list.slice(0, petNamesLoadMore)));
+      };
     };
 
     useEffect(() => {
@@ -64,11 +89,8 @@ const App = ({data}) => {
       // Desktop/Mobile into Redux storage:
       isMobile ? dispatch(setPetnamesPortion(16)) : dispatch(setPetnamesPortion(32));
 
-      //** Attention! This is paceholder! Please remove it when backend API will be ready! */
-      dispatch(setNamesList(namesList.list.slice(0, petNamesLoadMore)));
-      // dispatch(setNamesList([]));
-      // dispatch(setNamesList(namesList.list.slice(0, 1000)));
-      // **
+      loadNameLists();
+      
     }, [data, dispatch, i18n, petNamesLoadMore]);
 
     const [cssAppContainer] = useThemifiedComponent('app-container', data.theme);

@@ -410,7 +410,7 @@ export const themes = {
         "view-namedescription__text": {
             "fontFamily": 'Roboto !important',
             "fontWeight": '300 !important',
-            "color": 'rgb(191, 191, 191)',
+            "color": '#6B6868',
         },
 
         "view-namedescription__arrow": {
