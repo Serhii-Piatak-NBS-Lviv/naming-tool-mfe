@@ -1922,7 +1922,7 @@ const namesList = {
         },
         {
             "id": "petname-229",
-            "Title": "Eleven (Stranger Things)",
+            "Title": "Eleven",
             "Definition": "Another name that is very popular in the modern world. Eleven, primarily used to describe the number after 10, and before 12, is a famous name from the popular Netflix series Stranger Things. ",
             "Gender": "Female",
             "categories": []
@@ -3936,7 +3936,7 @@ const namesList = {
         },
         {
             "id": "petname-473",
-            "Title": "Jo (Little Women)",
+            "Title": "Jo",
             "Definition": "Jo, a name short for Josephine or Joanna is a female name. The name has become more popular as of late, thanks to the film Little Women.",
             "Gender": "Female",
             "categories": []
@@ -4089,7 +4089,7 @@ const namesList = {
         },
         {
             "id": "petname-492",
-            "Title": "Lady (Lady and the Tramp)",
+            "Title": "Lady",
             "Definition": "Lady is an evergreen, everpopular name for sophisticated pets with a more delicate disposition. Best known as the Disney character who falls in love with stray mutt Tramp, Lady is a kind, curious and ultimately faithful companion. ",
             "Gender": "Female",
             "categories": [
@@ -4433,7 +4433,7 @@ const namesList = {
         },
         {
             "id": "petname-533",
-            "Title": "Mimosa (Mimi)",
+            "Title": "Mimosa",
             "Definition": "Mimosa, a name of many meanings. One for the delicious summer cocktail drink, but also a Latin female name meaning 'Tropcial tree'. Most people that use the name Mimosa, shorten it to 'mimi', which means 'rebellious'. If you have a pup that is sweet, full of fizz and energy, this is a great name choice for them! ",
             "Gender": "Female",
             "categories": []
@@ -4601,7 +4601,7 @@ const namesList = {
         },
         {
             "id": "petname-553",
-            "Title": "Nana (Peter Pan)",
+            "Title": "Nana",
             "Definition": "Nana is a great female name, the name means 'person who looks after children', which if you know the furry Nana we may be thinking of, Nana from Peter Pan, you will know that this names meaning is absolutley spot on! ",
             "Gender": "Female",
             "categories": []
@@ -5419,7 +5419,7 @@ const namesList = {
         },
         {
             "id": "petname-655",
-            "Title": "Scout (To Kill a Mockingbird)",
+            "Title": "Scout",
             "Definition": "Scout is a great name for those pups that love a good adventure, derived from the Old French origin 'to listen'. Famous for the character from To Kill a Mocking Bird. ",
             "Gender": "Male",
             "categories": []
@@ -5903,7 +5903,7 @@ const namesList = {
         },
         {
             "id": "petname-714",
-            "Title": "Calinda (Kalinda for Hindu meaning)",
+            "Title": "Calinda",
             "Definition": "the Hindi word for “sun.”\n\nA name with steeped in Hindu mythology, Kalinda. The name Kalinda, means ‘sun’. The name also shares a mythological meaning to the mountains of Kalinda or the sacred Kalindi river. Pets are the sunshine of our lives, and this name is a great option to show just that.      \n",
             "Gender": "Female",
             "categories": [
@@ -6062,7 +6062,7 @@ const namesList = {
         },
         {
             "id": "petname-733",
-            "Title": "Holly (Breakfast at Tiffany’s)",
+            "Title": "Holly",
             "Definition": "The name Holly is a female name of Old English origin. The name is derived from the words holen and holegn, which mean 'the holly tree'. The holly plant is one of the most traditional and is mostly used at Christmas time, and the name is also famous for it being chosen for the main character in Breakfast at Tiffany's, Holly Golightly. ",
             "Gender": "Female",
             "categories": []
@@ -6704,7 +6704,7 @@ const namesList = {
         },
         {
             "id": "petname-812",
-            "Title": "Dixie (Because of Winn-Dixie)",
+            "Title": "Dixie",
             "Definition": "This is a female name of French origin meaning 'tenth'. Famous for the great 2005 film based off a novel written by Kate DiCamillo, Because of Winn-Dixie. A must watch if you havent already! ",
             "Gender": "Female",
             "categories": []
@@ -6782,7 +6782,7 @@ const namesList = {
         },
         {
             "id": "petname-822",
-            "Title": "Buttercup (The Princess Bride)",
+            "Title": "Buttercup",
             "Definition": "This is a floral girls name of English origin meaning, 'yellow wildflower'. However, this name not only represents a beautful yellow flower, but also that of royalty. The name Buttercup was given to the princess in the 1987 film The Princess Bride.",
             "Gender": "Female",
             "categories": []
@@ -6798,7 +6798,7 @@ const namesList = {
         },
         {
             "id": "petname-824",
-            "Title": "Eloise (Eloise)",
+            "Title": "Eloise",
             "Definition": "This is a French girls name meaning 'healthy' and 'wide'. ",
             "Gender": "Female",
             "categories": []
@@ -7510,7 +7510,7 @@ const namesList = {
         },
         {
             "id": "petname-913",
-            "Title": "Fluffernutter (Fluff)",
+            "Title": "Fluffernutter",
             "Definition": "This may seem like a comical name option, but we promise you it’s a serious contender! A Fluffernutter is a type of american sandwich made with peanut butter and marshmallows. This name would suit a dog with a BIG personality, lots of fluff and maybe even a colour similar to peanutbutter.",
             "Gender": "Female",
             "categories": []
@@ -7965,7 +7965,7 @@ const namesList = {
         },
         {
             "id": "petname-966",
-            "Title": "Ginny (Harry Potter)",
+            "Title": "Ginny",
             "Definition": "Was Ginny Weasly anyone elses favourite in Harry Potter? The English name that we all love, is a genuinly, lovely name to give your pet. The meaning behind the name is 'pure' and 'virginal', which rings true with the character in Harry Potter.",
             "Gender": "Female",
             "categories": []
