@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import useThemifiedComponent from '../../app/hooks/useThemifiedComponent';
 import restAPI from '../../app/apisimul/filter/name-categories';
+import { toggleLoader } from '../../app/commonSlice';
 
 import { useDispatch } from 'react-redux';
 
@@ -22,6 +23,8 @@ used from src/app/apisimul  folder
 * to filterSlice part of Redux storage
 **/
 
+const LOADING_OVERLAY_DURATION = 800;
+
 const Filter = () => {
     const [cssFiltersContainer] = useThemifiedComponent('filters');
     const [cssFormFiltersTitle] = useThemifiedComponent('form-filters-title');
@@ -31,17 +34,25 @@ const Filter = () => {
     const dispatch = useDispatch();  
     const { t } = useTranslation();
 
+    const showLoader = (duration) => {
+        dispatch(toggleLoader());
+        window.setTimeout(() => dispatch(toggleLoader()), duration);
+    };
+
     const handleFilter = (category) => {
         dispatch(setSelectedCategory(category));
-    }
+        showLoader(LOADING_OVERLAY_DURATION);
+    };
 
     const handleRadio = (radio) => {
         dispatch(setGender(radio));
+        showLoader(LOADING_OVERLAY_DURATION);
     };
 
     const handleLetter = (letter) => {
         dispatch(setLetter(letter));
-    }    
+        showLoader(LOADING_OVERLAY_DURATION);
+    };  
 
     return (
         <div className={cssFiltersContainer} id="filters" >

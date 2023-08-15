@@ -15,6 +15,9 @@ import View from "./features/view/View";
 import ThatItMessage from "./features/view/ThatItMessage";
 import { setTheme, setLocale } from "./app/commonSlice";
 
+import LoadingOverlay from 'react-loading-overlay-ts';
+import RingLoader from "react-spinners/RingLoader";
+
 //** Attention! This is paceholder! Please remove it when backend API will be ready! */
 import namesList from "./app/apisimul/view/names-list";
 import { NoResult } from "./features/view/NoResult";
@@ -98,6 +101,18 @@ const App = ({data}) => {
     const [cssLoadmoreFlexbox] = useThemifiedComponent('view-loadmore-flex', data.theme);
 
   return (
+    <LoadingOverlay
+      active={useSelector(state => state.common.showLoader)}
+      spinner={<RingLoader size='100px' color='#FFF' cssOverride={{"left": '50px'}}/>}
+      text='Refreshing pet names list...'
+      styles={{
+        content: {
+          position: 'absolute',
+          left: '45%',
+          top: '25%'
+        }
+      }}
+    >
     <VStack as={motion.div} className={cssAppContainer} ref={scope} initial={{opacity: 0}}>
       <Filter />
       {
@@ -118,6 +133,7 @@ const App = ({data}) => {
         </>
       }
     </VStack>
+    </LoadingOverlay>
   )
 }
 
