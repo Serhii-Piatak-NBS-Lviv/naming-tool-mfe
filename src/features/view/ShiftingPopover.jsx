@@ -17,6 +17,7 @@ import {
     HStack, 
     Tooltip 
 } from '@chakra-ui/react';
+import { FacebookShareButton, WhatsappShareButton, TwitterShareButton } from "react-share";
 import { useToast } from '@chakra-ui/react';
 import { AiFillTwitterCircle } from "react-icons/ai";
 import {CopyToClipboard} from 'react-copy-to-clipboard';
@@ -99,6 +100,15 @@ const ShareLink = ({ petnameId, children }) => {
         </CopyToClipboard>
     )
 };
+
+const shareButtonLink = (petnameId) => {
+    const browserURL = new URL(window.location.href);
+    const itemLink = `${browserURL.href}?petname=${petnameId}`;
+    console.log('https://github.com/Serhii-Piatak-NBS-Lviv/naming-tool-mfe/tree/dev-filter-logic-2')
+    console.log(itemLink)
+
+    return itemLink;
+}
 
 const SplashDescription = ({id, title, description, theme, gender, categories, simpleGridRef, gridItemRef}) => {
     const cardRef = useRef();  
@@ -183,25 +193,25 @@ const SplashDescription = ({id, title, description, theme, gender, categories, s
                 </Tooltip>
             </ShareLink>
 
-            <ShareLink petnameId={id}>
+            <TwitterShareButton  url={shareButtonLink(id)}>
                <Tooltip hasArrow label='Twitter'>
                 <span className={spanWrapp}>
                     <Icon as={AiFillTwitterCircle} className={cssShareIcon} fontSize={getThemifiedResponsive(theme, 'view-shareicon', 'fontSize')} />
                 </span>
                 </Tooltip> 
-            </ShareLink>
+            </TwitterShareButton>
 
-            <ShareLink petnameId={id}>
+            <WhatsappShareButton url={shareButtonLink(id)}>
                 <Tooltip hasArrow label='WhatsApp'>
                     <Icon as={WhatsappIcon} className={cssShareIcon} fontSize={getThemifiedResponsive(theme, 'view-shareicon', 'fontSize')} />
                 </Tooltip>  
-            </ShareLink>
+            </WhatsappShareButton>
             
-            <ShareLink petnameId={id}>
+            <FacebookShareButton url={shareButtonLink(id)}>
                 <Tooltip hasArrow label='Facebook'>
                     <Icon as={FacebookIcon} className={cssShareIcon} fontSize={getThemifiedResponsive(theme, 'view-shareicon', 'fontSize')} />
                 </Tooltip>
-            </ShareLink>
+            </FacebookShareButton>
             
         </CardFooter>
     </Card>
