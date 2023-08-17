@@ -104,9 +104,7 @@ const ShareLink = ({ petnameId, children }) => {
 const shareButtonLink = (petnameId) => {
     const browserURL = new URL(window.location.href);
     const itemLink = `${browserURL.href}?petname=${petnameId}`;
-    console.log('https://github.com/Serhii-Piatak-NBS-Lviv/naming-tool-mfe/tree/dev-filter-logic-2')
-    console.log(itemLink)
-
+    
     return itemLink;
 }
 
