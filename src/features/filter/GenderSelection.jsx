@@ -16,9 +16,7 @@ const GenderSelection = ({ title, radios, handleRadio }) => {
       : '';
   }
 
-  if (!selectedGender || radios.indexOf(selectedGender) === -1) {
-    handleRadio(radios[radios.length - 1]);
-  }
+  // Logic of choosing initial gender was moved to App.js
 
   return (
     <div className={cssWrapper}>
@@ -38,7 +36,7 @@ const GenderSelection = ({ title, radios, handleRadio }) => {
                   checked={selectedGender === titleInput}
                   onChange={() => handleRadio(titleInput)}
                 />
-                {titleInput}
+                {titleInput==='Both' ? "Any" : titleInput}
               </label>
             )
           })
