@@ -41,7 +41,7 @@ export const viewSlice = createSlice({
         },
 
         loadAllPetnames: (state, action) => {
-            state.names_list_full = [...action.payload]
+            state.names_list_full = [...action.payload];
         },
     },
 });

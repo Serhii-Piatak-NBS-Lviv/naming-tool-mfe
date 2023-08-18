@@ -9,11 +9,13 @@ import { isMobile } from "react-device-detect";
 
 import { fontsLoader, themes } from './themes';
 import useThemifiedComponent from "./app/hooks/useThemifiedComponent";
-import { setNamesList, setPetnamesPortion, loadAllPetnames } from "./features/view/viewSlice";
 import Filter from "./features/filter/Filter";
 import View from "./features/view/View";
 import ThatItMessage from "./features/view/ThatItMessage";
-import { setTheme, setLocale } from "./app/commonSlice";
+
+import { setTheme, setLocale, initializeNamesList } from "./app/commonSlice";
+import { setNamesList, setPetnamesPortion, loadAllPetnames } from "./features/view/viewSlice";
+import { setGender } from "./features/filter/filterSlice";
 
 import LoadingOverlay from 'react-loading-overlay-ts';
 import RingLoader from "react-spinners/RingLoader";
@@ -46,28 +48,38 @@ const App = ({data}) => {
       dispatch(setNamesList(namesFullList.slice(0, curPortion.length + addPortionSize)));
     };
 
-    const loadNameLists = () => {
+    const loadNameLists = (fetchedNames) => {
       const browserURL = new URL(window.location.href);
 
       if (browserURL.searchParams.get('petname')) {
         // If page was opened via share link then re-organize
         // array of pet names in a way where requested pet name is
         // on first place
-        const elemIndex = namesList.list.findIndex(petname => petname.id === browserURL.searchParams.get('petname'));
-        const newFirstElem = namesList.list[elemIndex];
+        const elemIndex = fetchedNames.findIndex(petname => petname.id === browserURL.searchParams.get('petname'));
+        const newFirstElem = fetchedNames[elemIndex];
         let newFullList = [
           newFirstElem,
-          ...namesList.list.slice(0, elemIndex)
+          ...fetchedNames.slice(0, elemIndex)
         ];
 
-        if (elemIndex <= namesList.list.length - 1) {
-          newFullList = [...newFullList, ...namesList.list.slice(elemIndex + 1)];
+        if (elemIndex <= fetchedNames.length - 1) {
+          newFullList = [...newFullList, ...fetchedNames.slice(elemIndex + 1)];
         };
-        dispatch(loadAllPetnames(newFullList));
-        dispatch(setNamesList(newFullList.slice(0, petNamesLoadMore)));
-      } else {
-        dispatch(loadAllPetnames(namesList.list));
-        dispatch(setNamesList(namesList.list.slice(0, petNamesLoadMore)));
+
+        // To keep user experience consistent, in case
+        // when we open Names Tool via share link
+        // we should select gender in accordance to 
+        // shared pet name:
+        dispatch(setGender(fetchedNames[elemIndex]["Gender"]));
+        return {
+          'initialNamelist': newFullList,
+          'initialGender': fetchedNames[elemIndex]["Gender"]
+        };
+      };
+      dispatch(setGender("Both"));
+      return {
+        'initialNamelist': fetchedNames,
+        'initialGender': "Both"
       };
     };
 
@@ -92,7 +104,13 @@ const App = ({data}) => {
       // Desktop/Mobile into Redux storage:
       isMobile ? dispatch(setPetnamesPortion(16)) : dispatch(setPetnamesPortion(32));
 
-      loadNameLists();
+      // push initial pet names full list to Redux storage
+      // ToDo: replace namesList.list placeholder by actual data fetched from REST
+      const namesToInitialize = loadNameLists(namesList.list);
+      const namesToLoad = namesToInitialize.initialNamelist.filter((petname) => petname.Gender === namesToInitialize.initialGender);
+      dispatch(initializeNamesList(namesToInitialize.initialNamelist));
+      dispatch(loadAllPetnames(namesToLoad));
+      dispatch(setNamesList(namesToLoad.slice(0, petNamesLoadMore)));
       
     }, [data, dispatch, i18n, petNamesLoadMore]);
 
@@ -124,7 +142,7 @@ const App = ({data}) => {
           <Flex className={cssLoadmoreFlexbox}>
             {
               //** Attention! namesList is placeholder! Please remove it when backend API will be ready! */
-              (viewSize === namesList.list.length) ? 
+              (viewSize === namesFullList.length) ? 
               <ThatItMessage duration = '2000' />
               :
               <Button className={cssLoadmoreButton} onClick={loadMorePetNames}>Load more</Button>

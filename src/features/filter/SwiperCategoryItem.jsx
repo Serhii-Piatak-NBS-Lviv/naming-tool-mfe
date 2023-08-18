@@ -11,8 +11,8 @@ const SwiperCategoryItem = ({category, handleFilter}) => {
     const [cssTitle] = useThemifiedComponent('filter-category-title');
     const [cssImage] = useThemifiedComponent('filter-category-image');
 
-    const isActive = (activeFilters, title) => {
-        if(activeFilters.includes(title)) return cssCategoryIsActive;
+    const isActive = (activeFilters, id) => {
+        if(activeFilters.includes(id)) return cssCategoryIsActive;
     }
 
     const setIconUrl = (category) => {
@@ -24,8 +24,8 @@ const SwiperCategoryItem = ({category, handleFilter}) => {
 
     return (
         <div        
-            className={cx(cssCategoryWrapper, isActive(activeFilters, category.title))}
-            onClick={() => handleFilter(category.title)}
+            className={cx(cssCategoryWrapper, isActive(activeFilters, category.id))}
+            onClick={() => handleFilter(category.id)}
         >
             <img 
                 className={cssImage}
