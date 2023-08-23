@@ -134,10 +134,10 @@ export const themes = {
             }
         }, 
 
-        "isActive": {            
-        "border": '0.5px solid  #E81C24',
-        "background":   '#FFF',
-        "boxShadow": '0px 2px 12px 0px rgba(58, 53, 51, 0.10), 0px 0px 2px 0px rgba(58, 53, 51, 0.20)',
+        "isActive": {        
+            "border": '0.5px solid  #E81C24',
+            "background":   '#FFF',
+            "boxShadow": '0px 2px 12px 0px rgba(58, 53, 51, 0.10), 0px 0px 2px 0px rgba(58, 53, 51, 0.20)',
         },
 
         "filter-category-title": {

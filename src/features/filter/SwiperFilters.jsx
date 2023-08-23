@@ -1,12 +1,18 @@
+import useThemifiedComponent from '../../app/hooks/useThemifiedComponent';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { css, cx } from '@emotion/css';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, A11y } from 'swiper';
 import SwiperCore, { Mousewheel } from "swiper/core";
 
+import { setSelectedCategory } from './filterSlice';
+
 import SwiperCategoryItem from './SwiperCategoryItem';
 
 const swiperDefault = css`
+  transition: .3s;
 .swiper,
 .swiper-container {
   margin-left: auto;
@@ -311,45 +317,88 @@ const cssSwiperNesting = css`
 
 export const SwiperFilters = ({restAPI, handleFilter}) => {
 
-    SwiperCore.use([Mousewheel]);
-    return (
-        <div className={cx(swiperDefault, swiperNav, cssSwiperNesting)}  mx="auto">
-            <Swiper
-                position="static"
-                modules={[Navigation, A11y]}
-                spaceBetween={8}
-                navigation
-                mousewheel={true}
+  const dispatch = useDispatch();
 
-                breakpoints={{
-                    0: {
-                        slidesPerView: 4,
-                    },
-                    525: {
-                        slidesPerView: 5,
-                    },
-                    769: {
-                        slidesPerView: 3,
-                    },                                
-                    900: {
-                        slidesPerView: 3.5,
-                    },
-                    1139: {
-                        slidesPerView: 5,
-                    }
-                }}
+  const activeFilters = useSelector(state => state.filter.selectedCategories);  
+
+  const setActiveItem = () => {
+    if(window.innerWidth > 768) {
+      return activeFilters ? {paddingLeft: '124px'} : {paddingLeft: '0'}
+    }
+    return activeFilters ? {paddingLeft: '92px'} : {paddingLeft: '0'}
+  }
+
+  const setIconUrl = (category) => {
+    const device = window.innerWidth > 768 ? 'desktop_tablet' : 'mobile';
+    const { icon_desktop_tablet, icon_mobile } = category;    
+
+    return require(`../../app/images/${device}/${window.innerWidth > 768 ? icon_desktop_tablet : icon_mobile}`);
+};
+
+  const [cssCategoryWrapper] = useThemifiedComponent('filter-category');  
+  const [cssCategoryIsActive] = useThemifiedComponent('isActive');
+  const [cssTitle] = useThemifiedComponent('filter-category-title');
+  const [cssImage] = useThemifiedComponent('filter-category-image');  
+
+  SwiperCore.use([Mousewheel]);
+  return (
+    <>
+      <div 
+        style={{
+          position: 'absolute', 
+          left: '26px', 
+          top: '50%',
+          transform: 'translateY(-50%)', 
+          zIndex: '99'
+        }}
+      >
+        {
+          restAPI.list
+          .filter(el => el.id === activeFilters ? el : null)
+          .map(el => (
+            <div 
+              key={el.id}
+              className={cx(cssCategoryWrapper, cssCategoryIsActive)}
+              onClick={() => dispatch(setSelectedCategory(''))}
             >
-                {restAPI.list.map((category) => {
-                    return (
-                        <SwiperSlide key={category.id}>
-                            <SwiperCategoryItem 
-                                category={category} 
-                                handleFilter={handleFilter} 
-                            />
-                        </SwiperSlide>
-                    )
-                })}
-            </Swiper>
-        </div>        
-    )
+              <img 
+                className={cssImage}
+                src={setIconUrl(el)} 
+                alt={el.title} 
+              />
+              <span className={cssTitle}>
+                {el.title}
+              </span>
+            </div>))
+        }
+      </div>
+      <div 
+        className={cx(swiperDefault, swiperNav, cssSwiperNesting)}  
+        mx="auto"
+        style={setActiveItem()}>
+        <Swiper
+          position="static"
+          modules={[Navigation, A11y]}
+          spaceBetween={8}
+          navigation
+          mousewheel={true}
+          slidesPerView="auto"                
+        >
+          {restAPI.list
+          .filter(el => el.id !== activeFilters)
+          .map((category) => {
+            return (
+              <SwiperSlide key={category.id}>
+                <SwiperCategoryItem 
+                  category={category} 
+                  handleFilter={handleFilter} 
+                  setIconUrl={setIconUrl}
+                />
+              </SwiperSlide>
+            )
+          })}
+        </Swiper>
+      </div>     
+    </>           
+  )
 }
