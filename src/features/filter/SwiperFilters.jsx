@@ -325,9 +325,6 @@ export const SwiperFilters = ({restAPI, handleFilter}) => {
                     0: {
                         slidesPerView: 4,
                     },
-                    // 424: {
-                    //     slidesPerView: 4,
-                    // },
                     525: {
                         slidesPerView: 5,
                     },

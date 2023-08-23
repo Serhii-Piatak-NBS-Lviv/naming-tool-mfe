@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { injectGlobal } from '@emotion/css';
 import WebFont from 'webfontloader';
 import { useTranslation } from "react-i18next";
@@ -38,6 +38,29 @@ const App = ({data}) => {
   let fl = data.hasOwnProperty('theme') ? fontsLoader(data.theme) : null;
     if (fl) injectGlobal`${fl}`;
 
+    //** Define Swipe direction */
+    const [touchStart, setTouchStart] = useState(null);
+    const [touchEnd, setTouchEnd] = useState(null);  
+    const [swipeDirection, setSpwipDirection] = useState('bottom'); 
+
+    const onTouchStart = (e) => {
+      setTouchEnd(null);
+      setTouchStart(e.nativeEvent.touches[0].pageY);
+    }
+  
+    const onTouchMove = (e) => {
+      setTouchEnd(e.nativeEvent.touches[0].pageY);
+    }
+  
+    const onTouchEnd = () => {
+      if (!touchStart || !touchEnd) return;
+      if (touchStart - touchEnd > 0) {
+        setSpwipDirection(prev => prev = 'bottom')
+      } else if (touchStart - touchEnd < 0) {
+        setSpwipDirection(prev => prev = 'top')
+      }
+    }
+
     const [scope, animate] = useAnimate();  
     const startAnimation = () => {
       animate(scope.current, { opacity: 1 }, { duration: 1.2 }, { ease: "linear" })
@@ -46,6 +69,7 @@ const App = ({data}) => {
     const loadMorePetNames = () => {
       //** Attention! This is paceholder! Please replace namesList when backend API will be ready! */
       dispatch(setNamesList(namesFullList.slice(0, curPortion.length + addPortionSize)));
+      setSpwipDirection(prev => prev = 'bottom');
     };
 
     const loadNameLists = (fetchedNames) => {
@@ -131,14 +155,23 @@ const App = ({data}) => {
         }
       }}
     >
-    <VStack as={motion.div} className={cssAppContainer} ref={scope} initial={{opacity: 0}}>
-      <Filter />
+    <VStack  
+      as={motion.div} 
+      className={cssAppContainer} 
+      ref={scope} 
+      initial={{opacity: 0}}>
+
+      <Filter swipeDirection={swipeDirection} />
       {
         (viewSize === 0) ? 
         <NoResult />
         :
         <>
-          <View />
+          <View 
+            onTouchStart={onTouchStart} 
+            onTouchMove={onTouchMove} 
+            onTouchEnd={onTouchEnd} 
+            setSpwipDirection={setSpwipDirection} />
           <Flex className={cssLoadmoreFlexbox}>
             {
               //** Attention! namesList is placeholder! Please remove it when backend API will be ready! */

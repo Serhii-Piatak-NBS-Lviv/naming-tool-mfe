@@ -10,23 +10,33 @@ import ShiftingPopover from './ShiftingPopover';
 * @function View
 **/
 
-export const View = () => {
+export const View = ({setSpwipDirection, onTouchStart, onTouchMove, onTouchEnd}) => {
     const { t } = useTranslation();
     const simpleGridRef = useRef();
     const namesList = useSelector(state => state.view.names_list);
 
     return(
-        <SimpleGrid ref={simpleGridRef} position={'relative'} minChildWidth='255px' spacing='16px' w={'100%'} mx="auto" maxW={1109}>
+        <SimpleGrid 
+          onTouchStart={onTouchStart} 
+          onTouchMove={onTouchMove} 
+          onTouchEnd={onTouchEnd} 
+          ref={simpleGridRef} 
+          position={'relative'} 
+          minChildWidth='255px' 
+          spacing='16px' 
+          w={'100%'} 
+          mx="auto" maxW={1109}>
             { namesList.map((petname) => {
             return (
-              <ShiftingPopover
+              <ShiftingPopover              
               id={petname.id} 
               title={petname.Title} 
               description={petname.Definition}
               gender={petname.Gender}
               categories={petname.categories}
               simpleGridRef={simpleGridRef}
-              key={petname.id} />              
+              key={petname.id} 
+              setSpwipDirection={setSpwipDirection}/>              
             )}
           ) }
         </SimpleGrid>

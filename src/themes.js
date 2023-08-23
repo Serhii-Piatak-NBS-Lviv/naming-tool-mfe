@@ -23,7 +23,17 @@ export const themes = {
 
         "filters": {
             "width": '100%',
-            "maxWidth": '1109px'
+            "maxWidth": '1109px',            
+            "transition": '.5s',
+            "backgroundColor": 'rgb(249, 248, 245)',
+            "zIndex": '10',
+
+            "@media (max-width: 991px)": {
+                "position": 'sticky',
+                "width": '100vw',
+                "padding": '0 20px',
+                // "boxShadow": '0px 2px 12px 0px rgba(58, 53, 51, 0.10), 0px 0px 2px 0px rgba(58, 53, 51, 0.20)',
+            }
         },
 
         "form-filters-title": {
