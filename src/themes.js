@@ -514,7 +514,7 @@ export const themes = {
                 "-webkitAnimationFillMode": 'both',
                 "animationFillMode": 'both',
                 "-webkitAnimationName": 'fadeOut',
-                "animationName": fadeOut,
+                "animationName": 'fadeOut',
             },
         },
 
