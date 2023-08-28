@@ -509,12 +509,12 @@ export const themes = {
             "textAlign": 'center',
 
             '&.hidden': {
-                // "-webkitAnimationDuration": '3s',
                 "animationDuration": '3s',
-                // "-webkitAnimationFillMode": 'both',
                 "animationFillMode": 'both',
-                // "-webkitAnimationName": 'fadeOut',
                 "animationName": fadeOut,
+                "WebkitAnimationDuration": '3s',
+                "WebkitAnimationFillMode": 'both',
+                "WebkitAnimationName": fadeOut,
             },
         },
 
