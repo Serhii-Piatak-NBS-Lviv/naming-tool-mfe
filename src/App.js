@@ -6,6 +6,7 @@ import { motion, useAnimate } from "framer-motion";
 import { VStack, Flex, Button } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { isMobile } from "react-device-detect";
+import Headroom from "react-headroom";
 
 import { fontsLoader, themes } from './themes';
 import useThemifiedComponent from "./app/hooks/useThemifiedComponent";
@@ -25,7 +26,12 @@ import namesList from "./app/apisimul/view/names-list";
 import { NoResult } from "./features/view/NoResult";
 // **
 
+import './App.css';
+
 const App = ({data}) => {
+
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
 
@@ -38,29 +44,6 @@ const App = ({data}) => {
   let fl = data.hasOwnProperty('theme') ? fontsLoader(data.theme) : null;
     if (fl) injectGlobal`${fl}`;
 
-    //** Define Swipe direction */
-    const [touchStart, setTouchStart] = useState(null);
-    const [touchEnd, setTouchEnd] = useState(null);  
-    const [swipeDirection, setSpwipDirection] = useState('bottom'); 
-
-    const onTouchStart = (e) => {
-      setTouchEnd(null);
-      setTouchStart(e.nativeEvent.touches[0].pageY);
-    }
-  
-    const onTouchMove = (e) => {
-      setTouchEnd(e.nativeEvent.touches[0].pageY);
-    }
-  
-    const onTouchEnd = () => {
-      if (!touchStart || !touchEnd) return;
-      if (touchStart - touchEnd > 0) {
-        setSpwipDirection(prev => prev = 'bottom')
-      } else if (touchStart - touchEnd < 0) {
-        setSpwipDirection(prev => prev = 'top')
-      }
-    }
-
     const [scope, animate] = useAnimate();  
     const startAnimation = () => {
       animate(scope.current, { opacity: 1 }, { duration: 1.2 }, { ease: "linear" })
@@ -69,7 +52,6 @@ const App = ({data}) => {
     const loadMorePetNames = () => {
       //** Attention! This is paceholder! Please replace namesList when backend API will be ready! */
       dispatch(setNamesList(namesFullList.slice(0, curPortion.length + addPortionSize)));
-      setSpwipDirection(prev => prev = 'bottom');
     };
 
     const loadNameLists = (fetchedNames) => {
@@ -128,6 +110,12 @@ const App = ({data}) => {
       // Desktop/Mobile into Redux storage:
       isMobile ? dispatch(setPetnamesPortion(16)) : dispatch(setPetnamesPortion(32));
 
+      const handleResize = () => {
+        setWindowWidth(window.innerWidth);
+      };
+
+      window.addEventListener('resize', handleResize);
+
       // push initial pet names full list to Redux storage
       // ToDo: replace namesList.list placeholder by actual data fetched from REST
       const namesToInitialize = loadNameLists(namesList.list);
@@ -136,7 +124,7 @@ const App = ({data}) => {
       dispatch(loadAllPetnames(namesToLoad));
       dispatch(setNamesList(namesToLoad.slice(0, petNamesLoadMore)));
       
-    }, [data, dispatch, i18n, petNamesLoadMore]);
+    }, [data, dispatch, i18n, petNamesLoadMore, windowWidth]);
 
     const [cssAppContainer] = useThemifiedComponent('app-container', data.theme);
     const [cssLoadmoreButton] = useThemifiedComponent('view-loadmore-button', data.theme);
@@ -160,18 +148,19 @@ const App = ({data}) => {
       className={cssAppContainer} 
       ref={scope} 
       initial={{opacity: 0}}>
-
-      <Filter swipeDirection={swipeDirection} />
+        {
+          window.innerWidth > 991 
+          ? <Filter />
+          : <Headroom >
+              <Filter />
+            </Headroom>          
+        }     
       {
         (viewSize === 0) ? 
         <NoResult />
         :
         <>
-          <View 
-            onTouchStart={onTouchStart} 
-            onTouchMove={onTouchMove} 
-            onTouchEnd={onTouchEnd} 
-            setSpwipDirection={setSpwipDirection} />
+          <View />
           <Flex className={cssLoadmoreFlexbox}>
             {
               //** Attention! namesList is placeholder! Please remove it when backend API will be ready! */

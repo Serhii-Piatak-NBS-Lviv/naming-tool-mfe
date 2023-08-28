@@ -216,7 +216,7 @@ const SplashDescription = ({id, title, description, theme, gender, categories, s
    )
 }
 
-const ShiftingPopover = ({id, title, description, gender, categories, simpleGridRef, setSpwipDirection}) => {
+const ShiftingPopover = ({id, title, description, gender, categories, simpleGridRef}) => {
     const dispatch = useDispatch();
     
     const gridItemRef = useRef();
@@ -239,8 +239,7 @@ const ShiftingPopover = ({id, title, description, gender, categories, simpleGrid
         if (browserURL.searchParams.get('petname')) {
             window.history.replaceState(null, document.title, "/");
         };
-        isOpen ? dispatch(selectPetName('')) : dispatch(selectPetName(id));
-        setSpwipDirection('bottom');
+        isOpen ? dispatch(selectPetName('')) : dispatch(selectPetName(id));        
     };
 
     // This useEffect performes scrolling when

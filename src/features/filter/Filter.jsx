@@ -24,7 +24,7 @@ used from src/app/apisimul  folder
 
 const LOADING_OVERLAY_DURATION = 800;
 
-const Filter = ({ swipeDirection }) => {
+const Filter = () => {
     const [cssFiltersContainer] = useThemifiedComponent('filters');
     const [cssFormFiltersTitle] = useThemifiedComponent('form-filters-title');
     const [cssFormFiltersWrapper] = useThemifiedComponent('form-filters-wrapper');
@@ -124,22 +124,12 @@ const Filter = ({ swipeDirection }) => {
     const handleLetter = (letter) => {
         dispatch(setLetter(letter));
         refreshNamesList(null, null, letter);
-    };  
-
-    const hideFilters = () => {
-        if(swipeDirection === "bottom") {
-            return {top: '-300px'} 
-        } else if(document.documentElement.scrollTop > 300) {
-            return {top: '-40px'}
-        }        
-        return {top: '0'}
-    }
+    }; 
     
     return (
         <div 
             className={cssFiltersContainer} 
             id="filters" 
-            style={hideFilters()} 
         >
            <p className={cssFormFiltersTitle}>
                 {t('filter slider title')}

@@ -31,8 +31,8 @@ export const themes = {
             "@media (max-width: 991px)": {
                 "position": 'sticky',
                 "width": '100vw',
-                "padding": '0 20px',
-                // "boxShadow": '0px 2px 12px 0px rgba(58, 53, 51, 0.10), 0px 0px 2px 0px rgba(58, 53, 51, 0.20)',
+                "paddingLeft": '5%',
+                "paddingRight": '5%',
             }
         },
 
