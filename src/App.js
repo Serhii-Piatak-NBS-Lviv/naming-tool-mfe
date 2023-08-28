@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { injectGlobal } from '@emotion/css';
+import { injectGlobal, css } from '@emotion/css';
 import WebFont from 'webfontloader';
 import { useTranslation } from "react-i18next";
 import { motion, useAnimate } from "framer-motion";
@@ -26,7 +26,7 @@ import namesList from "./app/apisimul/view/names-list";
 import { NoResult } from "./features/view/NoResult";
 // **
 
-import './App.css';
+// import './App.css';
 
 const App = ({data}) => {
 
@@ -40,6 +40,12 @@ const App = ({data}) => {
   const addPortionSize = useSelector(state => state.view.petnames_portion);
   const viewSize = useSelector(state => state.view.names_list_size);
   const namesFullList = useSelector(state => state.view.names_list_full);
+
+  const cssStickyFilter = css`
+    & .headroom--pinned {
+      top: -40px !important;
+    }
+  `;
 
   let fl = data.hasOwnProperty('theme') ? fontsLoader(data.theme) : null;
     if (fl) injectGlobal`${fl}`;
@@ -151,7 +157,7 @@ const App = ({data}) => {
         {
           window.innerWidth > 991 
           ? <Filter />
-          : <Headroom >
+          : <Headroom className={cssStickyFilter} >
               <Filter />
             </Headroom>          
         }     
