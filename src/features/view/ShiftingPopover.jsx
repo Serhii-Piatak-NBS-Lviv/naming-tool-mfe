@@ -129,7 +129,7 @@ const SplashDescription = ({id, title, description, theme, gender, categories, s
         function setCardPlacement() {
             setCardPosition({
                 arrowPosition: gridItemRef.current ? (gridItemRef.current.offsetLeft + (gridItemRef.current.offsetWidth / 2) - 10) : null,
-                toLeft: gridItemRef.current.offsetLeft || null
+                toLeft: gridItemRef.current ? gridItemRef.current.offsetLeft : null
             });
             setWidth(simpleGridRef.current.offsetWidth);
         };
