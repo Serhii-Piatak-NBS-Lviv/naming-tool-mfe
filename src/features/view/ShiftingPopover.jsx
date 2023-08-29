@@ -117,7 +117,7 @@ const SplashDescription = ({id, title, description, theme, gender, categories, s
 
     const [cssCardWrapper] = useThemifiedComponent('view-cardwrapper', theme);
     const [cssPetNameTitle] = useThemifiedComponent('view-nametitle', theme);
-    const [cssPetNameSubitle] = useThemifiedComponent('view-namesubtitle', theme);
+    const [cssPetNameSubtitle] = useThemifiedComponent('view-namesubtitle', theme);
     const [cssPetNameSubitleStrong] = useThemifiedComponent('view-namesubtitle__strong', theme);
     const [cssPetNameCard] = useThemifiedComponent('view-namedescription', theme);
     const [cssPetNameText] = useThemifiedComponent('view-namedescription__text', theme);
@@ -176,8 +176,8 @@ const SplashDescription = ({id, title, description, theme, gender, categories, s
         </Button>
         <CardHeader p={getThemifiedResponsive(theme, 'view-cardheading', 'padding')}>
             <Heading fontSize={getThemifiedResponsive(theme, 'view-nametitle', 'fontSize')} lineHeight={getThemifiedResponsive(theme, 'view-nametitle', 'lineHeight')} className={cssPetNameTitle}>{title}</Heading>
-            <Heading className={cssPetNameSubitle} fontSize={getThemifiedResponsive(theme, 'view-namesubtitle', 'fontSize')} lineHeight={getThemifiedResponsive(theme, 'view-namesubtitle', 'lineHeight')} my='16px'>
-                <strong className={cssPetNameSubitleStrong}>Categories: </strong>{gender}{enumCategories(categories)}
+            <Heading className={cssPetNameSubtitle} fontSize={getThemifiedResponsive(theme, 'view-namesubtitle', 'fontSize')} lineHeight={getThemifiedResponsive(theme, 'view-namesubtitle', 'lineHeight')} my='16px'>
+                <strong className={cssPetNameSubitleStrong}>Categories: </strong>{(gender === 'Both') ? 'Any' : gender}{enumCategories(categories)}
             </Heading>
         </CardHeader>
         <CardBody maxW={getThemifiedResponsive(theme, 'view-namedescription', 'maxWidth')} p={getThemifiedResponsive(theme, 'view-cardbody', 'padding')} className={cssPetNameCard}>

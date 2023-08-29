@@ -396,7 +396,7 @@ export const themes = {
         "view-namesubtitle": {
             "fontFamily": 'Roboto !important',
             "fontWeight": '300 !important',
-            "color": 'rgb(201, 197, 185)',
+            "color": '#6B6868',
         },
 
         "view-namesubtitle__strong": {
