@@ -553,6 +553,10 @@ export const themes = {
                 "top": ['6px', '11px', '16px'],
                 "right": ['0px', '8px', '16px'],
             },
+
+            "view-name-button": {
+                "maxWidth": ['unset', 'unset', '400px'],
+            },
         },
 
         "fonts-list": [],
