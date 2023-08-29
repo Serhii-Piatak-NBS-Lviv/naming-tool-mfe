@@ -388,8 +388,8 @@ export const themes = {
         },
 
         "view-nametitle": {
-            "fontFamily": 'Roboto Slab',
-            "color": 'rgb(58, 53, 51)',
+            "fontFamily": 'Roboto Slab !important',
+            "color": '#3A3533',
             "fontWeight": '400 !important',
         },
 
