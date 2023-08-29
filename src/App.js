@@ -121,12 +121,21 @@ const App = ({data}) => {
     const cssOverlay = css`
       & ._loading_overlay_overlay ._loading_overlay_content {
         left: 45vw;
+        position: fixed;
         
         @media(min-width: 0px) {
+          left: 14vw;
+        };
+
+        @media(min-width: 320px) {
           left: 20vw;
         };
 
-        @media(min-width: 410px) {
+        @media(min-width: 360px) {
+          left: 25vw;
+        };
+
+        @media(min-width: 420px) {
           left: 30vw;
         };
 
