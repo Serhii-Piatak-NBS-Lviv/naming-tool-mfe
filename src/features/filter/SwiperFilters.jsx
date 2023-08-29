@@ -260,9 +260,8 @@ const swiperNav = css`
 
 const cssSwiperNesting = css`
     & .swiper {
-        max-width: 94%;
         position: static;
-        padding: 0 9px;
+        padding: 0 24px;
     };
 
     & .swiper .swiper-wrapper {
@@ -311,48 +310,28 @@ const cssSwiperNesting = css`
 
 export const SwiperFilters = ({restAPI, handleFilter}) => {
 
-    SwiperCore.use([Mousewheel]);
-    return (
-        <div className={cx(swiperDefault, swiperNav, cssSwiperNesting)}  mx="auto">
-            <Swiper
-                position="static"
-                modules={[Navigation, A11y]}
-                spaceBetween={8}
-                navigation
-                mousewheel={true}
-
-                breakpoints={{
-                    0: {
-                        slidesPerView: 4,
-                    },
-                    // 424: {
-                    //     slidesPerView: 4,
-                    // },
-                    525: {
-                        slidesPerView: 5,
-                    },
-                    769: {
-                        slidesPerView: 3,
-                    },                                
-                    900: {
-                        slidesPerView: 3.5,
-                    },
-                    1139: {
-                        slidesPerView: 5,
-                    }
-                }}
-            >
-                {restAPI.list.map((category) => {
-                    return (
-                        <SwiperSlide key={category.id}>
-                            <SwiperCategoryItem 
-                                category={category} 
-                                handleFilter={handleFilter} 
-                            />
-                        </SwiperSlide>
-                    )
-                })}
-            </Swiper>
-        </div>        
-    )
+  SwiperCore.use([Mousewheel]);
+  return (
+    <div className={cx(swiperDefault, swiperNav, cssSwiperNesting)}  mx="auto">
+      <Swiper
+        position="static"
+        modules={[Navigation, A11y]}
+        spaceBetween={8}
+        navigation
+        mousewheel={true}
+        slidesPerView="auto"                
+      >
+        {restAPI.list.map((category) => {
+          return (
+            <SwiperSlide key={category.id}>
+              <SwiperCategoryItem 
+                category={category} 
+                handleFilter={handleFilter} 
+              />
+            </SwiperSlide>
+          )
+        })}
+      </Swiper>
+    </div>        
+  )
 }
