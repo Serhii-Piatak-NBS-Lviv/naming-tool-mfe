@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { injectGlobal } from '@emotion/css';
+import { injectGlobal, css } from '@emotion/css';
 import WebFont from 'webfontloader';
 import { useTranslation } from "react-i18next";
 import { motion, useAnimate } from "framer-motion";
@@ -118,6 +118,32 @@ const App = ({data}) => {
     const [cssLoadmoreButton] = useThemifiedComponent('view-loadmore-button', data.theme);
     const [cssLoadmoreFlexbox] = useThemifiedComponent('view-loadmore-flex', data.theme);
 
+    const cssOverlay = css`
+      & ._loading_overlay_overlay ._loading_overlay_content {
+        left: 45vw;
+        
+        @media(min-width: 0px) {
+          left: 20vw;
+        };
+
+        @media(min-width: 410px) {
+          left: 30vw;
+        };
+
+        @media(min-width: 586px) {
+          left: 36vw;
+        };
+
+        @media(min-width: 840px) {
+          left: 40vw;
+        };
+
+        @media(min-width: 1120px) {
+          left: 45vw;
+        };
+      }
+    `;
+
   return (
     <LoadingOverlay
       active={useSelector(state => state.common.showLoader)}
@@ -126,10 +152,10 @@ const App = ({data}) => {
       styles={{
         content: {
           position: 'absolute',
-          left: '45%',
-          top: '25%'
+          top: '45vh'
         }
       }}
+      className={cssOverlay}
     >
     <VStack as={motion.div} className={cssAppContainer} ref={scope} initial={{opacity: 0}}>
       <Filter />
