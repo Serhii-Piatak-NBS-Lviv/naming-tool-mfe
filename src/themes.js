@@ -43,9 +43,9 @@ export const themes = {
         }, 
 
         "form-filters-wrapper": {
-            "marginBottom": '20px',
+            "marginBottom": '56px',
             "display":'grid',
-            "gridTemplateColumns": '65.5% 34.5%',
+            "gridTemplateColumns": '67.5% 32.5%',
             "gridTemplateRows": 'auto auto',
             "gridTemplateAreas": "'swiper gender' 'alphabet alphabet'",
 
@@ -103,8 +103,8 @@ export const themes = {
         },
 
         "filter-category": {
-            "padding": '13px 10px',
-            "width": '124px',
+            "padding": '13px 16px',
+            // "width": '124px',
             "minWidth": '75px',
             // "height": '100px',
             "transition": '.3s',
@@ -118,7 +118,7 @@ export const themes = {
             "overflow": 'hidden',
             
             "@media (max-width: 768px)": {
-                "width": '75px',
+                // "width": '75px',
                 "padding": '8px 10px',
                 // "height": '64px',
             }
@@ -150,7 +150,7 @@ export const themes = {
         "filter-category-image": {
             "width": '48px',
             "height": '48px',
-            "marginBottom": '8px',
+            "margin": ' 0 18px 8px 18px',
             "userSelect": 'none',
             "cursor": 'pointer',
 
@@ -170,7 +170,7 @@ export const themes = {
             'justifyContent': 'center',
 
             "@media (max-width: 768px)": {
-                "margin": '16px auto 24px',
+                "margin": '18px auto 24px',
                 "display": 'block',
             }
         },        
@@ -261,7 +261,7 @@ export const themes = {
         },
 
         "filter-alphabetical-container": {
-            "marginTop": '16px',
+            "marginTop": '28px',
             "position": 'relative',
             "gridArea": 'alphabet',
             "height": 'fit-content',
@@ -499,12 +499,12 @@ export const themes = {
             "textAlign": 'center',
 
             '&.hidden': {
-                "WebkitAnimationDuration": '3s',
                 "animationDuration": '3s',
-                "WebkitAnimationFillMode": 'both',
                 "animationFillMode": 'both',
-                "WebkitAnimationName": fadeOut,
                 "animationName": fadeOut,
+                "WebkitAnimationDuration": '3s',
+                "WebkitAnimationFillMode": 'both',
+                "WebkitAnimationName": fadeOut,
             },
         },
 
@@ -552,6 +552,10 @@ export const themes = {
             "view-namedescription__close": {
                 "top": ['6px', '11px', '16px'],
                 "right": ['0px', '8px', '16px'],
+            },
+
+            "view-name-button": {
+                "maxWidth": ['unset', 'unset', '400px'],
             },
         },
 
