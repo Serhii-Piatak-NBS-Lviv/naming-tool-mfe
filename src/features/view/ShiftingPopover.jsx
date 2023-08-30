@@ -159,7 +159,11 @@ const SplashDescription = ({id, title, description, theme, gender, categories, s
         className={cssCardWrapper}
         as={motion.div}
         initial={{ opacity: 0, height: 0 }}
-        animate={{ opacity: 1, height: 'auto' }}
+        animate={{
+            opacity: !!cardRef.current ? 1 : 0,
+            height: !!cardRef.current ? 'auto' : 0,
+            transition: { opacity: { delay: .3 } },
+        }}    
         exit={{ opacity: 0, height: 0 }}
         transition={{ duration: 0.5 }}        
         ref={cardRef}
@@ -239,6 +243,16 @@ const ShiftingPopover = ({id, title, description, gender, categories, simpleGrid
             window.history.replaceState(null, document.title, "/");
         };
         isOpen ? dispatch(selectPetName('')) : dispatch(selectPetName(id));
+
+        // scroll to open card name
+        if (gridItemRef.current) {
+            setTimeout(() => {
+                gridItemRef.current.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start',
+                });
+            }, 300)            
+        }
     };
 
     // This useEffect performes scrolling when
