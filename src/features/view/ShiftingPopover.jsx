@@ -154,15 +154,27 @@ const SplashDescription = ({id, title, description, theme, gender, categories, s
         return ctgList;
     };
 
+    const defineHeight = (el) => {
+        if(el) {
+            setTimeout(() => {
+                console.log(el.offsetHeight )
+            }, 300)
+        }
+        
+        
+        // return !!cardRef.current ? '700px' : 0
+    }
+
   return(
     <Card
         className={cssCardWrapper}
         as={motion.div}
-        initial={{ opacity: 0, height: 0 }}
+        initial={{ opacity: 0, height: 'fit-content', transform: 'translateY(50px)' }}
         animate={{
             opacity: !!cardRef.current ? 1 : 0,
-            height: !!cardRef.current ? 'auto' : 0,
-            transition: { opacity: { delay: .3 } },
+            height: defineHeight(cardRef.current),
+            transform: 'translateY(0px)',
+            transition: { opacity: { delay: .1 } },
         }}    
         exit={{ opacity: 0, height: 0 }}
         transition={{ duration: 0.5 }}        
