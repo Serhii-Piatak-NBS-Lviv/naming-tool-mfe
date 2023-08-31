@@ -533,16 +533,12 @@ export const themes = {
                 "marginTop": ['-56px', '22px'],
             },
 
-            "view-cardheading": {
-                "padding": ['0', '10px', '20px'],
-            },
-
             "view-cardbody": {
-                "padding": ['16px 0px', '20px 10px', '24px 20px'],
+                "padding": ['16px 0px', '20px 0px', '24px 0px'],
             },
 
             "view-cardfooter": {
-                "padding": ['16px 0px', '20px 10px', '20px'],
+                "padding": ['16px 0px 0px 0px', '20px 0px 0px 0px', '20px 0px 0px 0px'],
             },
 
             "view-shareicon": {

@@ -174,7 +174,7 @@ const SplashDescription = ({id, title, description, theme, gender, categories, s
         <Button position='absolute' right={getThemifiedResponsive(theme, 'view-namedescription__close', 'right')} top={getThemifiedResponsive(theme, 'view-namedescription__close', 'top')} w='24px' h='24px' className={cssCloseButton} onClick={() => closePopup()}>
             <Tooltip hasArrow label='Close'><CloseIcon/></Tooltip>
         </Button>
-        <CardHeader p={getThemifiedResponsive(theme, 'view-cardheading', 'padding')}>
+        <CardHeader p='0'>
             <Heading fontSize={getThemifiedResponsive(theme, 'view-nametitle', 'fontSize')} lineHeight={getThemifiedResponsive(theme, 'view-nametitle', 'lineHeight')} className={cssPetNameTitle}>{title}</Heading>
             <Heading className={cssPetNameSubtitle} fontSize={getThemifiedResponsive(theme, 'view-namesubtitle', 'fontSize')} lineHeight={getThemifiedResponsive(theme, 'view-namesubtitle', 'lineHeight')} my='16px'>
                 <strong className={cssPetNameSubitleStrong}>Categories: </strong>{(gender === 'Both') ? 'Any' : gender}{enumCategories(categories)}
