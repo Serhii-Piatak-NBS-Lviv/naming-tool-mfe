@@ -405,8 +405,8 @@ export const themes = {
         },
 
         "view-namedescription": {
-            "borderTop": '1px solid rgb(201, 197, 185)',
-            "borderBottom": '1px solid rgb(201, 197, 185)',
+            "borderTop": '1px dashed rgb(201, 197, 185)',
+            "borderBottom": '1px dashed rgb(201, 197, 185)',
         },
 
         "view-namedescription__text": {
