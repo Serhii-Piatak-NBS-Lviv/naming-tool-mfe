@@ -369,10 +369,15 @@ export const themes = {
             "fontWeight": '400 !important',
             "lineHeight": '24px !important',
 
-            ":hover": {
-                "backgroundColor": '#E81C24 !important',
+            "&.desktop:hover": {
+                "backgroundColor": '#3A3533 !important',
                 "color": '#FFF',
             },
+
+            "&.clicked": {
+                "backgroundColor": '#E81C24 !important',
+                "color": '#FFF',
+            }
         },
 
         "view-cardwrapper": {
@@ -449,6 +454,10 @@ export const themes = {
             "fontWeight": '400 !important',
             "fontSize": '16px !important',
             "lineHeight": '24px !important',
+
+            "&.desktop:hover": {
+                "backgroundColor": '#3A3533 !important',
+            }
         },
 
         "view-loadmore-flex": {
@@ -552,8 +561,10 @@ export const themes = {
             },
 
             "view-name-button": {
-                "maxWidth": ['unset', 'unset', '400px'],
+                "maxWidth": ['unset', 'unset', '540px'],
+                "minWidth": ['unset', 'unset', '255px'],
             },
+
         },
 
         "fonts-list": [],

@@ -142,6 +142,7 @@ const SplashDescription = ({id, title, description, theme, gender, categories, s
         const urlWithoutQuery = window.location.href.split('?')[0];
         window.history.replaceState({}, document.title, urlWithoutQuery);
         dispatch(selectPetName(''));
+        gridItemRef.current.classList.remove('clicked');
     };
 
     const enumCategories = (idsArray) => {
@@ -218,6 +219,7 @@ const SplashDescription = ({id, title, description, theme, gender, categories, s
 
 const ShiftingPopover = ({id, title, description, gender, categories, simpleGridRef}) => {
     const dispatch = useDispatch();
+    const [isBtnClicked, setBtnClicked] = useState(false);
     
     const gridItemRef = useRef();
     const isInvokedAsParam = useURLParam('petname', id);
@@ -233,7 +235,10 @@ const ShiftingPopover = ({id, title, description, gender, categories, simpleGrid
     const namesList = useSelector((state) => state.view.names_list);
     const prevPortion = useSelector((state) => state.view.names_list_prevsize);
     
+    const isDesktop = simpleGridRef.current?.offsetWidth >= 1109 ? true : false;
+
     const reveal = () => {
+        setBtnClicked(current => !current);
         const browserURL = new URL(window.location.href);        
         if (browserURL.searchParams.get('petname')) {
             window.history.replaceState(null, document.title, "/");
@@ -251,11 +256,12 @@ const ShiftingPopover = ({id, title, description, gender, categories, simpleGrid
   return(
     <GridItem>
         <Button 
-            className={cssPetNameButton}
+            className={`${cssPetNameButton} ${isBtnClicked && isDesktop ? 'clicked' : null} ${isDesktop ? 'desktop' : null}`}
             ref={gridItemRef}
             size='lg' 
             w={'100%'} 
             maxW={getThemifiedResponsive(theme, 'view-name-button', 'maxWidth')}
+            minW={getThemifiedResponsive(theme, 'view-name-button', 'minWidth')}
             m='0' 
             onClick={reveal}> 
             {title} 
