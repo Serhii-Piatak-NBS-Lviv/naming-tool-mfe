@@ -118,6 +118,18 @@ const App = ({data}) => {
     const [cssLoadmoreButton] = useThemifiedComponent('view-loadmore-button', data.theme);
     const [cssLoadmoreFlexbox] = useThemifiedComponent('view-loadmore-flex', data.theme);
 
+    // const cssOverlay = css`
+    //   & ._loading_overlay_overlay ._loading_overlay_content {
+    //     position: absolute;   
+    //   }
+
+    //   & ._loading_overlay_content {
+    //     top: 50%;
+    //     left: 50%;
+    //     transform: translate(-50%, -50%);
+    //   }
+    // `;
+    
     const cssOverlay = css`
       & ._loading_overlay_overlay ._loading_overlay_content {
         left: 45vw;
@@ -148,7 +160,7 @@ const App = ({data}) => {
         };
 
         @media(min-width: 1120px) {
-          left: 45vw;
+          left: 45%;
         };
       }
     `;

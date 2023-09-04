@@ -19,6 +19,7 @@ export const themes = {
             "paddingRight": '5%',
             "paddingTop": '40px',
             "paddingBottom": '80px',
+            "minHeight": '100vh'
         },
 
         "filters": {
@@ -524,8 +525,8 @@ export const themes = {
             },
 
             "view-namedescription__text": {
-                "fontSize": ['14px', '17px', '20px'],
-                "lineHeight": ['20px', '26px', '32px'],
+                "fontSize": ['16px', '17px', '20px'],
+                "lineHeight": ['24px', '26px', '32px'],
             },
 
             "view-cardwrapper": {

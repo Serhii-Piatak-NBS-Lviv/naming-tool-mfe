@@ -249,7 +249,7 @@ const ShiftingPopover = ({id, title, description, gender, categories, simpleGrid
     }, [])
 
   return(
-    <GridItem px='2%'>
+    <GridItem>
         <Button 
             className={cssPetNameButton}
             ref={gridItemRef}
