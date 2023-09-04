@@ -155,12 +155,28 @@ const SplashDescription = ({id, title, description, theme, gender, categories, s
         return ctgList;
     };
 
+    const defineHeight = (el) => {
+        if(el) {
+            setTimeout(() => {
+                console.log(el.offsetHeight )
+            }, 300)
+        }
+        
+        
+        // return !!cardRef.current ? '700px' : 0
+    }
+
   return(
     <Card
         className={cssCardWrapper}
         as={motion.div}
-        initial={{ opacity: 0, height: 0 }}
-        animate={{ opacity: 1, height: 'auto' }}
+        initial={{ opacity: 0, height: 'fit-content', transform: 'translateY(50px)' }}
+        animate={{
+            opacity: !!cardRef.current ? 1 : 0,
+            height: defineHeight(cardRef.current),
+            transform: 'translateY(0px)',
+            transition: { opacity: { delay: .1 } },
+        }}    
         exit={{ opacity: 0, height: 0 }}
         transition={{ duration: 0.5 }}        
         ref={cardRef}
@@ -244,6 +260,16 @@ const ShiftingPopover = ({id, title, description, gender, categories, simpleGrid
             window.history.replaceState(null, document.title, "/");
         };
         isOpen ? dispatch(selectPetName('')) : dispatch(selectPetName(id));
+
+        // scroll to open card name
+        if (gridItemRef.current) {
+            setTimeout(() => {
+                gridItemRef.current.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start',
+                });
+            }, 300)            
+        }
     };
 
     // This useEffect performes scrolling when
