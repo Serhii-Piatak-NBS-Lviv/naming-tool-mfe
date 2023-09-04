@@ -117,6 +117,8 @@ const App = ({data}) => {
     const [cssAppContainer] = useThemifiedComponent('app-container', data.theme);
     const [cssLoadmoreButton] = useThemifiedComponent('view-loadmore-button', data.theme);
     const [cssLoadmoreFlexbox] = useThemifiedComponent('view-loadmore-flex', data.theme);
+    
+    const isDesktop = scope.current?.offsetWidth >= 1120 ? true : false;
 
     const cssOverlay = css`
       & ._loading_overlay_overlay ._loading_overlay_content {
@@ -148,7 +150,7 @@ const App = ({data}) => {
         };
 
         @media(min-width: 1120px) {
-          left: 45vw;
+          left: 45%;
         };
       }
     `;
@@ -180,7 +182,7 @@ const App = ({data}) => {
               (viewSize === namesFullList.length) ? 
               <ThatItMessage duration = '2000' />
               :
-              <Button className={cssLoadmoreButton} onClick={loadMorePetNames}>Load more</Button>
+              <Button className={`${cssLoadmoreButton} ${isDesktop ? 'desktop' : null}`} onClick={loadMorePetNames}>Load more</Button>
             }
           </Flex>
         </>

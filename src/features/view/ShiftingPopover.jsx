@@ -117,7 +117,7 @@ const SplashDescription = ({id, title, description, theme, gender, categories, s
 
     const [cssCardWrapper] = useThemifiedComponent('view-cardwrapper', theme);
     const [cssPetNameTitle] = useThemifiedComponent('view-nametitle', theme);
-    const [cssPetNameSubitle] = useThemifiedComponent('view-namesubtitle', theme);
+    const [cssPetNameSubtitle] = useThemifiedComponent('view-namesubtitle', theme);
     const [cssPetNameSubitleStrong] = useThemifiedComponent('view-namesubtitle__strong', theme);
     const [cssPetNameCard] = useThemifiedComponent('view-namedescription', theme);
     const [cssPetNameText] = useThemifiedComponent('view-namedescription__text', theme);
@@ -129,7 +129,7 @@ const SplashDescription = ({id, title, description, theme, gender, categories, s
         function setCardPlacement() {
             setCardPosition({
                 arrowPosition: gridItemRef.current ? (gridItemRef.current.offsetLeft + (gridItemRef.current.offsetWidth / 2) - 10) : null,
-                toLeft: gridItemRef.current.offsetLeft || null
+                toLeft: gridItemRef.current ? gridItemRef.current.offsetLeft : null
             });
             setWidth(simpleGridRef.current.offsetWidth);
         };
@@ -142,6 +142,7 @@ const SplashDescription = ({id, title, description, theme, gender, categories, s
         const urlWithoutQuery = window.location.href.split('?')[0];
         window.history.replaceState({}, document.title, urlWithoutQuery);
         dispatch(selectPetName(''));
+        gridItemRef.current.classList.remove('clicked');
     };
 
     const enumCategories = (idsArray) => {
@@ -174,10 +175,10 @@ const SplashDescription = ({id, title, description, theme, gender, categories, s
         <Button position='absolute' right={getThemifiedResponsive(theme, 'view-namedescription__close', 'right')} top={getThemifiedResponsive(theme, 'view-namedescription__close', 'top')} w='24px' h='24px' className={cssCloseButton} onClick={() => closePopup()}>
             <Tooltip hasArrow label='Close'><CloseIcon/></Tooltip>
         </Button>
-        <CardHeader p={getThemifiedResponsive(theme, 'view-cardheading', 'padding')}>
+        <CardHeader p='0'>
             <Heading fontSize={getThemifiedResponsive(theme, 'view-nametitle', 'fontSize')} lineHeight={getThemifiedResponsive(theme, 'view-nametitle', 'lineHeight')} className={cssPetNameTitle}>{title}</Heading>
-            <Heading className={cssPetNameSubitle} fontSize={getThemifiedResponsive(theme, 'view-namesubtitle', 'fontSize')} lineHeight={getThemifiedResponsive(theme, 'view-namesubtitle', 'lineHeight')} my='16px'>
-                <strong className={cssPetNameSubitleStrong}>Categories: </strong>{gender}{enumCategories(categories)}
+            <Heading className={cssPetNameSubtitle} fontSize={getThemifiedResponsive(theme, 'view-namesubtitle', 'fontSize')} lineHeight={getThemifiedResponsive(theme, 'view-namesubtitle', 'lineHeight')} my='16px'>
+                <strong className={cssPetNameSubitleStrong}>Categories: </strong>{(gender === 'Both') ? 'Any' : gender}{enumCategories(categories)}
             </Heading>
         </CardHeader>
         <CardBody maxW={getThemifiedResponsive(theme, 'view-namedescription', 'maxWidth')} p={getThemifiedResponsive(theme, 'view-cardbody', 'padding')} className={cssPetNameCard}>
@@ -218,6 +219,7 @@ const SplashDescription = ({id, title, description, theme, gender, categories, s
 
 const ShiftingPopover = ({id, title, description, gender, categories, simpleGridRef}) => {
     const dispatch = useDispatch();
+    const [isBtnClicked, setBtnClicked] = useState(false);
     
     const gridItemRef = useRef();
     const isInvokedAsParam = useURLParam('petname', id);
@@ -233,7 +235,10 @@ const ShiftingPopover = ({id, title, description, gender, categories, simpleGrid
     const namesList = useSelector((state) => state.view.names_list);
     const prevPortion = useSelector((state) => state.view.names_list_prevsize);
     
+    const isDesktop = simpleGridRef.current?.offsetWidth >= 1109 ? true : false;
+
     const reveal = () => {
+        setBtnClicked(current => !current);
         const browserURL = new URL(window.location.href);        
         if (browserURL.searchParams.get('petname')) {
             window.history.replaceState(null, document.title, "/");
@@ -249,13 +254,14 @@ const ShiftingPopover = ({id, title, description, gender, categories, simpleGrid
     }, [])
 
   return(
-    <GridItem px='2%'>
+    <GridItem>
         <Button 
-            className={cssPetNameButton}
+            className={`${cssPetNameButton} ${isBtnClicked && isDesktop ? 'clicked' : null} ${isDesktop ? 'desktop' : null}`}
             ref={gridItemRef}
             size='lg' 
             w={'100%'} 
             maxW={getThemifiedResponsive(theme, 'view-name-button', 'maxWidth')}
+            minW={getThemifiedResponsive(theme, 'view-name-button', 'minWidth')}
             m='0' 
             onClick={reveal}> 
             {title} 

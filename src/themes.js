@@ -19,6 +19,7 @@ export const themes = {
             "paddingRight": '5%',
             "paddingTop": '40px',
             "paddingBottom": '80px',
+            "minHeight": '100vh'
         },
 
         "filters": {
@@ -368,10 +369,15 @@ export const themes = {
             "fontWeight": '400 !important',
             "lineHeight": '24px !important',
 
-            ":hover": {
-                "backgroundColor": '#E81C24 !important',
+            "&.desktop:hover": {
+                "backgroundColor": '#3A3533 !important',
                 "color": '#FFF',
             },
+
+            "&.clicked": {
+                "backgroundColor": '#E81C24 !important',
+                "color": '#FFF',
+            }
         },
 
         "view-cardwrapper": {
@@ -388,15 +394,15 @@ export const themes = {
         },
 
         "view-nametitle": {
-            "fontFamily": 'Roboto Slab',
-            "color": 'rgb(58, 53, 51)',
+            "fontFamily": 'Roboto Slab !important',
+            "color": '#3A3533',
             "fontWeight": '400 !important',
         },
 
         "view-namesubtitle": {
             "fontFamily": 'Roboto !important',
             "fontWeight": '300 !important',
-            "color": 'rgb(201, 197, 185)',
+            "color": '#6B6868',
         },
 
         "view-namesubtitle__strong": {
@@ -405,8 +411,8 @@ export const themes = {
         },
 
         "view-namedescription": {
-            "borderTop": '1px solid rgb(201, 197, 185)',
-            "borderBottom": '1px solid rgb(201, 197, 185)',
+            "borderTop": '1px dashed rgb(201, 197, 185)',
+            "borderBottom": '1px dashed rgb(201, 197, 185)',
         },
 
         "view-namedescription__text": {
@@ -448,6 +454,10 @@ export const themes = {
             "fontWeight": '400 !important',
             "fontSize": '16px !important',
             "lineHeight": '24px !important',
+
+            "&.desktop:hover": {
+                "backgroundColor": '#3A3533 !important',
+            }
         },
 
         "view-loadmore-flex": {
@@ -524,8 +534,8 @@ export const themes = {
             },
 
             "view-namedescription__text": {
-                "fontSize": ['14px', '17px', '20px'],
-                "lineHeight": ['20px', '26px', '32px'],
+                "fontSize": ['16px', '17px', '20px'],
+                "lineHeight": ['24px', '26px', '32px'],
             },
 
             "view-cardwrapper": {
@@ -533,16 +543,12 @@ export const themes = {
                 "marginTop": ['-56px', '22px'],
             },
 
-            "view-cardheading": {
-                "padding": ['0', '10px', '20px'],
-            },
-
             "view-cardbody": {
-                "padding": ['16px 0px', '20px 10px', '24px 20px'],
+                "padding": ['16px 0px', '20px 0px', '24px 0px'],
             },
 
             "view-cardfooter": {
-                "padding": ['16px 0px', '20px 10px', '20px'],
+                "padding": ['16px 0px 0px 0px', '20px 0px 0px 0px', '20px 0px 0px 0px'],
             },
 
             "view-shareicon": {
@@ -555,8 +561,10 @@ export const themes = {
             },
 
             "view-name-button": {
-                "maxWidth": ['unset', 'unset', '400px'],
+                "maxWidth": ['unset', 'unset', '540px'],
+                "minWidth": ['unset', 'unset', '255px'],
             },
+
         },
 
         "fonts-list": [],

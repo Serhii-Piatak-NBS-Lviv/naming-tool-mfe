@@ -42,7 +42,6 @@ const Filter = () => {
     // A little bit tricky logic of interconnected filters :)
     const applyFilters = (category, gender, letter) => {
         let filteredList = initialNamesList;
-        console.log(`${category}, ${gender}, ${letter}`)
     
         // If toggling category filter on then:
         if (category && appliedCategory !== category) {
@@ -100,7 +99,6 @@ const Filter = () => {
             filteredList = filteredList.filter((petname) => petname.Gender === appliedGender);
         };
 
-        console.log(filteredList)
         dispatch(loadAllPetnames(filteredList));
         dispatch(setNamesList(filteredList.slice(0, petNamesLoadMore)));
     };
