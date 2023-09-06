@@ -498,6 +498,36 @@ export const themes = {
             "lineHeight": '24px',
         },
 
+        "reset-filters-button": {
+            "display": 'block',
+            "border": 'solid 1px #E81C24',
+            "borderRadius": '6px',
+            "fontFamily": 'Roboto Slab',
+            "color": '#E81C24',
+            "fontSize": '22px',
+            "padding": '12px 20px',
+            "margin": '36px auto 0',
+            "transition": '.3s',
+
+            "&:hover": {
+                "backgroundColor": '#3A3533',
+                "border": 'solid 1px #3A3533',
+                "color": '#FFF',
+            },
+
+            "@media (max-width: 768px)": {
+                "fontSize": '16px',
+                "padding": '8px 16px',
+
+                "&:hover": {
+                    "backgroundColor": 'transparent',
+                    "border": 'solid 1px #E81C24',
+                    "color": '#E81C24',
+                },
+                
+            }
+        },
+
         "view-loadmore-thatsall": {
             "background": 'rgb(58, 53, 51)',
             "color": '#FFF',
