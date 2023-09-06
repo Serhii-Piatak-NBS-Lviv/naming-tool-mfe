@@ -13,7 +13,7 @@ const SwiperCategoryItem = ({category, handleFilter}) => {
     const [cssImage] = useThemifiedComponent('filter-category-image');
 
     const isActive = (activeFilters, id) => {
-        if(activeFilters.includes(id)) return cssCategoryIsActive;
+        if(activeFilters.includes(id) && activeCategories.includes(id)) return cssCategoryIsActive;
     }
 
     const setIconUrl = (category) => {

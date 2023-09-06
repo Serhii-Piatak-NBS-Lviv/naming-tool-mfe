@@ -21,7 +21,7 @@ export const AlphabetSelector = ({handleLetter}) => {
   const alphabet = t('alphabet').split('-');
 
   const isActive = (activeFilters, title) => {
-    if(activeFilters.includes(title)) return cssLetterActive;
+    if(activeFilters.includes(title) && activeLetters.includes(title)) return cssLetterActive;
   }
 
   const missedLetter = css`
