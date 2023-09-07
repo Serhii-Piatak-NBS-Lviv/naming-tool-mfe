@@ -1,6 +1,10 @@
 import { useTranslation } from "react-i18next";
 import useThemifiedComponent from '../../app/hooks/useThemifiedComponent';
 import { createIcon, Icon } from "@chakra-ui/icons";
+import { useDispatch, useSelector } from 'react-redux';
+import { setSelectedCategory, setGender, setLetter } from '../filter/filterSlice';
+import { loadAllPetnames, setNamesList } from './viewSlice';
+import { toggleLoader } from '../../app/commonSlice';
 
 const NoResultImage = createIcon({
     displayName: 'NoResultImage',
@@ -18,11 +22,6 @@ const NoResultImage = createIcon({
     
     ),
 });
-
-import { useDispatch, useSelector } from 'react-redux';
-import { setSelectedCategory, setGender, setLetter } from '../filter/filterSlice';
-import { loadAllPetnames, setNamesList } from './viewSlice';
-import { toggleLoader } from '../../app/commonSlice';
 
 export const NoResult = () => {
 
