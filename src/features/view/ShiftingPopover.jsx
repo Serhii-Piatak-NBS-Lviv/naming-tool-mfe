@@ -131,6 +131,7 @@ const SplashDescription = ({id, title, description, theme, gender, categories, s
                 arrowPosition: gridItemRef.current ? (gridItemRef.current.offsetLeft + (gridItemRef.current.offsetWidth / 2) - 10) : null,
                 toLeft: gridItemRef.current ? gridItemRef.current.offsetLeft : null
             });
+            // if (gridItemRef.current.classList.contains('clicked')) gridItemRef.current.classList.remove('clicked');
             setWidth(simpleGridRef.current.offsetWidth);
         };
         window.addEventListener("resize", () => setCardPlacement());
@@ -235,7 +236,6 @@ const SplashDescription = ({id, title, description, theme, gender, categories, s
 
 const ShiftingPopover = ({id, title, description, gender, categories, simpleGridRef}) => {
     const dispatch = useDispatch();
-    const [isBtnClicked, setBtnClicked] = useState(false);
     
     const gridItemRef = useRef();
     const isInvokedAsParam = useURLParam('petname', id);
@@ -254,7 +254,6 @@ const ShiftingPopover = ({id, title, description, gender, categories, simpleGrid
     const isDesktop = simpleGridRef.current?.offsetWidth >= 1109 ? true : false;
 
     const reveal = () => {
-        setBtnClicked(current => !current);
         const browserURL = new URL(window.location.href);        
         if (browserURL.searchParams.get('petname')) {
             window.history.replaceState(null, document.title, "/");
@@ -282,7 +281,7 @@ const ShiftingPopover = ({id, title, description, gender, categories, simpleGrid
   return(
     <GridItem>
         <Button 
-            className={`${cssPetNameButton} ${isBtnClicked && isDesktop ? 'clicked' : null} ${isDesktop ? 'desktop' : null}`}
+            className={`${cssPetNameButton} ${(selectedPetName === id) && isDesktop ? 'clicked' : null} ${isDesktop ? 'desktop' : null}`}
             ref={gridItemRef}
             size='lg' 
             w={'100%'} 
