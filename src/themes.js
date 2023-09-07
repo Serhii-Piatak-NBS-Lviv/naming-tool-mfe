@@ -454,6 +454,7 @@ export const themes = {
             "fontWeight": '400 !important',
             "fontSize": '16px !important',
             "lineHeight": '24px !important',
+            "border": 'none',
 
             "&.desktop:hover": {
                 "backgroundColor": '#3A3533 !important',
