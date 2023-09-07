@@ -472,6 +472,13 @@ export const themes = {
             }
         },
 
+        "no-result-icon": {
+            "display": 'block !important',
+            "margin": '0 auto 26px !important',
+            "width": '48px !important',
+            "height": '76px !important'
+        },
+
         "no-result-title": {
             "color": '#3A3533',
             'textAlign': 'center',
