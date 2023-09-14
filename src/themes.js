@@ -24,7 +24,16 @@ export const themes = {
 
         "filters": {
             "width": '100%',
-            "maxWidth": '1109px'
+            "maxWidth": '1109px',            
+            "transition": '.5s',
+            "backgroundColor": 'rgb(249, 248, 245)',
+            "zIndex": '10',
+
+            "@media (max-width: 768px)": {
+                "width": '100vw',
+                "paddingLeft": '5%',
+                "paddingRight": '5%',
+            }
         },
 
         "form-filters-title": {

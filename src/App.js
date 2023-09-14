@@ -6,6 +6,7 @@ import { motion, useAnimate } from "framer-motion";
 import { VStack, Flex, Button } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { isMobile } from "react-device-detect";
+import Headroom from "react-headroom";
 
 import { fontsLoader, themes } from './themes';
 import useThemifiedComponent from "./app/hooks/useThemifiedComponent";
@@ -42,6 +43,12 @@ const App = ({data}) => {
     const startAnimation = () => {
       animate(scope.current, { opacity: 1 }, { duration: 1.2 }, { ease: "linear" })
     };   
+
+    const cssStickyFilter = css`
+    & .headroom--pinned {
+      top: -30px !important;
+    }
+  `;
 
     const loadMorePetNames = () => {
       //** Attention! This is paceholder! Please replace namesList when backend API will be ready! */
@@ -169,7 +176,13 @@ const App = ({data}) => {
       className={cssOverlay}
     >
     <VStack as={motion.div} className={cssAppContainer} ref={scope} initial={{opacity: 0}}>
-      <Filter />
+      {
+        window.innerWidth > 768 
+        ? <Filter />
+        : <Headroom className={cssStickyFilter} >
+            <Filter />
+          </Headroom>          
+      } 
       {
         (viewSize === 0) ? 
         <NoResult />
