@@ -10,7 +10,8 @@ export const commonSlice = createSlice({
         "categoriesOrigin": 'https://uat-dig0031655-petcare-purinattt-italy.pantheonsite.io/namingtool-petname-categories?_format=json',
         "namesOrigin": 'https://uat-dig0031655-petcare-purinattt-italy.pantheonsite.io/namingtool-petnames-all?_format=json',
         "showLoader": false,
-        "fetchedNamesList": []
+        "fetchedNamesList": [],
+        "showLoadMore": true
     },
     reducers: {
         setTheme: (state, action) => {
@@ -27,10 +28,14 @@ export const commonSlice = createSlice({
 
         initializeNamesList: (state, action) => {
             state.fetchedNamesList = [...action.payload];
-        }
+        },
+
+        toggleLoadMoreBtn: (state) => {
+            state.showLoadMore = !state.showLoadMore;
+        },
     },
 });
 
-export const { setTheme, setLocale, toggleLoader, initializeNamesList } = commonSlice.actions;
+export const { setTheme, setLocale, toggleLoader, initializeNamesList, toggleLoadMoreBtn } = commonSlice.actions;
 
 export default commonSlice.reducer;
