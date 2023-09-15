@@ -14,7 +14,7 @@ import Filter from "./features/filter/Filter";
 import View from "./features/view/View";
 import ThatItMessage from "./features/view/ThatItMessage";
 
-import { setTheme, setLocale, initializeNamesList } from "./app/commonSlice";
+import { setTheme, setLocale, initializeNamesList, toggleLoadMoreBtn } from "./app/commonSlice";
 import { setNamesList, setPetnamesPortion, loadAllPetnames } from "./features/view/viewSlice";
 import { setGender } from "./features/filter/filterSlice";
 
@@ -35,6 +35,7 @@ const App = ({data}) => {
   const addPortionSize = useSelector(state => state.view.petnames_portion);
   const viewSize = useSelector(state => state.view.names_list_size);
   const namesFullList = useSelector(state => state.view.names_list_full);
+  const isLoadMoreAvail = useSelector(state => state.common.showLoadMore);
 
   let fl = data.hasOwnProperty('theme') ? fontsLoader(data.theme) : null;
     if (fl) injectGlobal`${fl}`;
@@ -45,14 +46,15 @@ const App = ({data}) => {
     };   
 
     const cssStickyFilter = css`
-    & .headroom--pinned {
-      top: -30px !important;
-    }
+      & .headroom--pinned {
+        top: -30px !important;
+      }
   `;
 
     const loadMorePetNames = () => {
       //** Attention! This is paceholder! Please replace namesList when backend API will be ready! */
       dispatch(setNamesList(namesFullList.slice(0, curPortion.length + addPortionSize)));
+      if (isLoadMoreAvail && (viewSize === namesFullList.length)) dispatch(toggleLoadMoreBtn());
     };
 
     const loadNameLists = (fetchedNames) => {
@@ -191,8 +193,7 @@ const App = ({data}) => {
           <View />
           <Flex className={cssLoadmoreFlexbox}>
             {
-              //** Attention! namesList is placeholder! Please remove it when backend API will be ready! */
-              (viewSize === namesFullList.length) ? 
+              !isLoadMoreAvail ?
               <ThatItMessage duration = '2000' />
               :
               <Button className={`${cssLoadmoreButton} ${isDesktop ? 'desktop' : null}`} onClick={loadMorePetNames}>Load more</Button>

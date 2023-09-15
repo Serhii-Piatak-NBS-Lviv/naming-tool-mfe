@@ -546,7 +546,7 @@ export const themes = {
         },
 
         "view-loadmore-thatsall": {
-            "background": 'rgb(58, 53, 51)',
+            "background": '#3A3533',
             "color": '#FFF',
             "padding": '10px 16px',
             "fontFamily": 'Roboto Slab',
@@ -554,6 +554,7 @@ export const themes = {
             "fontWeight": '400',
             "lineHeight": '24px',
             "textAlign": 'center',
+            "borderRadius": '4px',
 
             '&.hidden': {
                 "animationDuration": '3s',
@@ -611,6 +612,11 @@ export const themes = {
                 "maxWidth": ['unset', 'unset', '540px'],
                 "minWidth": ['unset', 'unset', '255px'],
             },
+
+            "view-loadmore-thatsall": {
+                "width": ['226px!important', '382px!important', '382px!important'],
+                "height": ['68px!important', '44px!important', '44px!important'],
+            }
 
         },
 

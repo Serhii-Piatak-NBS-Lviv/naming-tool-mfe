@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import useThemifiedComponent from '../../app/hooks/useThemifiedComponent';
 import restAPI from '../../app/apisimul/filter/name-categories';
-import commonSlice, { toggleLoader } from '../../app/commonSlice';
+import { toggleLoader, toggleLoadMoreBtn } from '../../app/commonSlice';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -38,6 +38,7 @@ const Filter = () => {
     const appliedGender = useSelector(state => state.filter.gender);
     const initialNamesList = useSelector(state => state.common.fetchedNamesList);
     const petNamesLoadMore = useSelector(state => state.view.petnames_portion);
+    const isLoadMoreAvail = useSelector(state => state.common.showLoadMore);
 
     // A little bit tricky logic of interconnected filters :)
     const applyFilters = (category, gender, letter) => {
@@ -101,6 +102,7 @@ const Filter = () => {
 
         dispatch(loadAllPetnames(filteredList));
         dispatch(setNamesList(filteredList.slice(0, petNamesLoadMore)));
+        if (!isLoadMoreAvail) dispatch(toggleLoadMoreBtn());
     };
     
     const refreshNamesList = (category, gender, letter) => {

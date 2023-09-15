@@ -2,6 +2,7 @@ import React, {useEffect, useRef} from 'react';
 import { Box } from '@chakra-ui/react';
 import { useSelector } from 'react-redux';
 import useThemifiedComponent from '../../app/hooks/useThemifiedComponent';
+import { getThemifiedResponsive } from '../../themes'; 
 
 /**
 * @author
@@ -21,8 +22,13 @@ const ThatItMessage = ({duration}) => {
     }, []);
 
     return(
-    <Box ref={ref} className={cssThatAllToast}>
-        "That's all! You've seen all available results."
+    <Box 
+    ref={ref} 
+    className={cssThatAllToast}
+    w={getThemifiedResponsive(theme, 'view-loadmore-thatsall', 'width')}
+    h={getThemifiedResponsive(theme, 'view-loadmore-thatsall', 'height')}
+    >
+        That's all! You've seen all available results.
     </Box>
    )
   }
