@@ -2,6 +2,9 @@ import { useTranslation } from 'react-i18next';
 import useThemifiedComponent from '../../app/hooks/useThemifiedComponent';
 import { cx, css } from '@emotion/css';
 import { useSelector } from 'react-redux';
+import * as R from 'ramda';
+
+import namesList from "../../app/apisimul/view/names-list";
 
 /**
 * @author
@@ -9,8 +12,7 @@ import { useSelector } from 'react-redux';
 **/
 
 export const AlphabetSelector = ({handleLetter}) => {
-  const activeLetter = useSelector(state => state.filter.letter);
-  const namesList = useSelector(state => state.view.names_list_full);
+  const filterState = useSelector(state => state.filter);
 
   const [cssAlphabeticalContainer] = useThemifiedComponent('filter-alphabetical-container');
   const [cssAlphabeticalList] = useThemifiedComponent('filter-alphabetical-list');
@@ -20,23 +22,19 @@ export const AlphabetSelector = ({handleLetter}) => {
   const { t } = useTranslation();
   const alphabet = t('alphabet').split('-');
 
-  const isActive = (activeFilters, title) => {
-    if(activeFilters.includes(title) && activeLetters.includes(title)) return cssLetterActive;
-  }
-
-  const missedLetter = css`
+  const cssMissedLetter = css`
     opacity: 0.4;
     pointer-events: none;
-  `
+  `;
 
-  const checkLetter = (letter) => {
-    const isActive = activeLetters.includes(letter);
-    return !isActive ? missedLetter : null 
-  }
-
-  const activeLetters = Array.from(new Set([...namesList
-    .map(element => element.Title[0])
-    .filter(element => element !== " ")]));  
+  const getHeadLetters = R.pipe(R.pluck('Title'), R.map(petName => petName.charAt(0)), R.uniq);
+  const selByGender = R.filter(petname => R.equals(petname.Gender, filterState.gender));
+  const selByCategory = R.when(
+    () => filterState.selectedCategories.length > 0,
+    R.filter(petname => petname.categories.includes(filterState.selectedCategories))
+  );
+  const getAvaiLetters = R.pipe(selByGender, selByCategory, getHeadLetters);
+  const activeLetters = getAvaiLetters(namesList.list);
 
   return(
     <div className={cssAlphabeticalContainer}>
@@ -45,7 +43,11 @@ export const AlphabetSelector = ({handleLetter}) => {
           alphabet.map(letter => {
             return (        
               <li 
-                className={cx(cssAlphabeticalletter, isActive(activeLetter, letter), checkLetter(letter))} 
+                className={cx(
+                  {[cssAlphabeticalletter]: true},
+                  {[cssMissedLetter]: !activeLetters.includes(letter)},
+                  {[cssLetterActive]: filterState.letter.includes(letter) && activeLetters.includes(letter)}
+                )} 
                 onClick={() => handleLetter(letter)}
                 key={letter}
               >
