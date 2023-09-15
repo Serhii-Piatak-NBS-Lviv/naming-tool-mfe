@@ -7041,7 +7041,7 @@ const namesList = {
         },
         {
             "id": "petname-853",
-            "Title": " Yellow",
+            "Title": "Yellow",
             "Definition": "This is a lovely name that has a lot of postive and kind connoations. The name yellow stands for 'positivity', 'hope', 'sunshine', and 'optimisim'. This is a lovel name for a golden pup that is never not wagging that tail. ",
             "Gender": "Female",
             "categories": [

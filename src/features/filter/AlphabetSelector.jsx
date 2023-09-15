@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import useThemifiedComponent from '../../app/hooks/useThemifiedComponent';
 import { cx, css } from '@emotion/css';
 import { useSelector } from 'react-redux';
+import * as R from 'ramda';
 
 import namesList from "../../app/apisimul/view/names-list";
 
@@ -21,29 +22,19 @@ export const AlphabetSelector = ({handleLetter}) => {
   const { t } = useTranslation();
   const alphabet = t('alphabet').split('-');
 
-  const isActive = (activeFilters, title) => {
-    if(activeFilters.includes(title) && activeFilter.includes(title)) return cssLetterActive;
-  }
-
-  const missedLetter = css`
+  const cssMissedLetter = css`
     opacity: 0.4;
     pointer-events: none;
-  `
+  `;
 
-  const checkLetter = (letter) => {
-    const isActive = activeFilter.includes(letter);
-    return !isActive ? missedLetter : null 
-  }
-
-  const activeFilter = Array.from(new Set([...namesList.list.map(el => {
-    return {
-      letter: el.Title[0],
-      gender: el.Gender,
-      categories: el.categories
-    }
-  }).filter(elem => elem.gender === filterState.gender)
-    .filter(element => filterState.selectedCategories.length === 0 ? element : element.categories.includes(filterState.selectedCategories))
-    .map(obj => obj.letter)]));
+  const getHeadLetters = R.pipe(R.pluck('Title'), R.map(petName => petName.charAt(0)), R.uniq);
+  const selByGender = R.filter(petname => R.equals(petname.Gender, filterState.gender));
+  const selByCategory = R.when(
+    () => filterState.selectedCategories.length > 0,
+    R.filter(petname => petname.categories.includes(filterState.selectedCategories))
+  );
+  const getAvaiLetters = R.pipe(selByGender, selByCategory, getHeadLetters);
+  const activeLetters = getAvaiLetters(namesList.list);
 
   return(
     <div className={cssAlphabeticalContainer}>
@@ -52,7 +43,11 @@ export const AlphabetSelector = ({handleLetter}) => {
           alphabet.map(letter => {
             return (        
               <li 
-                className={cx(cssAlphabeticalletter, isActive(filterState.letter, letter), checkLetter(letter))} 
+                className={cx(
+                  {[cssAlphabeticalletter]: true},
+                  {[cssMissedLetter]: !activeLetters.includes(letter)},
+                  {[cssLetterActive]: filterState.letter.includes(letter) && activeLetters.includes(letter)}
+                )} 
                 onClick={() => handleLetter(letter)}
                 key={letter}
               >
