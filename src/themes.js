@@ -33,8 +33,21 @@ export const themes = {
                 "width": '100vw',
                 "paddingLeft": '5%',
                 "paddingRight": '5%',
-            }
+                "position": 'sticky',
+                "top": '-32px',
+            },
+
+            "&.filter-scroll-down": {
+                "top": '-300px  !important'
+            },
+
+            "&.filter-scroll-up": {
+                "top": '-30px  !important'
+            },
+            
         },
+
+        
 
         "form-filters-title": {
             "color": '#3A3533',
