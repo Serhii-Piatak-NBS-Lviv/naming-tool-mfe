@@ -370,6 +370,10 @@ export const themes = {
                 "margin": '0 3.5px',
                 "width": '26px',
                 "height": '26px',
+            },
+
+            "&:hover": {
+                "color": '#E81C24'
             }
         },
 
