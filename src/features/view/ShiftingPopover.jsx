@@ -159,7 +159,7 @@ const SplashDescription = ({id, title, description, theme, gender, categories, s
     const defineHeight = (el) => {
         if(el) {
             setTimeout(() => {
-                console.log(el.offsetHeight )
+                // console.log(el.offsetHeight )
             }, 300)
         }
         
