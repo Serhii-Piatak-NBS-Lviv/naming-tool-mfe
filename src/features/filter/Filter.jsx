@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react';
+import { cx } from '@emotion/css';
 import { useTranslation } from 'react-i18next';
 import useThemifiedComponent from '../../app/hooks/useThemifiedComponent';
 import restAPI from '../../app/apisimul/filter/name-categories';
@@ -128,8 +130,32 @@ const Filter = () => {
         refreshNamesList(null, null, letter);
     };  
 
+    // Sticky filter on mobile
+    const [lastScroll, setLastScroll] = useState(0);
+    const [stickyClass, setStickyClass] = useState('filter-scroll-up');
+
+    useEffect(() => {
+      const handleScroll = () => {
+        const currentScroll = window.pageYOffset;
+  
+        if (currentScroll > lastScroll) {
+          setStickyClass('filter-scroll-down');
+        } else {
+          setStickyClass('filter-scroll-up');
+        }
+  
+        setLastScroll(currentScroll);
+      };
+  
+      window.addEventListener('scroll', handleScroll);
+  
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+      };
+    }, [lastScroll]);
+
     return (
-        <div className={cssFiltersContainer} id="filters" >
+        <div className={cx(cssFiltersContainer, stickyClass)} id="filters">
            <p className={cssFormFiltersTitle}>
                 {t('filter slider title')}
             </p>
