@@ -17,7 +17,6 @@ export const AlphabetSelector = ({handleLetter}) => {
   const [cssAlphabeticalContainer] = useThemifiedComponent('filter-alphabetical-container');
   const [cssAlphabeticalList] = useThemifiedComponent('filter-alphabetical-list');
   const [cssAlphabeticalletter] = useThemifiedComponent('filter-alphabetical-letter');
-  const [cssLetterActive] = useThemifiedComponent('filter-alphabetical-letter-active');
 
   const { t } = useTranslation();
   const alphabet = t('alphabet').split('-');
@@ -46,7 +45,7 @@ export const AlphabetSelector = ({handleLetter}) => {
                 className={cx(
                   {[cssAlphabeticalletter]: true},
                   {[cssMissedLetter]: !activeLetters.includes(letter)},
-                  {[cssLetterActive]: filterState.letter.includes(letter) && activeLetters.includes(letter)}
+                  {['selected']: filterState.letter.includes(letter) && activeLetters.includes(letter)}
                 )} 
                 onClick={() => handleLetter(letter)}
                 key={letter}
