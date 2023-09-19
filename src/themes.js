@@ -370,15 +370,18 @@ export const themes = {
                 "margin": '0 3.5px',
                 "width": '26px',
                 "height": '26px',
+            },
+
+            "&.selected": {
+                "background": '#E81C24',
+                "color": '#FFFFFF',
+                "boxShadow": '0px 2px 12px 0px rgba(58, 53, 51, 0.10), 0px 0px 2px 0px rgba(58, 53, 51, 0.20)',
+            },
+
+            "&:not(.selected):hover": {
+                "color": '#E81C24'
             }
         },
-
-        "filter-alphabetical-letter-active": {
-            "background": '#E81C24',
-            "color": '#FFFFFF',
-            "boxShadow": '0px 2px 12px 0px rgba(58, 53, 51, 0.10), 0px 0px 2px 0px rgba(58, 53, 51, 0.20)',
-        },
-
 
         "view-name-button": {
             "backgroundColor": '#FFF !important',
