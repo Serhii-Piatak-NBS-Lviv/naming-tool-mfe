@@ -176,6 +176,7 @@ export const themes = {
             "margin": ' 0 18px 8px 18px',
             "userSelect": 'none',
             "cursor": 'pointer',
+            "objectFit": 'contain',
 
             "@media (max-width: 768px)": {
                 "width": '24px',
