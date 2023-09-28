@@ -14,7 +14,8 @@ import {
     Text, 
     Icon, 
     createIcon, 
-    HStack, 
+    HStack,
+    VStack, 
     Tooltip 
 } from '@chakra-ui/react';
 import { FacebookShareButton, WhatsappShareButton, TwitterShareButton } from "react-share";
@@ -27,6 +28,8 @@ import { getThemifiedResponsive } from '../../themes';
 
 import useURLParam from '../../app/hooks/useURLParam';
 import useThemifiedComponent from '../../app/hooks/useThemifiedComponent';
+
+import CustomizedTooltip from './CustomizedTooltip';
 
 //** Attention! This is paceholder! Please remove it when backend API will be ready! */
 import restAPI from '../../app/apisimul/filter/name-categories';
@@ -41,6 +44,8 @@ const spanWrapp = css`
     display: flex;
     padding-top: 2px;
 `;
+
+
 
 const LinkIcon = createIcon({
     displayName: 'LinkIcon',
@@ -82,17 +87,15 @@ const ShareLink = ({ petnameId, children }) => {
     const toast = useToast();
     const browserURL = new URL(window.location.href);
     const itmLink = `${browserURL.href}?petname=${petnameId}`;
-    // const itmLink = `${browserURL.protocol}//${browserURL.host}?petname=${petnameId}`;
     return (
         <CopyToClipboard text={itmLink} onCopy={
-            () => toast({
-                title: 'Share link copied to clipboard.',
-                description: itmLink,
-                variant: 'left-accent',
-                status: 'success',
-                duration: 2000,
-                isClosable: true,
-              })
+            () => {}
+            // Chackra UI toast can be shown as alternative
+            // () => toast({
+            //     title: 'Link copied!',
+            //     duration: 2000,
+            //     isClosable: true,
+            //   })
         }>
             <span>
                 { children }
@@ -110,10 +113,16 @@ const shareButtonLink = (petnameId) => {
 
 const SplashDescription = ({id, title, description, theme, gender, categories, simpleGridRef, gridItemRef}) => {
     const cardRef = useRef();  
+    const shaRef = useRef();
     const dispatch = useDispatch();
     
     const [cardPosition, setCardPosition] = useState({toLeft: null, arrowPosition: null});
     const [width, setWidth] = useState(null);
+
+    const [linkShared, setLinkShared] = useState(false);
+    const [twitterShared, setTwitterShared] = useState(false);
+    const [whatsappShared, setWhatsappShared] = useState(false);
+    const [fbShared, setFbShared] = useState(false);
 
     const [cssCardWrapper] = useThemifiedComponent('view-cardwrapper', theme);
     const [cssPetNameTitle] = useThemifiedComponent('view-nametitle', theme);
@@ -131,7 +140,6 @@ const SplashDescription = ({id, title, description, theme, gender, categories, s
                 arrowPosition: gridItemRef.current ? (gridItemRef.current.offsetLeft + (gridItemRef.current.offsetWidth / 2) - 10) : null,
                 toLeft: gridItemRef.current ? gridItemRef.current.offsetLeft : null
             });
-            // if (gridItemRef.current.classList.contains('clicked')) gridItemRef.current.classList.remove('clicked');
             setWidth(simpleGridRef.current.offsetWidth);
         };
         window.addEventListener("resize", () => setCardPlacement());
@@ -156,16 +164,12 @@ const SplashDescription = ({id, title, description, theme, gender, categories, s
         return ctgList;
     };
 
-    const defineHeight = (el) => {
-        if(el) {
-            setTimeout(() => {
-                // console.log(el.offsetHeight )
-            }, 300)
-        }
-        
-        
-        // return !!cardRef.current ? '700px' : 0
-    }
+    const handleShare = (callbck) => {
+        callbck(true);
+        setTimeout(() => {
+            callbck(false);
+        }, 1500);
+    };
 
   return(
     <Card
@@ -174,7 +178,6 @@ const SplashDescription = ({id, title, description, theme, gender, categories, s
         initial={{ opacity: 0, height: 'fit-content', transform: 'translateY(50px)' }}
         animate={{
             opacity: !!cardRef.current ? 1 : 0,
-            height: defineHeight(cardRef.current),
             transform: 'translateY(0px)',
             transition: { opacity: { delay: .1 } },
         }}    
@@ -203,31 +206,63 @@ const SplashDescription = ({id, title, description, theme, gender, categories, s
         </CardBody>
         <CardFooter as={HStack} p={getThemifiedResponsive(theme, 'view-cardfooter', 'padding')}>
             
-            <ShareLink petnameId={id}>
-                <Tooltip hasArrow label='Copy link'>
-                    <Icon as={LinkIcon} className={cssShareIcon} fontSize={getThemifiedResponsive(theme, 'view-shareicon', 'fontSize')} />
-                </Tooltip>
-            </ShareLink>
-
-            <TwitterShareButton  url={shareButtonLink(id)}>
-               <Tooltip hasArrow label='Twitter'>
-                <span className={spanWrapp}>
-                    <Icon as={AiFillTwitterCircle} className={cssShareIcon} fontSize={getThemifiedResponsive(theme, 'view-shareicon', 'fontSize')} />
-                </span>
-                </Tooltip> 
-            </TwitterShareButton>
-
-            <WhatsappShareButton url={shareButtonLink(id)}>
-                <Tooltip hasArrow label='WhatsApp'>
-                    <Icon as={WhatsappIcon} className={cssShareIcon} fontSize={getThemifiedResponsive(theme, 'view-shareicon', 'fontSize')} />
-                </Tooltip>  
-            </WhatsappShareButton>
+            <VStack ref={shaRef}>
+                <ShareLink petnameId={id}>
+                    <Tooltip hasArrow label='Copy link'>
+                        <Icon 
+                        as={LinkIcon} 
+                        className={cssShareIcon} 
+                        fontSize={getThemifiedResponsive(theme, 'view-shareicon', 'fontSize')} 
+                        onClick={() => handleShare(setLinkShared)}
+                        />
+                    </Tooltip>
+                </ShareLink>
+                <CustomizedTooltip parentRef={shaRef.current} isShow={linkShared}/>
+            </VStack>
             
-            <FacebookShareButton url={shareButtonLink(id)}>
-                <Tooltip hasArrow label='Facebook'>
-                    <Icon as={FacebookIcon} className={cssShareIcon} fontSize={getThemifiedResponsive(theme, 'view-shareicon', 'fontSize')} />
-                </Tooltip>
-            </FacebookShareButton>
+            <VStack ref={shaRef}>
+                <TwitterShareButton  url={shareButtonLink(id)}>
+                    <Tooltip hasArrow label='Twitter'>
+                        <span className={spanWrapp}>
+                            <Icon 
+                            as={AiFillTwitterCircle} 
+                            className={cssShareIcon} 
+                            fontSize={getThemifiedResponsive(theme, 'view-shareicon', 'fontSize')}
+                            onClick={() => handleShare(setTwitterShared)}
+                            />
+                        </span>
+                    </Tooltip> 
+                </TwitterShareButton>
+                <CustomizedTooltip parentRef={shaRef.current} isShow={twitterShared}/>
+            </VStack>
+            
+            <VStack ref={shaRef}>
+                <WhatsappShareButton url={shareButtonLink(id)}>
+                    <Tooltip hasArrow label='WhatsApp'>
+                        <Icon 
+                        as={WhatsappIcon} 
+                        className={cssShareIcon} 
+                        fontSize={getThemifiedResponsive(theme, 'view-shareicon', 'fontSize')} 
+                        onClick={() => handleShare(setWhatsappShared)}
+                        />
+                    </Tooltip>  
+                </WhatsappShareButton>
+                <CustomizedTooltip parentRef={shaRef.current} isShow={whatsappShared}/>
+            </VStack>
+            
+            <VStack ref={shaRef}>
+                <FacebookShareButton url={shareButtonLink(id)}>
+                    <Tooltip hasArrow label='Facebook'>
+                        <Icon 
+                        as={FacebookIcon} 
+                        className={cssShareIcon} 
+                        fontSize={getThemifiedResponsive(theme, 'view-shareicon', 'fontSize')} 
+                        onClick={() => handleShare(setFbShared)}
+                        />
+                    </Tooltip>              
+                </FacebookShareButton>
+                <CustomizedTooltip parentRef={shaRef.current} isShow={fbShared}/>
+            </VStack>
             
         </CardFooter>
     </Card>

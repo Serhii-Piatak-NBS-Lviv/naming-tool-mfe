@@ -7,6 +7,15 @@ const FONTS_REGISTRY = {
         "fontWeight": "normal",
         "fontStyle": "normal",
     },
+    "roboto_light": {
+        "sources": `
+        url('/public/fonts/roboto/woff2/roboto-light-webfont.woff2') format('woff2'),
+        url('/public/fonts/roboto/woff/roboto-light-webfont.woff') format('woff'),
+        url('/public/fonts/roboto/ttf/roboto-light-webfont.ttf') format('truetype')
+        `,
+        "fontWeight": "normal",
+        "fontStyle": "normal",
+    },
 
 };
 

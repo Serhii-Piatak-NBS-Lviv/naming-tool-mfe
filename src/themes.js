@@ -442,7 +442,7 @@ export const themes = {
         },
 
         "view-namedescription__text": {
-            "fontFamily": 'Roboto !important',
+            "fontFamily": 'Roboto Light !important',
             "fontWeight": '300 !important',
             "color": '#6B6868',
         },
