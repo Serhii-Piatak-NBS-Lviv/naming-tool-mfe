@@ -471,6 +471,7 @@ export const themes = {
         "view-namedescription__close": {
             "background": 'transparent !important',
             "color": '#E81C24 !important',
+            "border": 'none !important',
         },
 
         "view-loadmore-button": {

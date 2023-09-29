@@ -6,7 +6,7 @@ const CustomizedTooltip = ({parentRef, isShow=true}) => {
         background-color: #2D3748;
         color: #FFF;
         margin-top: ${parentRef?.clientHeight + 5}px;
-        width: 160px;
+        width: 100px;
         text-align: center;
         font-weight: 600;
         font-size: 14px;
@@ -18,7 +18,7 @@ const CustomizedTooltip = ({parentRef, isShow=true}) => {
         &::after {
             position: relative;
             top: -24px;
-            left: -62px;
+            left: -37px;
             border-top: 5px solid transparent;
             border-bottom: 5px solid #2D3748;
             border-right: 5px solid transparent;
@@ -31,7 +31,7 @@ const CustomizedTooltip = ({parentRef, isShow=true}) => {
         }
     `;
     return (
-        <div className={cssCopiedTooltip}>Copied to clipboard!</div>
+        <div className={cssCopiedTooltip}>Link Copied!</div>
     )
 };
 
