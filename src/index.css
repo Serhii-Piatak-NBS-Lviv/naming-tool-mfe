@@ -1,5 +1,5 @@
 @font-face {
-  font-family: Roboto Light;
+  font-family: robotolight;
   src: url('../public/fonts/roboto/woff2/roboto-light-webfont.woff2') format('woff2'),
   url('../public/fonts/roboto/woff/roboto-light-webfont.woff') format('woff'),
   url('../public/fonts/roboto/ttf/roboto-light-webfont.ttf') format('truetype');

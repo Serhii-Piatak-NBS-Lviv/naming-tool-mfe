@@ -117,12 +117,14 @@ const Filter = () => {
 
     const handleFilter = (category) => {
         dispatch(setSelectedCategory(category));
+        dispatch(setLetter(''))
         refreshNamesList(category, null, null);
     };
 
     const handleRadio = (radio) => {
         dispatch(setGender(radio));
         refreshNamesList(null, radio, null);
+        dispatch(setLetter(''))
     };
 
     const handleLetter = (letter) => {
