@@ -123,6 +123,13 @@ const App = ({data}) => {
     const isDesktop = scope.current?.offsetWidth >= 1120 ? true : false;
 
     const cssOverlay = css`
+     & ._loading_overlay_overlay {
+      background-color: rgba(58,53,51,0.3);
+
+      * {
+        user-select: none;
+      }
+     }
       & ._loading_overlay_overlay ._loading_overlay_content {
         left: 45vw;
         position: fixed;
@@ -160,7 +167,7 @@ const App = ({data}) => {
   return (
     <LoadingOverlay
       active={useSelector(state => state.common.showLoader)}
-      spinner={<RingLoader size='100px' color='#FFF' cssOverride={{"left": '50px'}}/>}
+      spinner={<img src={require('./app/images/loading-red.png')} alt="loader" style={{margin: '20px auto'}} />}
       text='Refreshing pet names list...'
       styles={{
         content: {
