@@ -20,6 +20,9 @@ import { setGender } from "./features/filter/filterSlice";
 import LoadingOverlay from 'react-loading-overlay-ts';
 import RingLoader from "react-spinners/RingLoader";
 
+import useFetch from "react-fetch-hook";
+import { fetchData } from './app/fetchApi';
+
 //** Attention! This is paceholder! Please remove it when backend API will be ready! */
 import namesList from "./app/apisimul/view/names-list";
 import { NoResult } from "./features/view/NoResult";
@@ -35,6 +38,8 @@ const App = ({data}) => {
   const viewSize = useSelector(state => state.view.names_list_size);
   const namesFullList = useSelector(state => state.view.names_list_full);
   const isLoadMoreAvail = useSelector(state => state.common.showLoadMore);
+
+  const categories = useFetch("https://uat-74995-petcare-purinattt-unitedkingdom.pantheonsite.io/v1/nt_api/categories_resource");
 
   let fl = data.hasOwnProperty('theme') ? fontsLoader(data.theme) : null;
     if (fl) injectGlobal`${fl}`;
@@ -108,6 +113,8 @@ const App = ({data}) => {
 
       // push initial pet names full list to Redux storage
       // ToDo: replace namesList.list placeholder by actual data fetched from REST
+      if (categories.error) console.log(categories.error);
+      console.log(categories.data);
       const namesToInitialize = loadNameLists(namesList.list);
       const namesToLoad = namesToInitialize.initialNamelist.filter((petname) => petname.Gender === namesToInitialize.initialGender);
       dispatch(initializeNamesList(namesToInitialize.initialNamelist));
