@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { cx } from '@emotion/css';
 import { useTranslation } from 'react-i18next';
 import useThemifiedComponent from '../../app/hooks/useThemifiedComponent';
-import restAPI from '../../app/apisimul/filter/name-categories';
 import { toggleLoader, toggleLoadMoreBtn } from '../../app/commonSlice';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -60,14 +59,14 @@ const Filter = () => {
         if (category && appliedCategory === category) {
             // apply letter filter if it was previously set:
             if (appliedLetter) {
-                filteredList = filteredList.filter((petname) => petname.Title.charAt(0) === appliedLetter);
+                filteredList = filteredList.filter((petname) => petname.title.charAt(0) === appliedLetter);
             };
         };
     
         // If toggling letter filter on then:
         if (letter && appliedLetter !== letter) {
             // apply letter filter
-            filteredList = filteredList.filter((petname) => petname.Title.charAt(0) === letter);
+            filteredList = filteredList.filter((petname) => petname.title.charAt(0) === letter);
             // and apply category filter if it was previously set:
             if (appliedCategory) {
                 filteredList = filteredList.filter((petname) => petname.categories.includes(appliedCategory));
@@ -85,21 +84,21 @@ const Filter = () => {
         // if changing gender filter then:
         if(gender) {
             // apply gender filter
-            filteredList = filteredList.filter((petname) => petname.Gender === gender);
+            filteredList = filteredList.filter((petname) => petname.gender === gender);
             // and apply category filter if it was previously set:
             if (appliedCategory) {
                 filteredList = filteredList.filter((petname) => petname.categories.includes(appliedCategory));
             };
             // and apply letter filter if it was previously set:
             if (appliedLetter) {
-                filteredList = filteredList.filter((petname) => petname.Title.charAt(0) === appliedLetter);
+                filteredList = filteredList.filter((petname) => petname.title.charAt(0) === appliedLetter);
             };
         };
         
         // gender filtration should be applied every time when we're 
         // filtering by another feature
         if(!gender) {
-            filteredList = filteredList.filter((petname) => petname.Gender === appliedGender);
+            filteredList = filteredList.filter((petname) => petname.gender === appliedGender);
         };
 
         dispatch(loadAllPetnames(filteredList));
@@ -163,10 +162,7 @@ const Filter = () => {
             </p>
             <div className={cssFormFiltersWrapper}>
                 <div className={cssSwiperWrapper}>
-                    <SwiperFilters 
-                        restAPI={restAPI} 
-                        handleFilter={handleFilter} 
-                    />
+                    <SwiperFilters handleFilter={handleFilter} />
                 </div>
                 <GenderSelection
                     title={t('filter gender selector title')}

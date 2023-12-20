@@ -31,10 +31,6 @@ import useThemifiedComponent from '../../app/hooks/useThemifiedComponent';
 
 import CustomizedTooltip from './CustomizedTooltip';
 
-//** Attention! This is paceholder! Please remove it when backend API will be ready! */
-import restAPI from '../../app/apisimul/filter/name-categories';
-// **
-
 /**
 * @author
 * @function ShiftingPopover
@@ -124,6 +120,8 @@ const SplashDescription = ({id, title, description, theme, gender, categories, s
     const [whatsappShared, setWhatsappShared] = useState(false);
     const [fbShared, setFbShared] = useState(false);
 
+    const ctgStorage = useSelector(state => state.common.fetchedCategoriesList);
+
     const [cssCardWrapper] = useThemifiedComponent('view-cardwrapper', theme);
     const [cssPetNameTitle] = useThemifiedComponent('view-nametitle', theme);
     const [cssPetNameSubtitle] = useThemifiedComponent('view-namesubtitle', theme);
@@ -156,7 +154,7 @@ const SplashDescription = ({id, title, description, theme, gender, categories, s
 
     const enumCategories = (idsArray) => {
         const ctgList = idsArray.reduce((acc, itm) => {
-            let ctgTitle = restAPI.list.find(category => category.id === itm).title;
+            let ctgTitle = ctgStorage.find(category => category.id === itm).title;
             if (ctgTitle) acc += `, ${ctgTitle}`;
             return acc;
         }, []);

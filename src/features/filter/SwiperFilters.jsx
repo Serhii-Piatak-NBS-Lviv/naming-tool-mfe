@@ -3,6 +3,7 @@ import { css, cx } from '@emotion/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, A11y } from 'swiper';
 import SwiperCore, { Mousewheel } from "swiper/core";
+import { useSelector } from 'react-redux';
 
 import SwiperCategoryItem from './SwiperCategoryItem';
 
@@ -308,7 +309,8 @@ const cssSwiperNesting = css`
     }
 `;
 
-export const SwiperFilters = ({restAPI, handleFilter}) => {
+export const SwiperFilters = ({handleFilter}) => {
+  const categoriesList = useSelector(state => state.common.fetchedCategoriesList);
 
   SwiperCore.use([Mousewheel]);
   return (
@@ -321,7 +323,7 @@ export const SwiperFilters = ({restAPI, handleFilter}) => {
         mousewheel={true}
         slidesPerView="auto"                
       >
-        {restAPI.list.map((category) => {
+        {categoriesList.map((category) => {
           return (
             <SwiperSlide key={category.id}>
               <SwiperCategoryItem 

@@ -13,17 +13,15 @@ import Filter from "./features/filter/Filter";
 import View from "./features/view/View";
 import ThatItMessage from "./features/view/ThatItMessage";
 
-import { setTheme, setLocale, initializeNamesList, toggleLoadMoreBtn } from "./app/commonSlice";
+import { setTheme, setLocale, initializeNamesList, initializeCategoriesList, toggleLoadMoreBtn, toggleLoader } from "./app/commonSlice";
 import { setNamesList, setPetnamesPortion, loadAllPetnames } from "./features/view/viewSlice";
 import { setGender } from "./features/filter/filterSlice";
 
 import LoadingOverlay from 'react-loading-overlay-ts';
 import RingLoader from "react-spinners/RingLoader";
 
-//** Attention! This is paceholder! Please remove it when backend API will be ready! */
-import namesList from "./app/apisimul/view/names-list";
+import useFetch from "react-fetch-hook";
 import { NoResult } from "./features/view/NoResult";
-// **
 
 const App = ({data}) => {
   const { t, i18n } = useTranslation();
@@ -35,6 +33,11 @@ const App = ({data}) => {
   const viewSize = useSelector(state => state.view.names_list_size);
   const namesFullList = useSelector(state => state.view.names_list_full);
   const isLoadMoreAvail = useSelector(state => state.common.showLoadMore);
+  const ctgURL = useSelector(state => state.common.categoriesOrigin);
+  const nameURL = useSelector(state => state.common.namesOrigin);
+
+  const categories = useFetch(ctgURL);
+  const petnames = useFetch(nameURL);
 
   let fl = data.hasOwnProperty('theme') ? fontsLoader(data.theme) : null;
     if (fl) injectGlobal`${fl}`;
@@ -45,46 +48,49 @@ const App = ({data}) => {
     };       
 
     const loadMorePetNames = () => {
-      //** Attention! This is paceholder! Please replace namesList when backend API will be ready! */
       dispatch(setNamesList(namesFullList.slice(0, curPortion.length + addPortionSize)));
       if (isLoadMoreAvail && (viewSize === namesFullList.length)) dispatch(toggleLoadMoreBtn());
     };
 
-    const loadNameLists = (fetchedNames) => {
+    //push categories and petnames to Redux storage
+    useEffect(() => {
+      let namesFullList, initialGender; //instead of namesToInitialize
+
       const browserURL = new URL(window.location.href);
 
-      if (browserURL.searchParams.get('petname')) {
-        // If page was opened via share link then re-organize
-        // array of pet names in a way where requested pet name is
-        // on first place
-        const elemIndex = fetchedNames.findIndex(petname => petname.id === browserURL.searchParams.get('petname'));
-        const newFirstElem = fetchedNames[elemIndex];
-        let newFullList = [
-          newFirstElem,
-          ...fetchedNames.slice(0, elemIndex)
-        ];
+      if (categories.error) console.log(categories.error);
+      if (petnames.error) console.log(petnames.error);
+      if (categories.data) dispatch(initializeCategoriesList(categories.data));
+      if (petnames.data) {
+        dispatch(initializeNamesList(petnames.data));
+        if (browserURL.searchParams.get('petname')) {
+          const elemIndex = petnames.data.findIndex(petname => petname.id === browserURL.searchParams.get('petname'));
+          const newFirstElem = petnames.data[elemIndex];
+          initialGender = newFirstElem.gender;
+          namesFullList = [
+            newFirstElem,
+            ...petnames.data.slice(0, elemIndex)
+          ];
 
-        if (elemIndex <= fetchedNames.length - 1) {
-          newFullList = [...newFullList, ...fetchedNames.slice(elemIndex + 1)];
+          if (elemIndex <= petnames.data.length - 1) {
+            namesFullList = [...namesFullList, ...petnames.data.slice(elemIndex + 1)];
+          };
+        } else {
+          namesFullList = petnames.data;
+          initialGender = "Both";
         };
-
-        // To keep user experience consistent, in case
-        // when we open Names Tool via share link
-        // we should select gender in accordance to 
-        // shared pet name:
-        dispatch(setGender(fetchedNames[elemIndex]["Gender"]));
-        return {
-          'initialNamelist': newFullList,
-          'initialGender': fetchedNames[elemIndex]["Gender"]
-        };
+        // const namesToInitialize = loadNameLists();
+        dispatch(setGender(initialGender));
+        const namesToLoad = namesFullList.filter((petname) => petname.gender === initialGender);
+        dispatch(loadAllPetnames(namesToLoad));
+        dispatch(setNamesList(namesToLoad.slice(0, petNamesLoadMore)));
       };
-      dispatch(setGender("Both"));
-      return {
-        'initialNamelist': fetchedNames,
-        'initialGender': "Both"
-      };
-    };
+      if(!categories.isLoading && !petnames.isLoading) dispatch(toggleLoader());
+      // console.log(categories.data);
+      // console.log(petnames.data);
+    }, [categories, petnames, petNamesLoadMore])
 
+    // other inputs except of categories and petnames
     useEffect(() => {
       if (themes[data.theme]["google-fonts"].length) {
         WebFont.load({
@@ -105,16 +111,8 @@ const App = ({data}) => {
       // push pet names view portion size depending on 
       // Desktop/Mobile into Redux storage:
       isMobile ? dispatch(setPetnamesPortion(16)) : dispatch(setPetnamesPortion(32));
-
-      // push initial pet names full list to Redux storage
-      // ToDo: replace namesList.list placeholder by actual data fetched from REST
-      const namesToInitialize = loadNameLists(namesList.list);
-      const namesToLoad = namesToInitialize.initialNamelist.filter((petname) => petname.Gender === namesToInitialize.initialGender);
-      dispatch(initializeNamesList(namesToInitialize.initialNamelist));
-      dispatch(loadAllPetnames(namesToLoad));
-      dispatch(setNamesList(namesToLoad.slice(0, petNamesLoadMore)));
       
-    }, [data, dispatch, i18n, petNamesLoadMore]);
+    }, [data, dispatch, i18n]);
 
     const [cssAppContainer] = useThemifiedComponent('app-container', data.theme);
     const [cssLoadmoreButton] = useThemifiedComponent('view-loadmore-button', data.theme);
@@ -161,7 +159,7 @@ const App = ({data}) => {
     <LoadingOverlay
       active={useSelector(state => state.common.showLoader)}
       spinner={<RingLoader size='100px' color='#FFF' cssOverride={{"left": '50px'}}/>}
-      text='Refreshing pet names list...'
+      text='Refreshing names...'
       styles={{
         content: {
           position: 'absolute',
