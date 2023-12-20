@@ -16,10 +16,8 @@ const SwiperCategoryItem = ({category, handleFilter}) => {
     }
 
     const setIconUrl = (category) => {
-        const device = window.innerWidth > 768 ? 'desktop_tablet' : 'mobile';
         const { icon_desktop_tablet, icon_mobile } = category;
-
-        return require(`../../app/images/${device}/${window.innerWidth > 768 ? icon_desktop_tablet : icon_mobile}`);
+        return (window.innerWidth > 768 ? icon_desktop_tablet : icon_mobile);
     };
 
     return (
