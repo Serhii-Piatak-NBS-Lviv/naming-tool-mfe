@@ -6,6 +6,8 @@ import { motion, useAnimate } from "framer-motion";
 import { VStack, Flex, Button } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { isMobile } from "react-device-detect";
+import * as R from 'ramda';
+import useFetch from "react-fetch-hook";
 
 import { fontsLoader, themes } from './themes';
 import useThemifiedComponent from "./app/hooks/useThemifiedComponent";
@@ -20,7 +22,6 @@ import { setGender } from "./features/filter/filterSlice";
 import LoadingOverlay from 'react-loading-overlay-ts';
 import RingLoader from "react-spinners/RingLoader";
 
-import useFetch from "react-fetch-hook";
 import { NoResult } from "./features/view/NoResult";
 
 const App = ({data}) => {
@@ -62,7 +63,6 @@ const App = ({data}) => {
       if (petnames.error) console.log(petnames.error);
       if (categories.data) dispatch(initializeCategoriesList(categories.data));
       if (petnames.data) {
-        dispatch(initializeNamesList(petnames.data));
         if (browserURL.searchParams.get('petname')) {
           const elemIndex = petnames.data.findIndex(petname => petname.id === browserURL.searchParams.get('petname'));
           const newFirstElem = petnames.data[elemIndex];
@@ -79,7 +79,8 @@ const App = ({data}) => {
           namesFullList = petnames.data;
           initialGender = "Both";
         };
-        // const namesToInitialize = loadNameLists();
+        namesFullList.forEach((petname) => petname.categories = R.pluck('target_id', petname.categories));
+        dispatch(initializeNamesList(namesFullList));
         dispatch(setGender(initialGender));
         const namesToLoad = namesFullList.filter((petname) => petname.gender === initialGender);
         dispatch(loadAllPetnames(namesToLoad));
@@ -88,7 +89,7 @@ const App = ({data}) => {
       if(!categories.isLoading && !petnames.isLoading) dispatch(toggleLoader());
       // console.log(categories.data);
       // console.log(petnames.data);
-    }, [categories, petnames, petNamesLoadMore])
+    }, [categories, petnames, petNamesLoadMore, dispatch])
 
     // other inputs except of categories and petnames
     useEffect(() => {
@@ -112,7 +113,7 @@ const App = ({data}) => {
       // Desktop/Mobile into Redux storage:
       isMobile ? dispatch(setPetnamesPortion(16)) : dispatch(setPetnamesPortion(32));
       
-    }, [data, dispatch, i18n]);
+    }, [data, dispatch, i18n, startAnimation]);
 
     const [cssAppContainer] = useThemifiedComponent('app-container', data.theme);
     const [cssLoadmoreButton] = useThemifiedComponent('view-loadmore-button', data.theme);

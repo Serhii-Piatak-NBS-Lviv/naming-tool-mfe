@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { cx } from '@emotion/css';
 import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
+
 import useThemifiedComponent from '../../app/hooks/useThemifiedComponent';
 import { toggleLoader, toggleLoadMoreBtn } from '../../app/commonSlice';
 
-import { useDispatch, useSelector } from 'react-redux';
+
 
 import GenderSelection from './GenderSelection';
 import { AlphabetSelector } from './AlphabetSelector';

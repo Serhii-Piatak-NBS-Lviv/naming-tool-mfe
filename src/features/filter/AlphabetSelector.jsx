@@ -4,8 +4,6 @@ import { cx, css } from '@emotion/css';
 import { useSelector } from 'react-redux';
 import * as R from 'ramda';
 
-import namesList from "../../app/apisimul/view/names-list";
-
 /**
 * @author
 * @function 
@@ -13,6 +11,7 @@ import namesList from "../../app/apisimul/view/names-list";
 
 export const AlphabetSelector = ({handleLetter}) => {
   const filterState = useSelector(state => state.filter);
+  const initialNamesList = useSelector(state => state.common.fetchedNamesList);
 
   const [cssAlphabeticalContainer] = useThemifiedComponent('filter-alphabetical-container');
   const [cssAlphabeticalList] = useThemifiedComponent('filter-alphabetical-list');
@@ -26,14 +25,14 @@ export const AlphabetSelector = ({handleLetter}) => {
     pointer-events: none;
   `;
 
-  const getHeadLetters = R.pipe(R.pluck('Title'), R.map(petName => petName.charAt(0)), R.uniq);
-  const selByGender = R.filter(petname => R.equals(petname.Gender, filterState.gender));
+  const getHeadLetters = R.pipe(R.pluck('title'), R.map(petName => petName.charAt(0)), R.uniq);
+  const selByGender = R.filter(petname => R.equals(petname.gender, filterState.gender));
   const selByCategory = R.when(
     () => filterState.selectedCategories.length > 0,
     R.filter(petname => petname.categories.includes(filterState.selectedCategories))
   );
   const getAvaiLetters = R.pipe(selByGender, selByCategory, getHeadLetters);
-  const activeLetters = getAvaiLetters(namesList.list);
+  const activeLetters = getAvaiLetters(initialNamesList);
 
   return(
     <div className={cssAlphabeticalContainer}>
