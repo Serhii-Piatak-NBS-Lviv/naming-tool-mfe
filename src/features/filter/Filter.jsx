@@ -13,7 +13,7 @@ import { AlphabetSelector } from './AlphabetSelector';
 import { SwiperFilters } from './SwiperFilters';
 
 import { setSelectedCategory, setGender, setLetter } from './filterSlice';
-import { loadAllPetnames, setNamesList } from '../view/viewSlice';
+import { loadAllPetnames, setNamesList, selectPetName } from '../view/viewSlice';
 
 /**
 * @restAPI  - list of name categories will come from 
@@ -120,17 +120,20 @@ const Filter = () => {
         dispatch(setSelectedCategory(category));
         dispatch(setLetter(''))
         refreshNamesList(category, null, null);
+        dispatch(selectPetName(''));
     };
 
     const handleRadio = (radio) => {
         dispatch(setGender(radio));
         refreshNamesList(null, radio, null);
         dispatch(setLetter(''))
+        dispatch(selectPetName(''));
     };
 
     const handleLetter = (letter) => {
         dispatch(setLetter(letter));
         refreshNamesList(null, null, letter);
+        dispatch(selectPetName(''));
     };  
 
     // Sticky filter on mobile
