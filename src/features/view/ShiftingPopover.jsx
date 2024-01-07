@@ -306,10 +306,10 @@ const ShiftingPopover = ({id, title, description, gender, categories, simpleGrid
 
     // This useEffect performes scrolling when
     // next portion of pet names shows up
-    useEffect(() => {
-        const idxElem = namesList.findIndex(name => name.id === id);
-        if (idxElem !== 0 && idxElem === prevPortion) gridItemRef.current?.scrollIntoView({behavior: "smooth"});
-    }, [])
+    // useEffect(() => {
+    //     const idxElem = namesList.findIndex(name => name.id === id);
+    //     if (idxElem !== 0 && idxElem === prevPortion) gridItemRef.current?.scrollIntoView({behavior: "smooth"});
+    // }, [])
 
   return(
     <GridItem>
