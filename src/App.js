@@ -154,7 +154,7 @@ const App = ({data}) => {
           left: 45%;
         };
       }
-    `;       
+    `;
 
   return (
     <LoadingOverlay
