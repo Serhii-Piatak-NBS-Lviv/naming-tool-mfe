@@ -1,4 +1,5 @@
 import React, {useState, useRef, useEffect } from 'react';
+import parse from 'html-react-parser';
 import { CloseIcon } from '@chakra-ui/icons'
 import { css } from '@emotion/css';
 import { motion } from "framer-motion";
@@ -200,7 +201,7 @@ const SplashDescription = ({id, title, description, theme, gender, categories, s
             </Heading>
         </CardHeader>
         <CardBody maxW={getThemifiedResponsive(theme, 'view-namedescription', 'maxWidth')} p={getThemifiedResponsive(theme, 'view-cardbody', 'padding')} className={cssPetNameCard}>
-            <Text className={cssPetNameText} fontSize={getThemifiedResponsive(theme, 'view-namedescription__text', 'fontSize')} lineHeight={getThemifiedResponsive(theme, 'view-namedescription__text', 'lineHeight')} >{description}</Text>
+            <Text className={cssPetNameText} fontSize={getThemifiedResponsive(theme, 'view-namedescription__text', 'fontSize')} lineHeight={getThemifiedResponsive(theme, 'view-namedescription__text', 'lineHeight')} >{parse(description)}</Text>
         </CardBody>
         <CardFooter as={HStack} p={getThemifiedResponsive(theme, 'view-cardfooter', 'padding')}>
             

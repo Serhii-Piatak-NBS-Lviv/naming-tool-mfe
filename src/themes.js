@@ -445,6 +445,10 @@ export const themes = {
             "fontFamily": 'robotolight !important',
             "fontWeight": '300 !important',
             "color": '#6B6868',
+
+            "a": {
+                "borderBottom": 'solid 1px #E81C24'
+            }
         },
 
         "view-namedescription__arrow": {
