@@ -53,9 +53,6 @@ export const NoResult = () => {
             <h3 className={cssNoResultTitle}>
                 {t('Empty search result title')}
             </h3>
-            <p className={cssNoResultDescription}>
-                {t('Empty search result description')}
-            </p>
             <button 
                 className={cssResetFilters}
                 onClick={() => resetFelters()}

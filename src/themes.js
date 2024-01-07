@@ -541,7 +541,7 @@ export const themes = {
             "color": '#E81C24',
             "fontSize": '22px',
             "padding": '12px 20px',
-            "margin": '36px auto 0',
+            "margin": '20px auto 0',
             "transition": '.3s',
 
             "&:hover": {
