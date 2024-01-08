@@ -155,11 +155,11 @@ const SplashDescription = ({id, title, description, theme, gender, categories, s
     const enumCategories = (idsArray) => {
         const ctgList = idsArray.reduce((acc, itm) => {
             let ctgTitle = ctgStorage.find(category => category.id === itm).title;
-            if (ctgTitle) acc += `, ${ctgTitle}`;
+            if (ctgTitle) acc.push(ctgTitle);
             return acc;
         }, []);
 
-        return ctgList;
+        return ctgList.join(', ');
     };
 
     const handleShare = (callbck) => {
@@ -196,7 +196,7 @@ const SplashDescription = ({id, title, description, theme, gender, categories, s
         <CardHeader p='0'>
             <Heading fontSize={getThemifiedResponsive(theme, 'view-nametitle', 'fontSize')} lineHeight={getThemifiedResponsive(theme, 'view-nametitle', 'lineHeight')} className={cssPetNameTitle}>{title}</Heading>
             <Heading className={cssPetNameSubtitle} fontSize={getThemifiedResponsive(theme, 'view-namesubtitle', 'fontSize')} lineHeight={getThemifiedResponsive(theme, 'view-namesubtitle', 'lineHeight')} my='16px'>
-                <strong className={cssPetNameSubitleStrong}>Categories: </strong>{(gender === 'Both') ? 'Any' : gender}{enumCategories(categories)}
+                <strong className={cssPetNameSubitleStrong}>Categories: </strong>{enumCategories(categories)}
             </Heading>
         </CardHeader>
         <CardBody maxW={getThemifiedResponsive(theme, 'view-namedescription', 'maxWidth')} p={getThemifiedResponsive(theme, 'view-cardbody', 'padding')} className={cssPetNameCard}>

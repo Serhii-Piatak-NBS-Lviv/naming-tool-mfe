@@ -4,7 +4,7 @@ import { createIcon, Icon } from "@chakra-ui/icons";
 import { useDispatch, useSelector } from 'react-redux';
 import { setSelectedCategory, setGender, setLetter } from '../filter/filterSlice';
 import { loadAllPetnames, setNamesList } from './viewSlice';
-import { toggleLoader } from '../../app/commonSlice';
+// import { toggleLoader } from '../../app/commonSlice';
 
 const NoResultImage = createIcon({
     displayName: 'NoResultImage',
@@ -38,11 +38,11 @@ export const NoResult = () => {
     const { t } = useTranslation();   
 
     const resetFelters = () => {
-        dispatch(toggleLoader());
+        // dispatch(toggleLoader());
         dispatch(setLetter(''));
         dispatch(setGender(t('filter gender both')));
         dispatch(setSelectedCategory(''));
-        window.setTimeout(() => dispatch(toggleLoader()), 800);
+        // window.setTimeout(() => dispatch(toggleLoader()), 800);
         dispatch(loadAllPetnames(initialNamesList));
         dispatch(setNamesList(initialNamesList.slice(0, petNamesLoadMore)));
     }
@@ -53,9 +53,9 @@ export const NoResult = () => {
             <h3 className={cssNoResultTitle}>
                 {t('Empty search result title')}
             </h3>
-            <p className={cssNoResultDescription}>
+            {/* <p className={cssNoResultDescription}>
                 {t('Empty search result description')}
-            </p>
+            </p> */}
             <button 
                 className={cssResetFilters}
                 onClick={() => resetFelters()}

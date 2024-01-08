@@ -20,7 +20,7 @@ import { setNamesList, setPetnamesPortion, loadAllPetnames } from "./features/vi
 import { setGender } from "./features/filter/filterSlice";
 
 import LoadingOverlay from 'react-loading-overlay-ts';
-import RingLoader from "react-spinners/RingLoader";
+import FadeLoader from "react-spinners/FadeLoader";
 
 import { NoResult } from "./features/view/NoResult";
 
@@ -76,7 +76,7 @@ const App = ({data}) => {
             namesFullList = [...namesFullList, ...petnames.data.slice(elemIndex + 1)];
           };
         } else {
-          namesFullList = petnames.data;
+          namesFullList = [...petnames.data];
           initialGender = "Both";
         };
         namesFullList.forEach((petname) => petname.categories = R.pluck('target_id', petname.categories));
@@ -122,9 +122,15 @@ const App = ({data}) => {
     const isDesktop = scope.current?.offsetWidth >= 1120 ? true : false;
 
     const cssOverlay = css`
+      & ._loading_overlay_overlay {
+        background-color: rgba(230, 230, 230, 0.7);
+      };
       & ._loading_overlay_overlay ._loading_overlay_content {
         left: 45vw;
         position: fixed;
+        color: rgba(232, 28, 36, 1);
+        font-size: 32px;
+        font-weight: 600;
         
         @media(min-width: 0px) {
           left: 14vw;
@@ -159,12 +165,12 @@ const App = ({data}) => {
   return (
     <LoadingOverlay
       active={useSelector(state => state.common.showLoader)}
-      spinner={<RingLoader size='100px' color='#FFF' cssOverride={{"left": '50px'}}/>}
-      text='Refreshing names...'
+      spinner={<FadeLoader height='14px' width='14px' radius='16px' margin='10px' color='rgba(232, 28, 36, 1)' speedMultiplier={3} cssOverride={{"left": '95px'}}/>}
+      text='Loading names...'
       styles={{
         content: {
           position: 'absolute',
-          top: '45vh'
+          top: '45vh',
         }
       }}
       className={cssOverlay}
