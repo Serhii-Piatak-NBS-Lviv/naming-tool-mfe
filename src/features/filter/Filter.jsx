@@ -110,9 +110,9 @@ const Filter = () => {
     
     const refreshNamesList = (category, gender, letter) => {
         if (initialNamesList.length) {
-            dispatch(toggleLoader());
+            // dispatch(toggleLoader());
             applyFilters(category, gender, letter);
-            window.setTimeout(() => dispatch(toggleLoader()), LOADING_OVERLAY_DURATION);
+            // window.setTimeout(() => dispatch(toggleLoader()), LOADING_OVERLAY_DURATION);
         };
     };
 

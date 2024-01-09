@@ -19,11 +19,11 @@ import {
     Tooltip 
 } from '@chakra-ui/react';
 import { FacebookShareButton, WhatsappShareButton, TwitterShareButton } from "react-share";
-import { useToast } from '@chakra-ui/react';
+// import { useToast } from '@chakra-ui/react';
 import { AiFillTwitterCircle } from "react-icons/ai";
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 
-import { selectPetName } from './viewSlice';
+import { selectPetName, setLastNameRef } from './viewSlice';
 import { getThemifiedResponsive } from '../../themes';
 
 import useURLParam from '../../app/hooks/useURLParam';
@@ -80,7 +80,7 @@ const FacebookIcon = createIcon({
 });
 
 const ShareLink = ({ petnameId, children }) => {
-    const toast = useToast();
+    // const toast = useToast();
     const browserURL = new URL(window.location.href);
     const itmLink = `${browserURL.href}?petname=${petnameId}`;
     return (
@@ -155,11 +155,11 @@ const SplashDescription = ({id, title, description, theme, gender, categories, s
     const enumCategories = (idsArray) => {
         const ctgList = idsArray.reduce((acc, itm) => {
             let ctgTitle = ctgStorage.find(category => category.id === itm).title;
-            if (ctgTitle) acc += `, ${ctgTitle}`;
+            if (ctgTitle) acc.push(ctgTitle);
             return acc;
         }, []);
 
-        return ctgList;
+        return ctgList.join(', ');
     };
 
     const handleShare = (callbck) => {
@@ -196,7 +196,7 @@ const SplashDescription = ({id, title, description, theme, gender, categories, s
         <CardHeader p='0'>
             <Heading fontSize={getThemifiedResponsive(theme, 'view-nametitle', 'fontSize')} lineHeight={getThemifiedResponsive(theme, 'view-nametitle', 'lineHeight')} className={cssPetNameTitle}>{title}</Heading>
             <Heading className={cssPetNameSubtitle} fontSize={getThemifiedResponsive(theme, 'view-namesubtitle', 'fontSize')} lineHeight={getThemifiedResponsive(theme, 'view-namesubtitle', 'lineHeight')} my='16px'>
-                <strong className={cssPetNameSubitleStrong}>Categories: </strong>{(gender === 'Both') ? 'Any' : gender}{enumCategories(categories)}
+                <strong className={cssPetNameSubitleStrong}>Categories: </strong>{enumCategories(categories)}
             </Heading>
         </CardHeader>
         <CardBody maxW={getThemifiedResponsive(theme, 'view-namedescription', 'maxWidth')} p={getThemifiedResponsive(theme, 'view-cardbody', 'padding')} className={cssPetNameCard}>
@@ -280,9 +280,6 @@ const ShiftingPopover = ({id, title, description, gender, categories, simpleGrid
     
     const theme = useSelector((state) => state.common.theme);
     const [cssPetNameButton] = useThemifiedComponent('view-name-button', theme);
-
-    const namesList = useSelector((state) => state.view.names_list);
-    const prevPortion = useSelector((state) => state.view.names_list_prevsize);
     
     const isDesktop = simpleGridRef.current?.offsetWidth >= 1109 ? true : false;
 
@@ -304,15 +301,8 @@ const ShiftingPopover = ({id, title, description, gender, categories, simpleGrid
         }
     };
 
-    // This useEffect performes scrolling when
-    // next portion of pet names shows up
-    useEffect(() => {
-        const idxElem = namesList.findIndex(name => name.id === id);
-        if (idxElem !== 0 && idxElem === prevPortion) gridItemRef.current?.scrollIntoView({behavior: "smooth"});
-    }, [])
-
   return(
-    <GridItem>
+    <GridItem key={`griditm-${id}`}>
         <Button 
             className={`${cssPetNameButton} ${(selectedPetName === id) && isDesktop ? 'clicked' : null} ${isDesktop ? 'desktop' : null}`}
             ref={gridItemRef}
@@ -321,11 +311,13 @@ const ShiftingPopover = ({id, title, description, gender, categories, simpleGrid
             maxW={getThemifiedResponsive(theme, 'view-name-button', 'maxWidth')}
             minW={getThemifiedResponsive(theme, 'view-name-button', 'minWidth')}
             m='0' 
+            key={`button-${id}`}
             onClick={reveal}> 
             {title} 
         </Button>
         { isOpen && <SplashDescription 
             id={id} 
+            key={`splashdescr-${id}`}
             title={title} 
             description={description}
             theme={theme}

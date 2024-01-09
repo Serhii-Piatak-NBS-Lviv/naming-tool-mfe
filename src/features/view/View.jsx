@@ -1,5 +1,5 @@
 import React, {useRef} from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { SimpleGrid } from '@chakra-ui/react';
 import ShiftingPopover from './ShiftingPopover';
