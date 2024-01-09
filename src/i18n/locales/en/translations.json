@@ -13,5 +13,9 @@
     "static-string": "This React micro-frontend application is available for themification and localization",
     "Empty search result title": "Sorry, we found no results.",
     "Empty search result description": "Clear your filters and try again.",
-    "Reset filters button": "Clear your filters"
+    "Reset filters button": "Clear your filters",
+    "loading text": "Loading names...",
+    "load more button": "Load more",
+    "category singular": "Category",
+    "category plural": "Categories"
 }

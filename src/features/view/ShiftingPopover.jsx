@@ -1,5 +1,7 @@
 import React, {useState, useRef, useEffect } from 'react';
+import parse from 'html-react-parser';
 import { CloseIcon } from '@chakra-ui/icons'
+import { useTranslation } from "react-i18next";
 import { css } from '@emotion/css';
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from 'react-redux';
@@ -30,6 +32,7 @@ import useURLParam from '../../app/hooks/useURLParam';
 import useThemifiedComponent from '../../app/hooks/useThemifiedComponent';
 
 import CustomizedTooltip from './CustomizedTooltip';
+import { T } from 'ramda';
 
 /**
 * @author
@@ -111,6 +114,7 @@ const SplashDescription = ({id, title, description, theme, gender, categories, s
     const cardRef = useRef();  
     const shaRef = useRef();
     const dispatch = useDispatch();
+    const { t } = useTranslation();
     
     const [cardPosition, setCardPosition] = useState({toLeft: null, arrowPosition: null});
     const [width, setWidth] = useState(null);
@@ -162,6 +166,14 @@ const SplashDescription = ({id, title, description, theme, gender, categories, s
         return ctgList.join(', ');
     };
 
+    const defineCategoryTranslation = (idsArray) => {
+        if(!idsArray.length) return ''; 
+
+        return idsArray.length > 1 
+            ? `${ t('category plural')}: `
+            : `${ t('category singular')}: `
+    }
+
     const handleShare = (callbck) => {
         callbck(true);
         setTimeout(() => {
@@ -196,11 +208,11 @@ const SplashDescription = ({id, title, description, theme, gender, categories, s
         <CardHeader p='0'>
             <Heading fontSize={getThemifiedResponsive(theme, 'view-nametitle', 'fontSize')} lineHeight={getThemifiedResponsive(theme, 'view-nametitle', 'lineHeight')} className={cssPetNameTitle}>{title}</Heading>
             <Heading className={cssPetNameSubtitle} fontSize={getThemifiedResponsive(theme, 'view-namesubtitle', 'fontSize')} lineHeight={getThemifiedResponsive(theme, 'view-namesubtitle', 'lineHeight')} my='16px'>
-                <strong className={cssPetNameSubitleStrong}>Categories: </strong>{enumCategories(categories)}
+                <strong className={cssPetNameSubitleStrong}>{defineCategoryTranslation(categories)}</strong>{enumCategories(categories)}
             </Heading>
         </CardHeader>
         <CardBody maxW={getThemifiedResponsive(theme, 'view-namedescription', 'maxWidth')} p={getThemifiedResponsive(theme, 'view-cardbody', 'padding')} className={cssPetNameCard}>
-            <Text className={cssPetNameText} fontSize={getThemifiedResponsive(theme, 'view-namedescription__text', 'fontSize')} lineHeight={getThemifiedResponsive(theme, 'view-namedescription__text', 'lineHeight')} >{description}</Text>
+            <Text className={cssPetNameText} fontSize={getThemifiedResponsive(theme, 'view-namedescription__text', 'fontSize')} lineHeight={getThemifiedResponsive(theme, 'view-namedescription__text', 'lineHeight')} >{parse(description)}</Text>
         </CardBody>
         <CardFooter as={HStack} p={getThemifiedResponsive(theme, 'view-cardfooter', 'padding')}>
             
