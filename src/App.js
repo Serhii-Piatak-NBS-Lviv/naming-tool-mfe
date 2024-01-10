@@ -166,7 +166,7 @@ const App = ({data}) => {
     <LoadingOverlay
       active={useSelector(state => state.common.showLoader)}
       spinner={<FadeLoader height='14px' width='14px' radius='16px' margin='10px' color='rgba(232, 28, 36, 1)' speedMultiplier={3} cssOverride={{"left": '95px'}}/>}
-      text='Loading names...'
+      text={t('loading text')}
       styles={{
         content: {
           position: 'absolute',
@@ -188,7 +188,7 @@ const App = ({data}) => {
               !isLoadMoreAvail ?
               <ThatItMessage duration = '2000' />
               :
-              <Button className={`${cssLoadmoreButton} ${isDesktop ? 'desktop' : null}`} onClick={loadMorePetNames}>Load more</Button>
+              <Button className={`${cssLoadmoreButton} ${isDesktop ? 'desktop' : null}`} onClick={loadMorePetNames}>{t('load more button')}</Button>
             }
           </Flex>
         </>
