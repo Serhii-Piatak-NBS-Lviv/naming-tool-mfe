@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { cx } from '@emotion/css';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
@@ -25,7 +25,7 @@ used from src/app/apisimul  folder
 * to filterSlice part of Redux storage
 **/
 
-const LOADING_OVERLAY_DURATION = 800;
+// const LOADING_OVERLAY_DURATION = 800;
 
 const Filter = () => {
     const [cssFiltersContainer] = useThemifiedComponent('filters');
@@ -60,9 +60,9 @@ const Filter = () => {
         // If toggling category filter off then:
         if (category && appliedCategory === category) {
             // apply letter filter if it was previously set:
-            if (appliedLetter) {
-                filteredList = filteredList.filter((petname) => petname.title.charAt(0) === appliedLetter);
-            };
+            // if (appliedLetter) {
+            //     filteredList = filteredList.filter((petname) => petname.title.charAt(0) === appliedLetter);
+            // };
         };
     
         // If toggling letter filter on then:
@@ -92,9 +92,9 @@ const Filter = () => {
                 filteredList = filteredList.filter((petname) => petname.categories.includes(appliedCategory));
             };
             // and apply letter filter if it was previously set:
-            if (appliedLetter) {
-                filteredList = filteredList.filter((petname) => petname.title.charAt(0) === appliedLetter);
-            };
+            // if (appliedLetter) {
+            //     filteredList = filteredList.filter((petname) => petname.title.charAt(0) === appliedLetter);
+            // };
         };
         
         // gender filtration should be applied every time when we're 
