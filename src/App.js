@@ -131,7 +131,7 @@ const App = ({data}) => {
         position: fixed;
         color: rgba(232, 28, 36, 1);
         font-size: 32px;
-        font-weight: 600;
+        font-weight: 400;
         
         @media(min-width: 0px) {
           left: 14vw;
@@ -184,14 +184,18 @@ const App = ({data}) => {
         :
         <>
           <View />
-          <Flex className={cssLoadmoreFlexbox}>
-            {
-              !isLoadMoreAvail ?
-              <ThatItMessage duration = '2000' />
-              :
-              <Button className={`${cssLoadmoreButton} ${isDesktop ? 'desktop' : null}`} onClick={loadMorePetNames}>{t('load more button')}</Button>
-            }
-          </Flex>
+          {
+            viewSize >= petNamesLoadMore ?
+            <Flex className={cssLoadmoreFlexbox}>
+              {
+                !isLoadMoreAvail ?
+                <ThatItMessage duration = '2000' />
+                :
+                <Button className={`${cssLoadmoreButton} ${isDesktop ? 'desktop' : null}`} onClick={loadMorePetNames}>{t('load more button')}</Button>
+              }
+            </Flex>
+            : null
+          }
         </>
       }
     </VStack>

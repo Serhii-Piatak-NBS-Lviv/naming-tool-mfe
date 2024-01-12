@@ -445,7 +445,6 @@ export const themes = {
             "fontFamily": 'robotolight !important',
             "fontWeight": '300 !important',
             "color": '#6B6868',
-
             "a": {
                 "borderBottom": 'solid 1px #E81C24'
             }
@@ -497,7 +496,8 @@ export const themes = {
         },
 
         "no-result-wrapper": {
-            "padding": '144px 0',
+            "padding": '0 0 144px 0',
+
 
             "@media (max-width: 768px)": {
                 "padding": '64px 0',
@@ -543,10 +543,11 @@ export const themes = {
             "borderRadius": '6px',
             "fontFamily": 'Roboto Slab',
             "color": '#E81C24',
-            "fontSize": '22px',
-            "padding": '12px 20px',
+            "fontSize": '16px',
+            "padding": '10px 16px',
             "margin": '36px auto 0',
             "transition": '.3s',
+            "lineHeight": '24px',
 
             "&:hover": {
                 "backgroundColor": '#3A3533',
