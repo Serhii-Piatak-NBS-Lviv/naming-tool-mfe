@@ -45,13 +45,11 @@ export const themes = {
                 "top": '-30px  !important'
             },
             
-        },
-
-        
+        },        
 
         "form-filters-title": {
             "color": '#3A3533',
-            "fontFamily": 'Roboto Slab',
+            "fontFamily": 'interregular',
             "fontSize": '20px',
             "fontStyle": 'normal',
             "fontWeight": '400',

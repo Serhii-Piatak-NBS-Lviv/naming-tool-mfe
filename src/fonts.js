@@ -16,7 +16,32 @@ const FONTS_REGISTRY = {
         "fontWeight": "normal",
         "fontStyle": "normal",
     },
-
+    
+    "interlight": {
+        "sources": `
+        url('/public/fonts/inter/Inter-Light.woff2") format("woff2"),
+        url('/public/fonts/inter/Inter-Light.ttf") format("truetype")
+        `,
+        "fontWeight": "normal",
+        "fontStyle": "normal",
+    },
+    "intermedium": {
+        "sources": `
+        url('/public/fonts/inter/Inter-Medium.woff2") format("woff2"),
+        url('/public/fonts/inter/Inter-Medium.ttf") format("truetype")
+        `,
+        "fontWeight": "normal",
+        "fontStyle": "normal",
+    },
+    "interregular": {
+        "sources": `
+        url('/public/fonts/inter/Inter-Regular.woff2") format("woff2"),
+        url('/public/fonts/inter/Inter-Regular.ttf") format("truetype")
+        `,
+        "fontWeight": "normal",
+        "fontStyle": "normal",
+    },
 };
+
 
 export default FONTS_REGISTRY;
