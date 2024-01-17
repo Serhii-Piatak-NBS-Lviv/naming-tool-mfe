@@ -49,7 +49,7 @@ export const themes = {
 
         "form-filters-title": {
             "color": '#3A3533',
-            "fontFamily": 'interregular',
+            "fontFamily": 'Roboto',
             "fontSize": '20px',
             "fontStyle": 'normal',
             "fontWeight": '400',
