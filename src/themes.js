@@ -45,9 +45,7 @@ export const themes = {
                 "top": '-30px  !important'
             },
             
-        },
-
-        
+        },        
 
         "form-filters-title": {
             "color": '#3A3533',
