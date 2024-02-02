@@ -2,6 +2,12 @@
   "files": {
     "main.css": "/naming-tool-mfe/static/css/main.css",
     "main.js": "/naming-tool-mfe/static/js/main.js",
+    "static/media/Inter-Medium.ttf": "/naming-tool-mfe/static/media/Inter-Medium.d31554d1c2fad5bece0f.ttf",
+    "static/media/Inter-Light.ttf": "/naming-tool-mfe/static/media/Inter-Light.e5fe7a5884b0dbbf2113.ttf",
+    "static/media/Inter-Regular.ttf": "/naming-tool-mfe/static/media/Inter-Regular.4f9a0a6f83e459cbfe69.ttf",
+    "static/media/Inter-Medium.woff2": "/naming-tool-mfe/static/media/Inter-Medium.9c1163dc5cc2a1c9b55b.woff2",
+    "static/media/Inter-Light.woff2": "/naming-tool-mfe/static/media/Inter-Light.d6125db9dd20399de932.woff2",
+    "static/media/Inter-Regular.woff2": "/naming-tool-mfe/static/media/Inter-Regular.76224c7fa303861462e7.woff2",
     "static/media/roboto-light-webfont.ttf": "/naming-tool-mfe/static/media/roboto-light-webfont.25d47456caffa85babba.ttf",
     "static/media/roboto-light-webfont.woff": "/naming-tool-mfe/static/media/roboto-light-webfont.8c9edc306f9c77537804.woff",
     "static/media/roboto-light-webfont.woff2": "/naming-tool-mfe/static/media/roboto-light-webfont.95ff440a51f48ad36a98.woff2",
