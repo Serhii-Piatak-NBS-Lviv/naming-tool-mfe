@@ -39,6 +39,14 @@ import { T } from 'ramda';
 * @function ShiftingPopover
 **/
 
+// Following two constants describing the height of navbar in Drupal
+// so that the button with the puppy's name does not "run behind" the navbar
+const TOP_NAVBAR_DESKTOP = 126;
+const TOP_NAVBAR_MOBILE = 10;
+
+// this constant describes the breakpoint where the desktop screen starts
+const SCREENWIDTH_DESKTOP = 1139;
+
 const spanWrapp = css`
     display: flex;
     padding-top: 2px;
@@ -78,6 +86,14 @@ const TwitterIcon = createIcon({
         <path d="M16.5 2C8.76875 2 2.5 8.26875 2.5 16C2.5 23.7313 8.76875 30 16.5 30C24.2313 30 30.5 23.7313 30.5 16C30.5 8.26875 24.2313 2 16.5 2ZM23.2281 12.5531C23.2375 12.7 23.2375 12.8531 23.2375 13.0031C23.2375 17.5906 19.7437 22.875 13.3594 22.875C11.3906 22.875 9.56562 22.3031 8.02812 21.3188C8.30937 21.35 8.57813 21.3625 8.86563 21.3625C10.4906 21.3625 11.9844 20.8125 13.175 19.8813C11.65 19.85 10.3687 18.85 9.93125 17.475C10.4656 17.5531 10.9469 17.5531 11.4969 17.4125C10.7116 17.253 10.0059 16.8265 9.49943 16.2056C8.99299 15.5846 8.71715 14.8075 8.71875 14.0063V13.9625C9.17812 14.2219 9.71875 14.3812 10.2844 14.4031C9.80888 14.0862 9.41893 13.6569 9.1491 13.1532C8.87926 12.6495 8.73789 12.087 8.7375 11.5156C8.7375 10.8687 8.90625 10.2781 9.20938 9.76562C10.0809 10.8386 11.1685 11.7161 12.4015 12.3411C13.6344 12.9662 14.985 13.3249 16.3656 13.3938C15.875 11.0344 17.6375 9.125 19.7563 9.125C20.7563 9.125 21.6562 9.54375 22.2906 10.2188C23.075 10.0719 23.825 9.77812 24.4937 9.38437C24.2344 10.1875 23.6906 10.8656 22.9688 11.2937C23.6688 11.2188 24.3438 11.025 24.9688 10.7531C24.4969 11.4469 23.9062 12.0625 23.2281 12.5531Z" fill="#E81C24"/>
     ),
 });
+
+// this helper calculates Y-position which to scroll
+// so that the button with the puppy's name does not "run behind" the Drupal navbar
+const getVerticalOffset = (elementRef) => {
+    const toTop = window.innerWidth > SCREENWIDTH_DESKTOP ? TOP_NAVBAR_DESKTOP : TOP_NAVBAR_MOBILE;
+    const rect = elementRef.getBoundingClientRect();
+    return window.scrollY + rect.top - toTop;
+};
 
 const ShareLink = ({ petnameId, children }) => {
     // const toast = useToast();
@@ -143,7 +159,13 @@ const SplashDescription = ({id, title, description, theme, gender, categories, s
         };
         window.addEventListener("resize", () => setCardPlacement());
         setCardPlacement();
-        gridItemRef.current?.scrollIntoView({behavior: "smooth"});
+
+        // scroll to open card name
+        window.scrollTo({
+            top: getVerticalOffset(gridItemRef.current),
+            behavior: 'smooth',
+        });
+        
       }, [gridItemRef, simpleGridRef]);
 
     const closePopup = () => {
@@ -291,7 +313,7 @@ const ShiftingPopover = ({id, title, description, gender, categories, simpleGrid
     const [cssPetNameButton] = useThemifiedComponent('view-name-button', theme);
     
     const isDesktop = simpleGridRef.current?.offsetWidth >= 1109 ? true : false;
-
+  
     const reveal = () => {
         const browserURL = new URL(window.location.href);        
         if (browserURL.searchParams.get('petname')) {
@@ -300,11 +322,11 @@ const ShiftingPopover = ({id, title, description, gender, categories, simpleGrid
         isOpen ? dispatch(selectPetName('')) : dispatch(selectPetName(id));
 
         // scroll to open card name
-        if (gridItemRef.current) {
-            setTimeout(() => {
-                gridItemRef.current.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start',
+        if (gridItemRef.current) {            
+            setTimeout(() => {        
+                window.scrollTo({
+                    top: getVerticalOffset(gridItemRef.current),
+                    behavior: 'smooth',
                 });
             }, 300)            
         }
