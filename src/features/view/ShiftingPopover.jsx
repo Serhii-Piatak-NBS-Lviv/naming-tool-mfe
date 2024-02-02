@@ -143,7 +143,17 @@ const SplashDescription = ({id, title, description, theme, gender, categories, s
         };
         window.addEventListener("resize", () => setCardPlacement());
         setCardPlacement();
-        gridItemRef.current?.scrollIntoView({behavior: "smooth"});
+
+        // scroll to open card name
+        const toTop = window.innerWidth > 1139 ? 126 : 10;
+        const rect = gridItemRef.current.getBoundingClientRect();
+        const offset = window.scrollY + rect.top - toTop;
+
+        window.scrollTo({
+            top: offset,
+            behavior: 'smooth',
+        });
+        
       }, [gridItemRef, simpleGridRef]);
 
     const closePopup = () => {
@@ -291,7 +301,7 @@ const ShiftingPopover = ({id, title, description, gender, categories, simpleGrid
     const [cssPetNameButton] = useThemifiedComponent('view-name-button', theme);
     
     const isDesktop = simpleGridRef.current?.offsetWidth >= 1109 ? true : false;
-
+  
     const reveal = () => {
         const browserURL = new URL(window.location.href);        
         if (browserURL.searchParams.get('petname')) {
@@ -300,11 +310,16 @@ const ShiftingPopover = ({id, title, description, gender, categories, simpleGrid
         isOpen ? dispatch(selectPetName('')) : dispatch(selectPetName(id));
 
         // scroll to open card name
-        if (gridItemRef.current) {
+        if (gridItemRef.current) {            
             setTimeout(() => {
-                gridItemRef.current.scrollIntoView({
+                const toTop = window.innerWidth > 1139 ? 126 : 10;
+
+                const rect = gridItemRef.current.getBoundingClientRect();
+                const offset = window.scrollY + rect.top - toTop;
+        
+                window.scrollTo({
+                top: offset,
                 behavior: 'smooth',
-                block: 'start',
                 });
             }, 300)            
         }
