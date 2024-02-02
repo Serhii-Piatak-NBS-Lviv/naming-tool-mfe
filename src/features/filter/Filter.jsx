@@ -137,31 +137,31 @@ const Filter = () => {
     };  
 
     // Sticky filter on mobile
-    const [lastScroll, setLastScroll] = useState(0);
-    const [stickyClass, setStickyClass] = useState('filter-scroll-up');
+    // const [lastScroll, setLastScroll] = useState(0);
+    // const [stickyClass, setStickyClass] = useState('filter-scroll-up');
 
-    useEffect(() => {
-      const handleScroll = () => {
-        const currentScroll = window.pageYOffset;
+    // useEffect(() => {
+    //   const handleScroll = () => {
+    //     const currentScroll = window.pageYOffset;
   
-        if (currentScroll > lastScroll) {
-          setStickyClass('filter-scroll-down');
-        } else {
-          setStickyClass('filter-scroll-up');
-        }
+    //     if (currentScroll > lastScroll) {
+    //       setStickyClass('filter-scroll-down');
+    //     } else {
+    //       setStickyClass('filter-scroll-up');
+    //     }
   
-        setLastScroll(currentScroll);
-      };
+    //     setLastScroll(currentScroll);
+    //   };
   
-      window.addEventListener('scroll', handleScroll);
+    //   window.addEventListener('scroll', handleScroll);
   
-      return () => {
-        window.removeEventListener('scroll', handleScroll);
-      };
-    }, [lastScroll]);
+    //   return () => {
+    //     window.removeEventListener('scroll', handleScroll);
+    //   };
+    // }, [lastScroll]);
 
     return (
-        <div className={cx(cssFiltersContainer, stickyClass)} id="filters">
+        <div className={cx(cssFiltersContainer /*, stickyClass */)} id="filters">
            <p className={cssFormFiltersTitle}>
                 {t('filter slider title')}
             </p>
