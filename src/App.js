@@ -67,7 +67,6 @@ const App = ({data}) => {
         if (browserURL.searchParams.get('petname')) {
           const elemIndex = petnames.data.findIndex(petname => petname.id === browserURL.searchParams.get('petname'));
           const newFirstElem = petnames.data[elemIndex];
-          initialGender = newFirstElem.gender;
           namesFullList = [
             newFirstElem,
             ...petnames.data.slice(0, elemIndex)
@@ -78,12 +77,10 @@ const App = ({data}) => {
           };
         } else {
           namesFullList = [...petnames.data];
-          initialGender = "Both";
         };
         namesFullList.forEach((petname) => petname.categories = R.pluck('target_id', petname.categories));
         dispatch(initializeNamesList(namesFullList));
-        dispatch(setGender(initialGender));
-        const namesToLoad = namesFullList.filter((petname) => petname.gender === initialGender);
+        const namesToLoad = namesFullList;
         dispatch(loadAllPetnames(namesToLoad));
         dispatch(setNamesList(namesToLoad.slice(0, petNamesLoadMore)));
       };
