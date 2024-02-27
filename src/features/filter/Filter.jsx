@@ -99,7 +99,7 @@ const Filter = () => {
         
         // gender filtration should be applied every time when we're 
         // filtering by another feature
-        if(!gender) {
+        if(!gender && appliedGender) {
             filteredList = filteredList.filter((petname) => petname.gender === appliedGender);
         };
 
