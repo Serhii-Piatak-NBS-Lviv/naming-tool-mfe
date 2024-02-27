@@ -12,6 +12,7 @@ import * as R from 'ramda';
 export const AlphabetSelector = ({handleLetter}) => {
   const filterState = useSelector(state => state.filter);
   const initialNamesList = useSelector(state => state.common.fetchedNamesList);
+  const genderSelected = useSelector(state => state.filter.gender);
 
   const [cssAlphabeticalContainer] = useThemifiedComponent('filter-alphabetical-container');
   const [cssAlphabeticalList] = useThemifiedComponent('filter-alphabetical-list');
@@ -27,11 +28,12 @@ export const AlphabetSelector = ({handleLetter}) => {
 
   const getHeadLetters = R.pipe(R.pluck('title'), R.map(petName => petName.charAt(0)), R.uniq);
   const selByGender = R.filter(petname => R.equals(petname.gender, filterState.gender));
+  
   const selByCategory = R.when(
     () => filterState.selectedCategories.length > 0,
     R.filter(petname => petname.categories.includes(filterState.selectedCategories))
   );
-  const getAvaiLetters = R.pipe(selByGender, selByCategory, getHeadLetters);
+  const getAvaiLetters = genderSelected ? R.pipe(selByGender, selByCategory, getHeadLetters) : R.pipe(selByCategory, getHeadLetters);
   const activeLetters = getAvaiLetters(initialNamesList);
 
   return(
