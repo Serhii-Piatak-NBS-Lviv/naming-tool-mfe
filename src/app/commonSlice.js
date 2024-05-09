@@ -7,8 +7,8 @@ export const commonSlice = createSlice({
     initialState: {
         "locale": "en",
         "theme": "default",
-        "categoriesOrigin": 'https://live-74995-petcare-purinattt-unitedkingdom.pantheonsite.io/v1/nt_api/categories_resource',
-        "namesOrigin": 'https://live-74995-petcare-purinattt-unitedkingdom.pantheonsite.io/v1/nt_api/petnames_resource',
+        "categoriesOrigin": 'https://nestle-purina-vetsportal.ddev.site/v1/nt_api/categories_resource',
+        "namesOrigin": 'https://purina.co.uk/v1/nt_api/petnames_resource',
         "showLoader": true,
         "fetchedNamesList": [],
         "fetchedCategoriesList": [],
