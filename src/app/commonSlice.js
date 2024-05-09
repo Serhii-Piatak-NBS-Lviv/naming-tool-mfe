@@ -2,13 +2,19 @@ import { createSlice } from '@reduxjs/toolkit';
 
 // https://uat-dig0031655-petcare-purinattt-italy.pantheonsite.io/namingtool-petname-categories?_format=json
 // http://tttspoof.ddev.site/petnames-categories?_format=json
+
+const currentUrl = 'https://purina.co.uk';
+// const currentUrl = window.location.origin;
+const categoriesUrl = 'v1/nt_api/categories_resource';
+const petNamesUrl = 'v1/nt_api/petnames_resource';
+
 export const commonSlice = createSlice({
     name: 'common',
     initialState: {
         "locale": "en",
         "theme": "default",
-        "categoriesOrigin": 'https://nestle-purina-vetsportal.ddev.site/v1/nt_api/categories_resource',
-        "namesOrigin": 'https://purina.co.uk/v1/nt_api/petnames_resource',
+        "categoriesOrigin": `${currentUrl}/${categoriesUrl}`,
+        "namesOrigin": `${currentUrl}/${petNamesUrl}`,
         "showLoader": true,
         "fetchedNamesList": [],
         "fetchedCategoriesList": [],

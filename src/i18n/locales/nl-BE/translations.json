@@ -1,0 +1,21 @@
+{
+    "filter subtitle - we compiled a list": "[NT_nl-BE] With over 1,000 unique and adorable dog names, you’re sure to find the perfect fit for your new puppy.",
+    "filter slider title": "[NT_nl-BE] Find the perfect name",
+    "filter live search title": "[NT_nl-BE] Are you looking for a specific name?",
+    "filter live search placeholder": "[NT_nl-BE] Search for a specific name",
+    "filter gender selector title": "[NT_nl-BE] Gender",
+    "filter gender female": "[NT_nl-BE] Female",
+    "filter gender male": "[NT_nl-BE] Male",
+    "filter gender both": "[NT_nl-BE] Both",
+    "alphabet": "A-B-C-D-E-F-G-H-I-J-K-L-M-N-O-P-Q-R-S-T-U-V-W-X-Y-Z",
+    "increment": "[NT_nl-BE] Increment",
+    "decrement": "[NT_nl-BE] Decrement",
+    "static-string": "[NT_nl-BE] This React micro-frontend application is available for themification and localization",
+    "Empty search result title": "[NT_nl-BE] Sorry, we found no results.",
+    "Empty search result description": "[NT_nl-BE] Clear your filters and try again.",
+    "Reset filters button": "[NT_nl-BE] Clear your filters",
+    "loading text": "[NT_nl-BE] Loading names...",
+    "load more button": "[NT_nl-BE] Load more",
+    "category singular": "[NT_nl-BE] Category",
+    "category plural": "[NT_nl-BE] Categories"
+}
