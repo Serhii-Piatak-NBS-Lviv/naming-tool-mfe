@@ -3,6 +3,7 @@ import { Box } from '@chakra-ui/react';
 import { useSelector } from 'react-redux';
 import useThemifiedComponent from '../../app/hooks/useThemifiedComponent';
 import { getThemifiedResponsive } from '../../themes'; 
+import { useTranslation } from 'react-i18next';
 
 /**
 * @author
@@ -13,6 +14,7 @@ const ThatItMessage = ({duration}) => {
     const theme = useSelector(state => state.common.theme);
     const [cssThatAllToast] = useThemifiedComponent('view-loadmore-thatsall', theme);
     const ref = useRef();
+    const { t } = useTranslation();
 
     useEffect(() => {
         const box = ref.current;
@@ -28,7 +30,7 @@ const ThatItMessage = ({duration}) => {
     w={getThemifiedResponsive(theme, 'view-loadmore-thatsall', 'width')}
     h={getThemifiedResponsive(theme, 'view-loadmore-thatsall', 'height')}
     >
-        That's all! You've seen all available results.
+        {t('end of names list')}
     </Box>
    )
   }

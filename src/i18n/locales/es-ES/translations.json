@@ -1,0 +1,17 @@
+{
+    "filter subtitle - we compiled a list": "[NT_es-ES] With over 1,000 unique and adorable dog names, you’re sure to find the perfect fit for your new puppy.",
+    "filter slider title": "Encuentra el nombre perfecto",
+    "filter gender selector title": "Género",
+    "filter gender female": "Femenina",
+    "filter gender male": "Masculine",
+    "filter gender both": "Cualquier",
+    "alphabet": "A-B-C-D-E-F-G-H-I-J-K-L-M-N-O-P-Q-R-S-T-U-V-W-X-Y-Z",
+    "Empty search result title": "Lo sentimos, no encontramos resultados.",
+    "Empty search result description": "Limpia tus filtros y vuelve a intentarlo.",
+    "Reset filters button": "Limpia tus filtros",
+    "loading text": "Cargando nombres...",
+    "load more button": "Carga más",
+    "category singular": "Categoría",
+    "category plural": "Categorías",
+    "end of names list": "¡Eso es todo! Has visto todos los resultados."
+}
