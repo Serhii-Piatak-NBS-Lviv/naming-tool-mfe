@@ -40,7 +40,6 @@ const App = ({data}) => {
   const categories = useFetch(ctgURL);
   const petnames = useFetch(nameURL);
 
-
   let fl = data.hasOwnProperty('theme') ? fontsLoader(data.theme) : null;
     if (fl) injectGlobal`${fl}`;
 

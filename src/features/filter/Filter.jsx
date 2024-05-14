@@ -173,9 +173,9 @@ const Filter = () => {
                     title={t('filter gender selector title')}
                     handleRadio={handleRadio}
                     radios={[
-                        t('filter gender female'),
-                        t('filter gender male'),
-                        t('filter gender both')
+                        [t('filter gender female'), 'Female'],
+                        [t('filter gender male'), 'Male'],
+                        [t('filter gender both'), 'Both']
                     ]}                    
                 />              
                 <AlphabetSelector handleLetter={handleLetter} />  

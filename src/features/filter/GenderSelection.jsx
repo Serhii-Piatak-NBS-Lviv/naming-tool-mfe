@@ -25,18 +25,18 @@ const GenderSelection = ({ title, radios, handleRadio }) => {
         {
           radios.map(titleInput => {
             return (
-              <label className={cx(cssRadioLabel, isActive(titleInput, selectedGender))}
-                key={titleInput}
+              <label className={cx(cssRadioLabel, isActive(titleInput[1], selectedGender))}
+                key={titleInput[1]}
               >
                 <input 
                   style={{display: "none"}}
                   type="radio"
-                  name={titleInput}
-                  value={titleInput}
-                  checked={selectedGender === titleInput}
-                  onChange={() => handleRadio(titleInput)}
+                  name={titleInput[0]}
+                  value={titleInput[1]}
+                  checked={selectedGender === titleInput[1]}
+                  onChange={() => handleRadio(titleInput[1])}
                 />
-                {titleInput==='Both' ? "Any" : titleInput}
+                {titleInput[0]}
               </label>
             )
           })

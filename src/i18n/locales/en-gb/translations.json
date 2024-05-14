@@ -6,7 +6,7 @@
     "filter gender selector title": "Gender",
     "filter gender female": "Female",
     "filter gender male": "Male",
-    "filter gender both": "Both",
+    "filter gender both": "Any",
     "alphabet": "A-B-C-D-E-F-G-H-I-J-K-L-M-N-O-P-Q-R-S-T-U-V-W-X-Y-Z",
     "increment": "Increment",
     "decrement": "Decrement",
@@ -17,5 +17,6 @@
     "loading text": "Loading names...",
     "load more button": "Load more",
     "category singular": "Category",
-    "category plural": "Categories"
+    "category plural": "Categories",
+    "end of names list": "That's all! You've seen all available results."
 }
