@@ -14,7 +14,7 @@ export const themes = {
     "default": {          
         
         "app-container": {
-            "backgroundColor": 'rgb(249, 248, 245)',
+            "backgroundColor": '#f9f9f9',
             "paddingLeft": '5%',
             "paddingRight": '5%',
             "paddingTop": '40px',
@@ -26,7 +26,7 @@ export const themes = {
             "width": '100%',
             "maxWidth": '1109px',            
             "transition": '.5s',
-            "backgroundColor": 'rgb(249, 248, 245)',
+            "backgroundColor": '#f9f9f9',
             "zIndex": '10',
 
             // "@media (max-width: 768px)": {
@@ -48,8 +48,8 @@ export const themes = {
         },        
 
         "form-filters-title": {
-            "color": '#3A3533',
-            "fontFamily": 'Roboto Slab',
+            "color": '#2B2B2B',
+            "fontFamily": 'interregular',
             "fontSize": '20px',
             "fontStyle": 'normal',
             "fontWeight": '400',
@@ -146,14 +146,14 @@ export const themes = {
         }, 
 
         "isActive": {            
-        "border": '0.5px solid  #E81C24',
+        "border": '0.5px solid  #E91C24',
         "background":   '#FFF',
         "boxShadow": '0px 2px 12px 0px rgba(58, 53, 51, 0.10), 0px 0px 2px 0px rgba(58, 53, 51, 0.20)',
         },
 
         "filter-category-title": {
-            "color": '#3A3533',
-            "fontFamily": 'Roboto',
+            "color": '#2B2B2B',
+            "fontFamily": 'interregular',
             "fontSize": '16px',
             "fontStyle": 'normal',
             "fontWeight": '400',
@@ -198,8 +198,8 @@ export const themes = {
         },        
 
         "filter-gender-section-title": {
-            "color": '#3A3533',
-            "fontFamily": 'Roboto',
+            "color": '#2B2B2B',
+            "fontFamily": 'interregular',
             "fontSize": '16px',
             "fontStyle": 'normal',
             "fontWeight": '300',
@@ -212,8 +212,8 @@ export const themes = {
         },
 
         'filter-gender-label': {
-            "color": '#3A3533',
-            "fontFamily": 'Roboto',
+            "color": '#2B2B2B',
+            "fontFamily": 'intermedium',
             "fontSize": '16px',
             "fontStyle": 'normal',
             "fontWeight": '400',
@@ -258,7 +258,7 @@ export const themes = {
         "filter-gender-input-active": {
 
             "&:after": {
-                "border": 'solid 1.5px #E81C24',
+                "border": 'solid 1.5px #E91C24',
             },
 
             "&:before": {
@@ -268,7 +268,7 @@ export const themes = {
                 "content": '""',
                 "width": '12px',
                 "height": '12px',
-                "background": '#E81C24',
+                "background": '#E91C24',
                 "borderRadius": '50%',
 
                 
@@ -352,12 +352,12 @@ export const themes = {
             "width": '37px',
             "height": '37px',
             "textAlign": 'center',
-            "fontFamily": 'Roboto Slab',
+            "fontFamily": 'interregular',
             "fontStyle": 'normal',
-            "fontWeight": '300',
+            "fontWeight": '400',
             "fontSize": '25px',
-            "lineHeight": '35px',
-            "color": '#3A3533',            
+            "lineHeight": '37px',
+            "color": '#2B2B2B',            
             "backgroundColor": 'inherit',
             "cursor": 'pointer',
             "borderRadius": '100%',
@@ -372,7 +372,7 @@ export const themes = {
             },
 
             "&.selected": {
-                "background": '#E81C24',
+                "background": '#E91C24',
                 "color": '#FFFFFF',
                 "boxShadow": '0px 2px 12px 0px rgba(58, 53, 51, 0.10), 0px 0px 2px 0px rgba(58, 53, 51, 0.20)',
             },
@@ -388,25 +388,26 @@ export const themes = {
             "borderRadius": '8px !important',
             "height": '56px !important',
             "padding": '16px 24px',
-            "fontFamily": 'Roboto Slab',
+            "fontFamily": 'interregular',
             "fontSize": '20px !important',
             "fontWeight": '400 !important',
             "lineHeight": '24px !important',
+            "color": '#2B2B2B',
 
             "&.desktop:hover": {
-                "backgroundColor": '#3A3533 !important',
+                "backgroundColor": '#2B2B2B !important',
                 "color": '#FFF',
             },
 
             "&.clicked": {
-                "backgroundColor": '#E81C24 !important',
+                "backgroundColor": '#E91C24 !important',
                 "color": '#FFF',
             }
         },
 
         "view-cardwrapper": {
             "position": 'relative',
-            "border": 'solid 1px red !important',
+            "border": 'solid 1px #E91C24 !important',
             "boxShadow": '0px 4px 16px 0px rgba(0,0,0,0.1) !important',
             "borderRadius": '8px !important',
             "marginTop": '22px',
@@ -418,18 +419,19 @@ export const themes = {
         },
 
         "view-nametitle": {
-            "fontFamily": 'Roboto Slab !important',
-            "color": '#3A3533',
+            "fontFamily": 'interregular !important',
+            "color": '#2B2B2B',
             "fontWeight": '400 !important',
         },
 
         "view-namesubtitle": {
-            "fontFamily": 'Roboto !important',
+            "fontFamily": 'interlight, helvetica, sans-serif !important',
             "fontWeight": '300 !important',
             "color": '#6B6868',
         },
 
         "view-namesubtitle__strong": {
+            "fontFamily": 'intermedium !important',
             "fontWeight": '600 !important',
             "color": 'rgb(107, 104, 104)',
         },
@@ -440,7 +442,7 @@ export const themes = {
         },
 
         "view-namedescription__text": {
-            "fontFamily": 'robotolight !important',
+            "fontFamily": 'interlight, helvetica, sans-serif !important',
             "fontWeight": '300 !important',
             "color": '#6B6868',
             "a": {
@@ -453,8 +455,8 @@ export const themes = {
             "height": '20px',
             "width": '20px',
             "top": '-11px',
-            "borderLeft": 'solid 1px red',
-            "borderTop": 'solid 1px red',
+            "borderLeft": 'solid 1px #E91C24',
+            "borderTop": 'solid 1px #E91C24',
             "background": '#fff',
             "transform": 'rotate(45deg)',
 
@@ -465,27 +467,27 @@ export const themes = {
 
         "view-shareicon": {
             "fontSize": '24px !important',
-            "color": '#E81C24 !important',
+            "color": '#E91C24 !important',
             "cursor": 'pointer',
         },
 
         "view-namedescription__close": {
             "background": 'transparent !important',
-            "color": '#E81C24 !important',
+            "color": '#E91C24 !important',
             "border": 'none !important',
         },
 
         "view-loadmore-button": {
-            "background": '#E81C24 !important',
+            "background": '#E91C24 !important',
             "color": '#FFF !important',
-            "fontFamily": 'Roboto Slab !important',
+            "fontFamily": 'interregular !important',
             "fontWeight": '400 !important',
             "fontSize": '16px !important',
             "lineHeight": '24px !important',
             "border": 'none',
 
             "&.desktop:hover": {
-                "backgroundColor": '#3A3533 !important',
+                "backgroundColor": '#2B2B2B !important',
             }
         },
 
@@ -510,9 +512,9 @@ export const themes = {
         },
 
         "no-result-title": {
-            "color": '#3A3533',
+            "color": '#2B2B2B',
             'textAlign': 'center',
-            "fontFamily": 'Roboto Slab',
+            "fontFamily": 'interregular',
             "fontSize": '25px',
             "fontStyle": 'normal',
             "fontWeight": '400',
@@ -526,9 +528,9 @@ export const themes = {
         },
 
         "no-result-description": {
-            "color": '#3A3533',
+            "color": '#2B2B2B',
             'textAlign': 'center',
-            "fontFamily": 'Roboto Slab',
+            "fontFamily": 'interregular',
             "fontSize": '16px',
             "fontStyle": 'normal',
             "fontWeight": '400',
@@ -537,10 +539,10 @@ export const themes = {
 
         "reset-filters-button": {
             "display": 'block',
-            "border": 'solid 1px #E81C24',
+            "border": 'solid 1px #E91C24',
             "borderRadius": '6px',
-            "fontFamily": 'Roboto Slab',
-            "color": '#E81C24',
+            "fontFamily": 'interregular',
+            "color": '#E91C24',
             "fontSize": '16px',
             "padding": '10px 16px',
             "margin": '36px auto 0',
@@ -548,8 +550,8 @@ export const themes = {
             "lineHeight": '24px',
 
             "&:hover": {
-                "backgroundColor": '#3A3533',
-                "border": 'solid 1px #3A3533',
+                "backgroundColor": '#2B2B2B',
+                "border": 'solid 1px #2B2B2B',
                 "color": '#FFF',
             },
 
@@ -559,18 +561,18 @@ export const themes = {
 
                 "&:hover": {
                     "backgroundColor": 'transparent',
-                    "border": 'solid 1px #E81C24',
-                    "color": '#E81C24',
+                    "border": 'solid 1px #E91C24',
+                    "color": '#E91C24',
                 },
                 
             }
         },
 
         "view-loadmore-thatsall": {
-            "background": '#3A3533',
+            "background": '#2B2B2B',
             "color": '#FFF',
             "padding": '10px 16px',
-            "fontFamily": 'Roboto Slab',
+            "fontFamily": 'interregular',
             "fontSize": '16px',
             "fontWeight": '400',
             "lineHeight": '24px',
