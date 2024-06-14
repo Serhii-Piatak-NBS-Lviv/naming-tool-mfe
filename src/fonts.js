@@ -19,8 +19,8 @@ const FONTS_REGISTRY = {
     
     "interlight": {
         "sources": `
-        url('/public/fonts/inter/Inter-Light.woff2") format("woff2"),
-        url('/public/fonts/inter/Inter-Light.ttf") format("truetype")
+        url('/public/fonts/inter/Inter-Light.ttf") format("truetype"),
+        url('/public/fonts/inter/Inter-Light.woff2") format("woff2")
         `,
         "fontWeight": "normal",
         "fontStyle": "normal",
