@@ -341,6 +341,7 @@ const ShiftingPopover = ({id, title, description, gender, categories, simpleGrid
             w={'100%'} 
             maxW={getThemifiedResponsive(theme, 'view-name-button', 'maxWidth')}
             minW={getThemifiedResponsive(theme, 'view-name-button', 'minWidth')}
+            color={getThemifiedResponsive(theme, 'view-name-button', 'color')}
             m='0' 
             key={`button-${id}`}
             onClick={reveal}> 
