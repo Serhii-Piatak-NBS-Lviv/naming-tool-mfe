@@ -634,6 +634,7 @@ export const themes = {
             "view-name-button": {
                 "maxWidth": ['unset', 'unset', '540px'],
                 "minWidth": ['unset', 'unset', '255px'],
+                "color": ['#2B2B2B', '#2B2B2B', '#2B2B2B'],
             },
 
             "view-loadmore-thatsall": {
