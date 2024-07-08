@@ -124,10 +124,19 @@ const Filter = () => {
     };
 
     const handleRadio = (radio) => {
+        const DL_PAYLOAD = {
+            user_pet_type: "Dog",
+            form_technology: "React",
+            filter_action: 'undefined',
+            filter_name: radio
+        };
+
         dispatch(setGender(radio));
         refreshNamesList(null, radio, null);
-        dispatch(setLetter(''))
+        dispatch(setLetter(''));
         dispatch(selectPetName(''));
+
+        datalayerEvent("custom_event", "naming_tool_fiter_click", DL_PAYLOAD)
     };
 
     const handleLetter = (letter) => {
