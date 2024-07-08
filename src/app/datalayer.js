@@ -6,6 +6,7 @@ const datalayerEvent = (event, eventName, payload) => {
     let datalayerObject = {...datalayerHead, ...payload};
 
     if( window.datalayer === undefined) window.datalayer = [];
+    // console.log(datalayerObject)
     window.datalayer.push(datalayerObject)
 };
 

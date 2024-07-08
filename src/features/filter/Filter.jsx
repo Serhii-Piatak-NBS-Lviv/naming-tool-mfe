@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import useThemifiedComponent from '../../app/hooks/useThemifiedComponent';
 import { toggleLoader, toggleLoadMoreBtn } from '../../app/commonSlice';
 
-
+import datalayerEvent from '../../app/datalayer';
 
 import GenderSelection from './GenderSelection';
 import { AlphabetSelector } from './AlphabetSelector';
@@ -131,9 +131,18 @@ const Filter = () => {
     };
 
     const handleLetter = (letter) => {
+        const DL_PAYLOAD = {
+            user_pet_type: "Dog",
+            form_technology: "React",
+            alphabet_click: letter,
+            pet_name: "undefined"
+        };
+
         dispatch(setLetter(letter));
         refreshNamesList(null, null, letter);
         dispatch(selectPetName(''));
+
+        if (appliedLetter == '') datalayerEvent("custom_event", "naming_tool_name_click", DL_PAYLOAD)
     };  
 
     // Sticky filter on mobile
