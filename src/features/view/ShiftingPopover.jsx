@@ -33,6 +33,8 @@ import useThemifiedComponent from '../../app/hooks/useThemifiedComponent';
 
 import CustomizedTooltip from './CustomizedTooltip';
 import { T } from 'ramda';
+import md5 from 'md5';
+import datalayerEvent from '../../app/datalayer';
 
 /**
 * @author
@@ -307,6 +309,8 @@ const ShiftingPopover = ({id, title, description, gender, categories, simpleGrid
     if (isInvokedAsParam) dispatch(selectPetName(id));
 
     const selectedPetName = useSelector((state) => state.view.selected_name);
+    const selectedLetter = useSelector((state) => state.filter.letter);
+
     const isOpen = (selectedPetName === id);  
     
     const theme = useSelector((state) => state.common.theme);
@@ -315,7 +319,15 @@ const ShiftingPopover = ({id, title, description, gender, categories, simpleGrid
     const isDesktop = simpleGridRef.current?.offsetWidth >= 1109 ? true : false;
   
     const reveal = () => {
-        const browserURL = new URL(window.location.href);        
+        const browserURL = new URL(window.location.href);
+        
+        const DL_PAYLOAD = {
+            user_pet_type: "Dog",
+            form_technology: "React",
+            alphabet_click: selectedLetter === '' ? 'undefined' : selectedLetter,
+            pet_name: md5(`M4nzHg4MjVv6${title}`)
+        };
+        
         if (browserURL.searchParams.get('petname')) {
             window.history.replaceState(null, document.title, "/");
         };
@@ -330,6 +342,10 @@ const ShiftingPopover = ({id, title, description, gender, categories, simpleGrid
                 });
             }, 300)            
         }
+
+        // trigger event to datalayer
+        if (selectedPetName === '') datalayerEvent("custom_event", "naming_tool_name_click", DL_PAYLOAD)
+         
     };
 
   return(

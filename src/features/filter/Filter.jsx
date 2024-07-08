@@ -142,7 +142,7 @@ const Filter = () => {
         refreshNamesList(null, null, letter);
         dispatch(selectPetName(''));
 
-        if (appliedLetter == '') datalayerEvent("custom_event", "naming_tool_name_click", DL_PAYLOAD)
+        if (appliedLetter === '') datalayerEvent("custom_event", "naming_tool_name_click", DL_PAYLOAD)
     };  
 
     // Sticky filter on mobile
