@@ -195,7 +195,15 @@ const SplashDescription = ({id, title, description, theme, gender, categories, s
             : `${ t('category singular')}: `
     }
 
-    const handleShare = (callbck) => {
+    const handleShare = (callbck, socNet) => {
+        const DL_PAYLOAD = {
+            user_pet_type: "Dog",
+            social_network: socNet,
+            share_name: md5(`M4nzHg4MjVv6${title}`)
+        };
+
+        datalayerEvent("custom_event", "naming_tool_social_share", DL_PAYLOAD);
+
         callbck(true);
         setTimeout(() => {
             callbck(false);
@@ -244,7 +252,7 @@ const SplashDescription = ({id, title, description, theme, gender, categories, s
                         as={LinkIcon} 
                         className={cssShareIcon} 
                         fontSize={getThemifiedResponsive(theme, 'view-shareicon', 'fontSize')} 
-                        onClick={() => handleShare(setLinkShared)}
+                        onClick={() => handleShare(setLinkShared, 'URL sharing')}
                         />
                     </Tooltip>
                 </ShareLink>
@@ -259,7 +267,7 @@ const SplashDescription = ({id, title, description, theme, gender, categories, s
                             as={TwitterIcon} 
                             className={cssShareIcon} 
                             fontSize={getThemifiedResponsive(theme, 'view-shareicon', 'fontSize')}
-                            onClick={() => handleShare(setTwitterShared)}
+                            onClick={() => handleShare(setTwitterShared, 'Twitter (X)')}
                             />
                         </span>
                     </Tooltip> 
@@ -274,7 +282,7 @@ const SplashDescription = ({id, title, description, theme, gender, categories, s
                         as={WhatsappIcon} 
                         className={cssShareIcon} 
                         fontSize={getThemifiedResponsive(theme, 'view-shareicon', 'fontSize')} 
-                        onClick={() => handleShare(setWhatsappShared)}
+                        onClick={() => handleShare(setWhatsappShared, 'WhatsApp')}
                         />
                     </Tooltip>  
                 </WhatsappShareButton>
@@ -288,7 +296,7 @@ const SplashDescription = ({id, title, description, theme, gender, categories, s
                         as={FacebookIcon} 
                         className={cssShareIcon} 
                         fontSize={getThemifiedResponsive(theme, 'view-shareicon', 'fontSize')} 
-                        onClick={() => handleShare(setFbShared)}
+                        onClick={() => handleShare(setFbShared, 'Facebook')}
                         />
                     </Tooltip>              
                 </FacebookShareButton>
