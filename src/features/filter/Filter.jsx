@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import useThemifiedComponent from '../../app/hooks/useThemifiedComponent';
 import { toggleLoader, toggleLoadMoreBtn } from '../../app/commonSlice';
 
-
+import datalayerEvent from '../../app/datalayer';
 
 import GenderSelection from './GenderSelection';
 import { AlphabetSelector } from './AlphabetSelector';
@@ -124,16 +124,34 @@ const Filter = () => {
     };
 
     const handleRadio = (radio) => {
+        const DL_PAYLOAD = {
+            user_pet_type: "Dog",
+            form_technology: "React",
+            filter_action: 'undefined',
+            filter_name: radio
+        };
+
         dispatch(setGender(radio));
         refreshNamesList(null, radio, null);
-        dispatch(setLetter(''))
+        dispatch(setLetter(''));
         dispatch(selectPetName(''));
+
+        datalayerEvent("custom_event", "naming_tool_fiter_click", DL_PAYLOAD)
     };
 
     const handleLetter = (letter) => {
+        const DL_PAYLOAD = {
+            user_pet_type: "Dog",
+            form_technology: "React",
+            alphabet_click: letter,
+            pet_name: "undefined"
+        };
+
         dispatch(setLetter(letter));
         refreshNamesList(null, null, letter);
         dispatch(selectPetName(''));
+
+        if (appliedLetter === '') datalayerEvent("custom_event", "naming_tool_name_click", DL_PAYLOAD)
     };  
 
     // Sticky filter on mobile
