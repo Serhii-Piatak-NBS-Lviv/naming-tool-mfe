@@ -127,7 +127,7 @@ const Filter = () => {
         const DL_PAYLOAD = {
             user_pet_type: "Dog",
             form_technology: "React",
-            filter_action: 'undefined',
+            filter_action: 'Gender click',
             filter_name: radio
         };
 
@@ -151,7 +151,7 @@ const Filter = () => {
         refreshNamesList(null, null, letter);
         dispatch(selectPetName(''));
 
-        if (appliedLetter === '') datalayerEvent("custom_event", "naming_tool_name_click", DL_PAYLOAD)
+        if (appliedLetter !== letter) datalayerEvent("custom_event", "naming_tool_name_click", DL_PAYLOAD)
     };  
 
     // Sticky filter on mobile

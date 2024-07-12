@@ -352,7 +352,7 @@ const ShiftingPopover = ({id, title, description, gender, categories, simpleGrid
         }
 
         // trigger event to datalayer
-        if (selectedPetName === '') datalayerEvent("custom_event", "naming_tool_name_click", DL_PAYLOAD)
+        if (selectedPetName !== id) datalayerEvent("custom_event", "naming_tool_name_click", DL_PAYLOAD)
          
     };
 

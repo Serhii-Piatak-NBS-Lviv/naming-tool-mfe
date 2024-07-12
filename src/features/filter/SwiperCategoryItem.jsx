@@ -31,7 +31,7 @@ const SwiperCategoryItem = ({category, handleFilter}) => {
 
         handleFilter(category.id);
 
-        if (activeFilters === '') datalayerEvent("custom_event", "naming_tool_fiter_click", DL_PAYLOAD);
+        if (!activeFilters.includes(category.id)) datalayerEvent("custom_event", "naming_tool_fiter_click", DL_PAYLOAD);
     }
 
     return (
