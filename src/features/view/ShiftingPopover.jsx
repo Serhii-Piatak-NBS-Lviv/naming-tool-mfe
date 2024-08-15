@@ -199,7 +199,7 @@ const SplashDescription = ({id, title, description, theme, gender, categories, s
         const DL_PAYLOAD = {
             user_pet_type: "Dog",
             social_network: socNet,
-            share_name: md5(`M4nzHg4MjVv6${title}`)
+            share_name: btoa(title)
         };
 
         datalayerEvent("custom_event", "naming_tool_social_share", DL_PAYLOAD);
@@ -333,7 +333,7 @@ const ShiftingPopover = ({id, title, description, gender, categories, simpleGrid
             user_pet_type: "Dog",
             form_technology: "React",
             alphabet_click: selectedLetter === '' ? 'undefined' : selectedLetter,
-            pet_name: md5(`M4nzHg4MjVv6${title}`)
+            pet_name: btoa(title)
         };
         
         if (browserURL.searchParams.get('petname')) {
