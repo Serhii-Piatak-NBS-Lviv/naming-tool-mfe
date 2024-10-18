@@ -33,6 +33,8 @@ import useThemifiedComponent from '../../app/hooks/useThemifiedComponent';
 
 import CustomizedTooltip from './CustomizedTooltip';
 import { T } from 'ramda';
+import md5 from 'md5';
+import datalayerEvent from '../../app/datalayer';
 
 /**
 * @author
@@ -193,7 +195,15 @@ const SplashDescription = ({id, title, description, theme, gender, categories, s
             : `${ t('category singular')}: `
     }
 
-    const handleShare = (callbck) => {
+    const handleShare = (callbck, socNet) => {
+        const DL_PAYLOAD = {
+            user_pet_type: "Dog",
+            social_network: socNet,
+            share_name: btoa(title)
+        };
+
+        datalayerEvent("custom_event", "naming_tool_social_share", DL_PAYLOAD);
+
         callbck(true);
         setTimeout(() => {
             callbck(false);
@@ -242,7 +252,7 @@ const SplashDescription = ({id, title, description, theme, gender, categories, s
                         as={LinkIcon} 
                         className={cssShareIcon} 
                         fontSize={getThemifiedResponsive(theme, 'view-shareicon', 'fontSize')} 
-                        onClick={() => handleShare(setLinkShared)}
+                        onClick={() => handleShare(setLinkShared, 'URL sharing')}
                         />
                     </Tooltip>
                 </ShareLink>
@@ -257,7 +267,7 @@ const SplashDescription = ({id, title, description, theme, gender, categories, s
                             as={TwitterIcon} 
                             className={cssShareIcon} 
                             fontSize={getThemifiedResponsive(theme, 'view-shareicon', 'fontSize')}
-                            onClick={() => handleShare(setTwitterShared)}
+                            onClick={() => handleShare(setTwitterShared, 'Twitter (X)')}
                             />
                         </span>
                     </Tooltip> 
@@ -272,7 +282,7 @@ const SplashDescription = ({id, title, description, theme, gender, categories, s
                         as={WhatsappIcon} 
                         className={cssShareIcon} 
                         fontSize={getThemifiedResponsive(theme, 'view-shareicon', 'fontSize')} 
-                        onClick={() => handleShare(setWhatsappShared)}
+                        onClick={() => handleShare(setWhatsappShared, 'WhatsApp')}
                         />
                     </Tooltip>  
                 </WhatsappShareButton>
@@ -286,7 +296,7 @@ const SplashDescription = ({id, title, description, theme, gender, categories, s
                         as={FacebookIcon} 
                         className={cssShareIcon} 
                         fontSize={getThemifiedResponsive(theme, 'view-shareicon', 'fontSize')} 
-                        onClick={() => handleShare(setFbShared)}
+                        onClick={() => handleShare(setFbShared, 'Facebook')}
                         />
                     </Tooltip>              
                 </FacebookShareButton>
@@ -307,6 +317,8 @@ const ShiftingPopover = ({id, title, description, gender, categories, simpleGrid
     if (isInvokedAsParam) dispatch(selectPetName(id));
 
     const selectedPetName = useSelector((state) => state.view.selected_name);
+    const selectedLetter = useSelector((state) => state.filter.letter);
+
     const isOpen = (selectedPetName === id);  
     
     const theme = useSelector((state) => state.common.theme);
@@ -315,7 +327,15 @@ const ShiftingPopover = ({id, title, description, gender, categories, simpleGrid
     const isDesktop = simpleGridRef.current?.offsetWidth >= 1109 ? true : false;
   
     const reveal = () => {
-        const browserURL = new URL(window.location.href);        
+        const browserURL = new URL(window.location.href);
+        
+        const DL_PAYLOAD = {
+            user_pet_type: "Dog",
+            form_technology: "React",
+            alphabet_click: selectedLetter === '' ? 'undefined' : selectedLetter,
+            pet_name: btoa(title)
+        };
+        
         if (browserURL.searchParams.get('petname')) {
             window.history.replaceState(null, document.title, "/");
         };
@@ -330,6 +350,10 @@ const ShiftingPopover = ({id, title, description, gender, categories, simpleGrid
                 });
             }, 300)            
         }
+
+        // trigger event to datalayer
+        if (selectedPetName !== id) datalayerEvent("custom_event", "naming_tool_name_click", DL_PAYLOAD)
+         
     };
 
   return(

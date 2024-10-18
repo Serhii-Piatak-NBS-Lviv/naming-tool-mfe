@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 // https://uat-dig0031655-petcare-purinattt-italy.pantheonsite.io/namingtool-petname-categories?_format=json
 // http://tttspoof.ddev.site/petnames-categories?_format=json
 
-const currentUrl = 'https://purina.co.uk';
+const currentUrl = 'https://www.purina.co.uk';
 // const currentUrl = window.location.origin;
 const categoriesUrl = 'v1/nt_api/categories_resource';
 const petNamesUrl = 'v1/nt_api/petnames_resource';

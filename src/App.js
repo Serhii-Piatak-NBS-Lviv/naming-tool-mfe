@@ -23,6 +23,7 @@ import LoadingOverlay from 'react-loading-overlay-ts';
 import FadeLoader from "react-spinners/FadeLoader";
 
 import { NoResult } from "./features/view/NoResult";
+import datalayerEvent from "./app/datalayer";
 
 const App = ({data}) => {
   const { t, i18n } = useTranslation();
@@ -49,8 +50,14 @@ const App = ({data}) => {
     };       
 
     const loadMorePetNames = () => {
+      const DL_PAYLOAD = {
+        button_click: "Load more"
+      };
+
       dispatch(setNamesList(namesFullList.slice(0, curPortion.length + addPortionSize)));
       if (isLoadMoreAvail && (viewSize === namesFullList.length)) dispatch(toggleLoadMoreBtn());
+    
+      datalayerEvent("custom_event", "naming_tool_button_click", DL_PAYLOAD)
     };
 
     //push categories and petnames to Redux storage
