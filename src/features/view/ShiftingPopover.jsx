@@ -32,8 +32,8 @@ import useURLParam from '../../app/hooks/useURLParam';
 import useThemifiedComponent from '../../app/hooks/useThemifiedComponent';
 
 import CustomizedTooltip from './CustomizedTooltip';
-import { T } from 'ramda';
-import md5 from 'md5';
+// import { T } from 'ramda';
+// import md5 from 'md5';
 import datalayerEvent from '../../app/datalayer';
 
 /**

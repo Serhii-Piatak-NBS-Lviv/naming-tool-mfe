@@ -2,10 +2,10 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
 // !!! Folowing line used for debugging purposes only
-// document.documentElement.setAttribute("lang", 'nl-BE');
+document.documentElement.setAttribute("lang", 'hu-HU');
 
 const currentLang = document.documentElement.lang
-// console.log(`Locale used: ${currentLang}`) //for debug only
+console.log(`Locale used: ${currentLang}`) //for debug only
 
 i18n.use(initReactI18next).init({
   fallbackLng: 'en-GB',
@@ -29,11 +29,14 @@ i18n.use(initReactI18next).init({
     'pt-PT': {
       translations: require('./locales/pt-PT/translations.json')
     },
+    'hu-HU': {
+      translations: require('./locales/hu-HU/translations.json')
+    },
   },
   ns: ['translations'],
   defaultNS: 'translations'
 });
 
-i18n.languages = ['en-GB', 'nl-BE', 'fr-BE', 'es-ES', 'it-IT', 'pt-PT'];
+i18n.languages = ['en-GB', 'nl-BE', 'fr-BE', 'es-ES', 'it-IT', 'pt-PT', 'hu-HU'];
 
 export default i18n;
