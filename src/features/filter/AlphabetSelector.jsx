@@ -1,3 +1,4 @@
+import { useRef, useState } from "react";
 import { useTranslation } from 'react-i18next';
 import useThemifiedComponent from '../../app/hooks/useThemifiedComponent';
 import { cx, css } from '@emotion/css';
@@ -36,9 +37,60 @@ export const AlphabetSelector = ({handleLetter}) => {
   const getAvaiLetters = genderSelected ? R.pipe(selByGender, selByCategory, getHeadLetters) : R.pipe(selByCategory, getHeadLetters);
   const activeLetters = getAvaiLetters(initialNamesList);
 
+
+
+
+
+
+  
+
+  const containerRef = useRef(null);
+  const [isSwiping, setIsSwiping] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
+
+  const handleMouseDown = (e) => {
+    setIsSwiping(true);
+    setStartX(e.pageX - containerRef.current.offsetLeft);
+    setScrollLeft(containerRef.current.scrollLeft);
+  };
+
+  const handleMouseLeave = () => setIsSwiping(false);
+
+  const handleMouseUp = () => setIsSwiping(false);
+
+  const handleMouseMove = (e) => {
+    if (!isSwiping) return;
+    e.preventDefault();
+    const x = e.pageX - containerRef.current.offsetLeft;
+    const walk = (x - startX) * 2;
+    containerRef.current.scrollLeft = scrollLeft - walk;
+  };
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   return(
     <div className={cssAlphabeticalContainer}>
-      <ul className={cssAlphabeticalList}>
+      <ul 
+        ref={containerRef} 
+        className={cssAlphabeticalList}
+        onMouseDown={handleMouseDown}
+        onMouseLeave={handleMouseLeave}
+        onMouseUp={handleMouseUp}
+        onMouseMove={handleMouseMove}  
+      >
         {
           alphabet.map(letter => {
             return (        
