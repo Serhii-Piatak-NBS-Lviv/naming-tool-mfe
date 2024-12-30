@@ -1,8 +1,10 @@
+import { forwardRef } from "react";
 import { useTranslation } from 'react-i18next';
 import useThemifiedComponent from '../../app/hooks/useThemifiedComponent';
 import { cx, css } from '@emotion/css';
 import { useSelector } from 'react-redux';
 import * as R from 'ramda';
+import { withHorizontalSwipe } from "../../app/withHorizontalSwipe";
 
 /**
 * @author
@@ -36,27 +38,35 @@ export const AlphabetSelector = ({handleLetter}) => {
   const getAvaiLetters = genderSelected ? R.pipe(selByGender, selByCategory, getHeadLetters) : R.pipe(selByCategory, getHeadLetters);
   const activeLetters = getAvaiLetters(initialNamesList);
 
+  const Letter = (symb) => {
+    return (        
+      <li 
+        className={cx(
+          {[cssAlphabeticalletter]: true},
+          {[cssMissedLetter]: !activeLetters.includes(symb)},
+          {['selected']: filterState.letter.includes(symb) && activeLetters.includes(symb)}
+        )} 
+        onClick={() => handleLetter(symb)}
+        key={symb}
+      >
+        {symb}
+      </li>
+    )
+  };
+
+  const Alphabet = forwardRef((props, ref) => {
+    return(
+      <ul ref={ref} className={cssAlphabeticalList} {...props}>
+        { alphabet.map(symbol => Letter(symbol)) }
+      </ul>
+    )
+  });
+
+  const SwipableAlphabet = withHorizontalSwipe(Alphabet);
+
   return(
     <div className={cssAlphabeticalContainer}>
-      <ul className={cssAlphabeticalList}>
-        {
-          alphabet.map(letter => {
-            return (        
-              <li 
-                className={cx(
-                  {[cssAlphabeticalletter]: true},
-                  {[cssMissedLetter]: !activeLetters.includes(letter)},
-                  {['selected']: filterState.letter.includes(letter) && activeLetters.includes(letter)}
-                )} 
-                onClick={() => handleLetter(letter)}
-                key={letter}
-              >
-                {letter}
-              </li>
-            )
-          })
-        }
-      </ul>
+      <SwipableAlphabet />
     </div>
   )
 }

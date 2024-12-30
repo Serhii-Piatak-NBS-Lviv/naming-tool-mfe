@@ -24,7 +24,7 @@ export const themes = {
 
         "filters": {
             "width": '100%',
-            "maxWidth": '1109px',            
+            "maxWidth": '1110px',            
             "transition": '.5s',
             "backgroundColor": '#f9f9f9',
             "zIndex": '10',
@@ -301,7 +301,7 @@ export const themes = {
                 "height": '100%',
                 "background": 'linear-gradient(270deg, rgba(255, 255, 255, 0.00) 0%, #fff 71.26%);',
                 "borderRadius": '34px 0 0 34px',
-                "opacity": '.5',
+                "opacity": '.94',
 
                 "@media (max-width: 768px)": {
                     "width": '22px',
@@ -317,7 +317,7 @@ export const themes = {
                 "height": '100%',                
                 "background": 'linear-gradient(90deg, rgba(255, 255, 255, 0.00) 0%, #fff 71.26%);',
                 "borderRadius": '0 34px 34px 0',
-                "opacity": '.5',
+                "opacity": '.94',
                 "zIndex": '9',
 
                 "@media (max-width: 768px)": {
