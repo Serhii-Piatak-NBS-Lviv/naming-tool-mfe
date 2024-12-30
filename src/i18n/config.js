@@ -2,10 +2,10 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
 // !!! Folowing line used for debugging purposes only
-document.documentElement.setAttribute("lang", 'hu-HU');
+// document.documentElement.setAttribute("lang", 'hu-HU');
 
 const currentLang = document.documentElement.lang
-console.log(`Locale used: ${currentLang}`) //for debug only
+// console.log(`Locale used: ${currentLang}`) //for debug only
 
 i18n.use(initReactI18next).init({
   fallbackLng: 'en-GB',
