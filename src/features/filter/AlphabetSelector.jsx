@@ -1,9 +1,10 @@
-import { useRef, useState } from "react";
+import { forwardRef } from "react";
 import { useTranslation } from 'react-i18next';
 import useThemifiedComponent from '../../app/hooks/useThemifiedComponent';
 import { cx, css } from '@emotion/css';
 import { useSelector } from 'react-redux';
 import * as R from 'ramda';
+import { withHorizontalSwipe } from "../../app/withHorizontalSwipe";
 
 /**
 * @author
@@ -37,78 +38,35 @@ export const AlphabetSelector = ({handleLetter}) => {
   const getAvaiLetters = genderSelected ? R.pipe(selByGender, selByCategory, getHeadLetters) : R.pipe(selByCategory, getHeadLetters);
   const activeLetters = getAvaiLetters(initialNamesList);
 
-
-
-
-
-
-  
-
-  const containerRef = useRef(null);
-  const [isSwiping, setIsSwiping] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
-
-  const handleMouseDown = (e) => {
-    setIsSwiping(true);
-    setStartX(e.pageX - containerRef.current.offsetLeft);
-    setScrollLeft(containerRef.current.scrollLeft);
+  const Letter = (symb) => {
+    return (        
+      <li 
+        className={cx(
+          {[cssAlphabeticalletter]: true},
+          {[cssMissedLetter]: !activeLetters.includes(symb)},
+          {['selected']: filterState.letter.includes(symb) && activeLetters.includes(symb)}
+        )} 
+        onClick={() => handleLetter(symb)}
+        key={symb}
+      >
+        {symb}
+      </li>
+    )
   };
 
-  const handleMouseLeave = () => setIsSwiping(false);
+  const Alphabet = forwardRef((props, ref) => {
+    return(
+      <ul ref={ref} className={cssAlphabeticalList} {...props}>
+        { alphabet.map(symbol => Letter(symbol)) }
+      </ul>
+    )
+  });
 
-  const handleMouseUp = () => setIsSwiping(false);
-
-  const handleMouseMove = (e) => {
-    if (!isSwiping) return;
-    e.preventDefault();
-    const x = e.pageX - containerRef.current.offsetLeft;
-    const walk = (x - startX) * 2;
-    containerRef.current.scrollLeft = scrollLeft - walk;
-  };
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
+  const SwipableAlphabet = withHorizontalSwipe(Alphabet);
 
   return(
     <div className={cssAlphabeticalContainer}>
-      <ul 
-        ref={containerRef} 
-        className={cssAlphabeticalList}
-        onMouseDown={handleMouseDown}
-        onMouseLeave={handleMouseLeave}
-        onMouseUp={handleMouseUp}
-        onMouseMove={handleMouseMove}  
-      >
-        {
-          alphabet.map(letter => {
-            return (        
-              <li 
-                className={cx(
-                  {[cssAlphabeticalletter]: true},
-                  {[cssMissedLetter]: !activeLetters.includes(letter)},
-                  {['selected']: filterState.letter.includes(letter) && activeLetters.includes(letter)}
-                )} 
-                onClick={() => handleLetter(letter)}
-                key={letter}
-              >
-                {letter}
-              </li>
-            )
-          })
-        }
-      </ul>
+      <SwipableAlphabet />
     </div>
   )
 }
