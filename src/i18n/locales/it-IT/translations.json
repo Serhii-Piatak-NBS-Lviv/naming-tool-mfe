@@ -4,14 +4,14 @@
     "filter gender selector title": "Genere",
     "filter gender female": "Femmina",
     "filter gender male": "Maschio",
-    "filter gender both": "Qualunque",
+    "filter gender both": "Qualsiasi",
     "alphabet": "A-B-C-D-E-F-G-H-I-J-K-L-M-N-O-P-Q-R-S-T-U-V-W-X-Y-Z",
     "Empty search result title": "Siamo spiacenti, non abbiamo trovato risultati.",
     "Empty search result description": "Cancella i filtri e riprova.",
     "Reset filters button": "Cancella i filtri",
     "loading text": "Caricamento nomi...",
-    "load more button": "Carica di più",
+    "load more button": "Carica altri",
     "category singular": "Categoria",
     "category plural": "Categorie",
-    "end of names list": "È tutto! Hai visto tutti i risultati disponibili."
+    "end of names list": "Hai visto tutti i risultati disponibili."
 }
