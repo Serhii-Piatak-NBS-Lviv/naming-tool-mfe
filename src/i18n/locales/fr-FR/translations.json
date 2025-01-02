@@ -1,0 +1,17 @@
+{
+    "filter subtitle - we compiled a list": "",
+    "filter slider title": "Trouver le nom idéal",
+    "filter gender selector title": "Genre",
+    "filter gender female": "Femelle",
+    "filter gender male": "Mâle",
+    "filter gender both": "Autre",
+    "alphabet": "A-B-C-D-E-F-G-H-I-J-K-L-M-N-O-P-Q-R-S-T-U-V-W-X-Y-Z",
+    "Empty search result title": "Désolé, nous n'avons trouvé aucun résultat.",
+    "Empty search result description": "Effacez vos filtres et réessayez.",
+    "Reset filters button": "Effacez vos filtres",
+    "loading text": "Chargement des noms...",
+    "load more button": "Charger plus",
+    "category singular": "Catégorie",
+    "category plural": "Catégories",
+    "end of names list": "C'est tout! Vous avez vu tous les résultats."
+}
