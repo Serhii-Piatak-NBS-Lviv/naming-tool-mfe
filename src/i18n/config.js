@@ -2,7 +2,7 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
 // !!! Folowing line used for debugging purposes only
-// document.documentElement.setAttribute("lang", 'it-IT');
+// document.documentElement.setAttribute("lang", 'de-DE');
 
 const currentLang = document.documentElement.lang
 // console.log(`Locale used: ${currentLang}`) //for debug only
@@ -35,14 +35,14 @@ i18n.use(initReactI18next).init({
     'fr-FR': {
       translations: require('./locales/fr-FR/translations.json')
     },
-    'de-de': {
-      translations: require('./locales/de-de/translations.json')
+    'de-DE': {
+      translations: require('./locales/de-DE/translations.json')
     },
   },
   ns: ['translations'],
   defaultNS: 'translations'
 });
 
-i18n.languages = ['en-GB', 'nl-BE', 'fr-BE', 'es-ES', 'it-IT', 'pt-PT', 'hu-HU', 'fr-FR', 'de-de'];
+i18n.languages = ['en-GB', 'nl-BE', 'fr-BE', 'es-ES', 'it-IT', 'pt-PT', 'hu-HU', 'fr-FR', 'de-DE'];
 
 export default i18n;
