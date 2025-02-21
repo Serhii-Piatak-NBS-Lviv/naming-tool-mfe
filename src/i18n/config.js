@@ -2,7 +2,7 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
 // !!! Folowing line used for debugging purposes only
-// document.documentElement.setAttribute("lang", 'de-DE');
+// document.documentElement.setAttribute("lang", 'it-IT');
 
 const currentLang = document.documentElement.lang
 // console.log(`Locale used: ${currentLang}`) //for debug only
