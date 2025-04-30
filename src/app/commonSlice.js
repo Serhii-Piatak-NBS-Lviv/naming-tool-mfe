@@ -1,12 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-// https://uat-dig0031655-petcare-purinattt-italy.pantheonsite.io/namingtool-petname-categories?_format=json
-// http://tttspoof.ddev.site/petnames-categories?_format=json
-
 const currentUrl = 'https://www.purina.co.uk';
 // const currentUrl = window.location.origin;
-const categoriesUrl = 'v1/nt_api/categories_resource';
-const petNamesUrl = 'v1/nt_api/petnames_resource';
+
+let langprefix = "";
+
+if (window.drupalSettings) langprefix = window?.drupalSettings?.path?.pathPrefix || "";
+
+const categoriesUrl = `${langprefix}v1/nt_api/categories_resource`;
+const petNamesUrl = `${langprefix}v1/nt_api/petnames_resource`;
 
 export const commonSlice = createSlice({
     name: 'common',
