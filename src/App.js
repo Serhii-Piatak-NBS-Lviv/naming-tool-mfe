@@ -17,6 +17,7 @@ import ThatItMessage from "./features/view/ThatItMessage";
 
 import { setTheme, setLocale, initializeNamesList, initializeCategoriesList, toggleLoadMoreBtn, toggleLoader } from "./app/commonSlice";
 import { setNamesList, setPetnamesPortion, loadAllPetnames } from "./features/view/viewSlice";
+import { setGender } from "./features/filter/filterSlice";
 
 import LoadingOverlay from 'react-loading-overlay-ts';
 import FadeLoader from "react-spinners/FadeLoader";
