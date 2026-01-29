@@ -22,16 +22,27 @@ const SwiperCategoryItem = ({category, handleFilter}) => {
     };
 
     const handleClick = (category) => {
-        const DL_PAYLOAD = {
+        const DL_PAYLOAD_OLD = {
             user_pet_type: "Dog",
             form_technology: "React",
             filter_action: 'Filter click',
             filter_name: category.title
         };
 
+        const DL_PAYLOAD = {
+            user_pet_type: 'Dog',
+            param_location: 'component',
+            filter_action: 'Filter click',
+            filters_used: category.title,
+            form_type: 'React',
+        };
+
         handleFilter(category.id);
 
-        if (!activeFilters.includes(category.id)) datalayerEvent("custom_event", "naming_tool_fiter_click", DL_PAYLOAD);
+        if (!activeFilters.includes(category.id)) {
+            datalayerEvent("custom_event", "naming_tool_fiter_click", DL_PAYLOAD_OLD);
+            datalayerEvent("naming_tool_submit", "naming_tool_submit", DL_PAYLOAD);
+        }
     }
 
     return (

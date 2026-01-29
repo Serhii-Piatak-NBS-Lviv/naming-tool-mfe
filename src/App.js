@@ -17,7 +17,6 @@ import ThatItMessage from "./features/view/ThatItMessage";
 
 import { setTheme, setLocale, initializeNamesList, initializeCategoriesList, toggleLoadMoreBtn, toggleLoader } from "./app/commonSlice";
 import { setNamesList, setPetnamesPortion, loadAllPetnames } from "./features/view/viewSlice";
-import { setGender } from "./features/filter/filterSlice";
 
 import LoadingOverlay from 'react-loading-overlay-ts';
 import FadeLoader from "react-spinners/FadeLoader";
@@ -50,14 +49,24 @@ const App = ({data}) => {
     };       
 
     const loadMorePetNames = () => {
-      const DL_PAYLOAD = {
+      const DL_PAYLOAD_OLD = {
         button_click: "Load more"
+      };
+      const DL_PAYLOAD = {
+        param_location: "component",
+        link_classes: `${cssLoadmoreButton} ${isDesktop ? 'desktop' : null}`,
+        link_domain: window.location.hostname,
+        link_text: "Load more",
+        link_url: window.location.href,
+        content_pet_type: "Dog",
+        content_type: "Component page"
       };
 
       dispatch(setNamesList(namesFullList.slice(0, curPortion.length + addPortionSize)));
       if (isLoadMoreAvail && (viewSize === namesFullList.length)) dispatch(toggleLoadMoreBtn());
-    
-      datalayerEvent("custom_event", "naming_tool_button_click", DL_PAYLOAD)
+
+      datalayerEvent("custom_event", "naming_tool_button_click", DL_PAYLOAD_OLD);
+      datalayerEvent("cta_click", "cta_click", DL_PAYLOAD);
     };
 
     //push categories and petnames to Redux storage

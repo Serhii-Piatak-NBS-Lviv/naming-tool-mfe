@@ -196,13 +196,22 @@ const SplashDescription = ({id, title, description, theme, gender, categories, s
     }
 
     const handleShare = (callbck, socNet) => {
-        const DL_PAYLOAD = {
+        const DL_PAYLOAD_OLD = {
             user_pet_type: "Dog",
             social_network: socNet,
             share_name: btoa(title)
         };
 
-        datalayerEvent("custom_event", "naming_tool_social_share", DL_PAYLOAD);
+        const DL_PAYLOAD = {
+            user_pet_type: 'Dog',
+            param_location: 'component',
+            social_network: socNet,
+            content_name: btoa(title),
+            content_type: 'Component page'
+        };
+
+        datalayerEvent("custom_event", "naming_tool_social_share", DL_PAYLOAD_OLD);
+        datalayerEvent("share", "share", DL_PAYLOAD);
 
         callbck(true);
         setTimeout(() => {
@@ -319,6 +328,11 @@ const ShiftingPopover = ({id, title, description, gender, categories, simpleGrid
     const selectedPetName = useSelector((state) => state.view.selected_name);
     const selectedLetter = useSelector((state) => state.filter.letter);
 
+    // Селектори для фільтрів (для нового DataLayer формату)
+    const appliedCategory = useSelector(state => state.filter.selectedCategories);
+    const appliedGender = useSelector(state => state.filter.gender);
+    const appliedLetter = useSelector(state => state.filter.letter);
+
     const isOpen = (selectedPetName === id);  
     
     const theme = useSelector((state) => state.common.theme);
@@ -329,13 +343,31 @@ const ShiftingPopover = ({id, title, description, gender, categories, simpleGrid
     const reveal = () => {
         const browserURL = new URL(window.location.href);
         
-        const DL_PAYLOAD = {
+        const DL_PAYLOAD_OLD = {
             user_pet_type: "Dog",
             form_technology: "React",
             alphabet_click: selectedLetter === '' ? 'undefined' : selectedLetter,
             pet_name: btoa(title)
         };
-        
+
+        // Новий формат для naming_tool_submit
+        let filtersUsed = '';
+        if (appliedCategory) filtersUsed += `category:${appliedCategory}`;
+        if (appliedGender) filtersUsed += (filtersUsed ? ',' : '') + `gender:${appliedGender}`;
+        if (appliedLetter) filtersUsed += (filtersUsed ? ',' : '') + `letter:${appliedLetter}`;
+
+        const DL_PAYLOAD_NEW = {
+            event: 'naming_tool_submit',
+            event_name: 'naming_tool_submit',
+            user_pet_type: 'Dog',
+            param_location: 'component',
+            filter_action: 'Pet name click',
+            filters_used: filtersUsed || 'none',
+            form_type: 'React',
+            alphabet_click: selectedLetter === '' ? 'undefined' : selectedLetter,
+            pet_name: btoa(title)
+        };
+
         if (browserURL.searchParams.get('petname')) {
             window.history.replaceState(null, document.title, "/");
         };
@@ -352,8 +384,13 @@ const ShiftingPopover = ({id, title, description, gender, categories, simpleGrid
         }
 
         // trigger event to datalayer
-        if (selectedPetName !== id) datalayerEvent("custom_event", "naming_tool_name_click", DL_PAYLOAD)
-         
+        if (selectedPetName !== id) {
+            // Відправляємо старий формат
+            datalayerEvent("custom_event", "naming_tool_name_click", DL_PAYLOAD_OLD);
+
+            // Відправляємо новий формат
+            datalayerEvent("naming_tool_submit", "naming_tool_submit", DL_PAYLOAD_NEW);
+        }
     };
 
   return(
