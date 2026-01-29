@@ -124,11 +124,19 @@ const Filter = () => {
     };
 
     const handleRadio = (radio) => {
-        const DL_PAYLOAD = {
+        const DL_PAYLOAD_OLD = {
             user_pet_type: "Dog",
             form_technology: "React",
             filter_action: 'Gender click',
             filter_name: radio
+        };
+
+        const DL_PAYLOAD = {
+            user_pet_type: 'Dog',
+            param_location: 'component',
+            filter_action: 'Gender click',
+            filters_used: radio,
+            form_type: 'React',
         };
 
         dispatch(setGender(radio));
@@ -136,23 +144,38 @@ const Filter = () => {
         dispatch(setLetter(''));
         dispatch(selectPetName(''));
 
-        datalayerEvent("custom_event", "naming_tool_fiter_click", DL_PAYLOAD)
+        datalayerEvent("custom_event", "naming_tool_fiter_click", DL_PAYLOAD_OLD);
+        datalayerEvent("naming_tool_submit", "naming_tool_submit", DL_PAYLOAD);
     };
-
     const handleLetter = (letter) => {
-        const DL_PAYLOAD = {
+        const DL_PAYLOAD_OLD = {
             user_pet_type: "Dog",
             form_technology: "React",
             alphabet_click: letter,
             pet_name: "undefined"
         };
 
+        let filtersUsed = `letter:${letter}`;
+        if (appliedCategory) filtersUsed += `,category:${appliedCategory}`;
+        if (appliedGender) filtersUsed += `,gender:${appliedGender}`;
+
+        const DL_PAYLOAD = {
+            user_pet_type: 'Dog',
+            param_location: 'component',
+            filter_action: 'Alphabet click',
+            form_type: 'React',
+            alphabet_click: letter,
+        };
+
         dispatch(setLetter(letter));
         refreshNamesList(null, null, letter);
         dispatch(selectPetName(''));
 
-        if (appliedLetter !== letter) datalayerEvent("custom_event", "naming_tool_name_click", DL_PAYLOAD)
-    };  
+        if (appliedLetter !== letter) {
+            datalayerEvent("custom_event", "naming_tool_name_click", DL_PAYLOAD_OLD);
+            datalayerEvent("naming_tool_submit", "naming_tool_submit", DL_PAYLOAD);
+        }
+    };
 
     // Sticky filter on mobile
     // const [lastScroll, setLastScroll] = useState(0);
