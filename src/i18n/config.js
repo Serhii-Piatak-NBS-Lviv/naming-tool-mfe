@@ -41,11 +41,14 @@ i18n.use(initReactI18next).init({
     'de-DE': {
       translations: require('./locales/de-DE/translations.json')
     },
+    'uk-UA': {
+      translations: require('./locales/uk-UA/translations.json')
+    },
   },
   ns: ['translations'],
   defaultNS: 'translations'
 });
 
-i18n.languages = ['en-GB', 'nl-BE', 'fr-BE', 'es-ES', 'it-IT', 'pt-PT', 'hu-HU', 'he-IL', 'fr-FR', 'de-DE'];
+i18n.languages = ['en-GB', 'nl-BE', 'fr-BE', 'es-ES', 'it-IT', 'pt-PT', 'hu-HU', 'he-IL', 'fr-FR', 'de-DE', 'uk-UA'];
 
 export default i18n;
