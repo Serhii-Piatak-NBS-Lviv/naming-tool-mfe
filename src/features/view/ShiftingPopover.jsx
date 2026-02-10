@@ -37,6 +37,16 @@ import CustomizedTooltip from './CustomizedTooltip';
 import datalayerEvent from '../../app/datalayer';
 
 /**
+ * Safely encode Unicode strings (including Cyrillic) to Base64
+ */
+function btoaEncoder(str) {
+    const bytes = new TextEncoder().encode(str);
+    let bin = "";
+    bytes.forEach(b => bin += String.fromCharCode(b));
+    return btoa(bin);
+}
+
+/**
 * @author
 * @function ShiftingPopover
 **/
@@ -199,14 +209,14 @@ const SplashDescription = ({id, title, description, theme, gender, categories, s
         const DL_PAYLOAD_OLD = {
             user_pet_type: "Dog",
             social_network: socNet,
-            share_name: btoa(title)
+            share_name: btoaEncoder(title)
         };
 
         const DL_PAYLOAD = {
             user_pet_type: 'Dog',
             param_location: 'component',
             social_network: socNet,
-            content_name: btoa(title),
+            content_name: btoaEncoder(title),
             content_type: 'Component page'
         };
 
@@ -347,7 +357,7 @@ const ShiftingPopover = ({id, title, description, gender, categories, simpleGrid
             user_pet_type: "Dog",
             form_technology: "React",
             alphabet_click: selectedLetter === '' ? 'undefined' : selectedLetter,
-            pet_name: btoa(title)
+            pet_name: btoaEncoder(title)
         };
 
         // Новий формат для naming_tool_submit
@@ -365,7 +375,7 @@ const ShiftingPopover = ({id, title, description, gender, categories, simpleGrid
             filters_used: filtersUsed || 'none',
             form_type: 'React',
             alphabet_click: selectedLetter === '' ? 'undefined' : selectedLetter,
-            pet_name: btoa(title)
+            pet_name: btoaEncoder(title)
         };
 
         if (browserURL.searchParams.get('petname')) {
