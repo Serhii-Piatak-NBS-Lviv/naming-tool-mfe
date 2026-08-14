@@ -1,14 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const currentUrl = 'https://www.purina.co.uk';
-// const currentUrl = window.location.origin;
+// const currentUrl = 'https://www.purina.co.uk';
+const currentUrl = window.location.origin;
 
 let langprefix = "";
 
 if (window.drupalSettings) langprefix = window?.drupalSettings?.path?.pathPrefix || "";
 
-const categoriesUrl = `${langprefix}v1/nt_api/categories_resource`;
-const petNamesUrl = `${langprefix}v1/nt_api/petnames_resource`;
+const categoriesUrl = `${langprefix}v1/nt_api/categories_resource?_format=json`;
+const petNamesUrl = `${langprefix}v1/nt_api/petnames_resource?_format=json`;
 
 export const commonSlice = createSlice({
     name: 'common',
