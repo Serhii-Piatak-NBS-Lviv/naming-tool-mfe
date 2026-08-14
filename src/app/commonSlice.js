@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-// const currentUrl = 'https://www.purina.co.uk';
-const currentUrl = window.location.origin;
+const currentUrl = 'https://www.purina.co.uk';
+// const currentUrl = window.location.origin;
 
 let langprefix = "";
 
